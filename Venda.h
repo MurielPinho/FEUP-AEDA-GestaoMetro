@@ -7,7 +7,9 @@ using namespace std;
 
 
 class Venda {
+	float preco;
 public:
+	Venda(Bilhete B);
 };
 
 
