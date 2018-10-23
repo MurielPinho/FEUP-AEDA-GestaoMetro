@@ -6,11 +6,7 @@
 using namespace std;
 
 
-class Venda {
-	float preco;
-public:
-	Venda(Bilhete B);
-};
-
+int Maquina();
+int Loja();
 
 #endif /*VENDA_H_*/
