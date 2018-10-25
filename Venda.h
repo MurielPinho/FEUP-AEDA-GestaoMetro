@@ -5,8 +5,11 @@
 #include "Bilhete.h"
 using namespace std;
 
+int      Maquina();
+int      Loja();
+Bilhete* Ocasional();
+Bilhete* Assinatura();
+bool     Pagamento(float preco);
 
-int Maquina();
-int Loja();
 
 #endif /*VENDA_H_*/

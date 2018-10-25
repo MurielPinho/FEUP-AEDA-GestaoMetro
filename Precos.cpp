@@ -6,9 +6,9 @@
 #define Assinatura_Z4 48.05f
 
 // #define Viagem_Z1 1.2f;
-#define Viagem_Z2 1.2f;
-#define Viagem_Z3 1.6f;
-#define Viagem_Z4 2.0f;
+#define Unico_Z2 1.2f;
+#define Unico_Z3 1.6f;
+#define Unico_Z4 2.0f;
 
 // #define Diario_Z1 4.0f;
 #define Diario_Z2 4.15f;

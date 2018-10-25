@@ -2,6 +2,7 @@
 #include "Bilhete.h"
 #include "Utentes.h"
 #include "Venda.h"
+#include "Menu.h"
 using namespace std;
 
 // Este arquivo de origem simula a venda de um bilhete em uma maquina
@@ -15,8 +16,8 @@ int main() {
     {
       do {
         cout << "Deseja realizar outra operação ? (s/n)" << endl;
-        cin.clear();
         cin >> control;
+        cin.clear();
         system("clear");
 
         if (control == 'n')

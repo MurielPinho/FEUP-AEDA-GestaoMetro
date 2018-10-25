@@ -1,99 +1,117 @@
 #include "Bilhete.h"
 #include "Precos.cpp"
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <iomanip>
+
 
 using namespace std;
 
-
-float Assinatura::precosA(int Z)
+Bilhete::Bilhete(float p, bool t)
 {
-  // Esta fun��o determina o valor mensal de uma assinatura segundo a categoria (z)
-  // (Usei valores arbitrarios pras 4 categorias ja que n�o sei o que colocar aqui)
-  switch (Z) {
-  case 2:
-    return Assinatura_Z2;
-
-  case 3:
-    return Assinatura_Z3;
-
-  case 4:
-    return Assinatura_Z4;
-  }
-  return 0.00f;
+  preco = p;
+  tipo  = t;
 }
 
-Normal::Normal(string nm, int Z)
-{
-  nome  = nm;
-  z     = Z;
-  preco = precosA(z);
+string Bilhete::getInformacao() const {
+  stringstream ss;
+
+  ss << setprecision(2) << fixed <<  preco << ", " << tipo;
+  return ss.str();
 }
 
-Estudante::Estudante(string nm, int Z, int CC, int id, string esc)
+float Bilhete::getPreco() const
 {
-  nome   = nm;
-  z      = Z;
+  return preco;
+}
+
+bool Bilhete::getTipo() const
+{
+  return tipo;
+}
+
+Assinatura::Assinatura(float p, bool t, string n) : Bilhete(p, t)
+{
+  nome = n;
+}
+
+string Assinatura::getInformacao() const
+{
+  stringstream ss;
+
+  ss << Bilhete::getInformacao() << ", " << nome;
+  return ss.str();
+}
+
+Normal::Normal(float p, bool t, string n) : Assinatura(p, t, n)
+{}
+
+string Normal::getInformacao() const {
+  stringstream ss;
+
+  ss << Assinatura::getInformacao();
+  return ss.str();
+}
+
+Estudante::Estudante(float p, bool t, string n, int id, int cc, string esc) : Assinatura(p, t, n)
+{
   idade  = id;
-  cc     = CC;
+  CC     = cc;
   escola = esc;
-  preco  = 0.75f * precosA(z); // Determinar o pre�o do bilhete com desconto de estudante
 }
 
-Junior::Junior(string nm, int Z, int id, int CC)
+string Estudante::getInformacao() const {
+  stringstream ss;
+
+  ss << Assinatura::getInformacao() << ", " << idade << ", " << CC << ", " << escola;
+  return ss.str();
+}
+
+Junior::Junior(float p, bool t, string n, int id, int cc) : Assinatura(p, t, n)
 {
-  nome  = nm;
-  z     = Z;
   idade = id;
-  cc    = CC;
-  preco = 0.75f * precosA(z); // Determinar o pre�o do bilhete com desconto junior
+  CC    = cc;
 }
 
-Senior::Senior(string nm, int Z, int id, int CC)
+string Junior::getInformacao() const {
+  stringstream ss;
+
+  ss << Assinatura::getInformacao() << ", " << idade << ", " << CC;
+  return ss.str();
+}
+
+Senior::Senior(float p, bool t, string n, int id, int cc) : Assinatura(p, t, n)
 {
-  nome  = nm;
-  z     = Z;
   idade = id;
-  cc    = CC;
-  preco = 0.75f * precosA(z); // Determinar o pre�o do bilhete com desconto de senior
+  CC    = cc;
 }
 
-Diario::Diario(int Z)
+string Senior::getInformacao() const {
+  stringstream ss;
+
+  ss << Assinatura::getInformacao() << ", " << idade << ", " << CC;
+  return ss.str();
+}
+
+Ocasional::Ocasional(float p, bool t, int d, int v) : Bilhete(p, t)
 {
-  switch (Z) {
-  case 2:
-
-    preco = Diario_Z2;
-    break;
-
-  case 3:
-    preco = Diario_Z3;
-    break;
-
-  case 4:
-    preco = Diario_Z4;
-    break;
-  }
-
-  duracao = 24;
+  duracao  = d;
+  partida  = 0;
+  viagens  = v;
+  validado = false;
 }
 
-Unico::Unico(int Z)
+string Ocasional::getInformacao() const
 {
-  switch (Z) {
-  case 2:
-    preco = Viagem_Z2;
-    break;
+  stringstream ss;
 
-
-  case 3:
-    preco = Viagem_Z3;
-    break;
-
-
-  case 4:
-    preco = Viagem_Z4;
-    break;
-  }
-
-  duracao = 2;
+  ss << Bilhete::getInformacao() << ", " << duracao << ", " << partida << ", " << viagens << ", " << validado;
+  return ss.str();
 }
+
+Diario::Diario(float p, bool t, int d, int v) : Ocasional(p, t, d, v)
+{}
+
+Unico::Unico(float p, bool t, int d, int v) : Ocasional(p, t, d, v)
+{}

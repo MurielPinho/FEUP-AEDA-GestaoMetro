@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <string>
+
 
 using namespace std;
 
@@ -11,13 +13,16 @@ using namespace std;
 class Bilhete {
 protected:
 
-  int validade;
+  float preco;
+  bool tipo;
 
 public:
 
-  float preco;
-  int z; // inteiro de 1 a 4 indicando a categoria relacionada às zonas
   // Funções
+  Bilhete(float p, bool t);
+  float          getPreco() const;
+  bool           getTipo() const;
+  virtual string getInformacao() const;
 };
 
 class Assinatura : public Bilhete {
@@ -27,74 +32,77 @@ protected:
 
 public:
 
-  float precosA(int Z);
-
   // Funções
+  Assinatura(float p, bool t, string n);
+  virtual string getInformacao() const;
+  float          precosA(int Z);
 };
 class Normal : public Assinatura {
 public:
 
-  Normal(string nome, int z);
-
   // Funções
+  Normal(float p, bool t, string n);
+  string getInformacao() const;
 };
 class Estudante : public Assinatura {
 protected:
 
-  int idade, cc;
+  int idade, CC;
   string escola;
 
 public:
 
-  Estudante(string nome, int z, int cc, int id, string escola);
-
   // Funções
+  Estudante(float p, bool t, string n, int id, int cc, string esc);
+  string getInformacao() const;
 };
 
 class Junior : public Assinatura {
-  int idade, cc;
+  int idade, CC;
 
 public:
 
-  Junior(string nome, int z, int id, int cc);
-
   // Funções
+  Junior(float p, bool t, string n, int id, int cc);
+  string getInformacao() const;
 };
 
 class Senior : public Assinatura {
-  int idade, cc;
+  int idade, CC;
 
 public:
 
-  Senior(string nome, int z, int id, int cc);
-
   // Funções
+  Senior(float p, bool t, string n, int id, int cc);
+  string getInformacao() const;
 };
 
 class Ocasional : public Bilhete {
 protected:
 
-  int duracao, partida, validade;
+  int duracao, partida, viagens;
   bool validado;
 
 public:
 
   // Funções
+  Ocasional(float p, bool t, int d, int v);
+  string getInformacao() const;
 };
 
 class Diario : public Ocasional {
 public:
 
-  Diario(int Z);
-
   // Funções
+  Diario(float p, bool t, int d, int v);
 };
 
 class Unico : public Ocasional {
 public:
 
-  Unico(int Z);
-
   // Funções
+  Unico(float p, bool t, int d, int v);
 };
+
+
 #endif /*BILHETE_H_*/

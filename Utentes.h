@@ -7,10 +7,17 @@ using namespace std;
 
 
 class Utentes {
-  vector<Assinatura *>assinaturas;
-  vector<Ocasional *>ocasionais;
+  vector<Bilhete *>assinaturas;
+  vector<Bilhete *>ocasionais;
 
 public:
+
+  void   adicionaAssinatura(Bilhete *a1);
+  void   adicionaOcasional(Bilhete *o1);
+  int    numOcasionais() const;
+  int    numAssinaturas() const;
+  string getOcasionais() const;
+  string getAssinaturas() const;
 };
 
 
