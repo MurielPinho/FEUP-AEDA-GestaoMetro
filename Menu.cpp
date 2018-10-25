@@ -58,7 +58,7 @@ int main() {
 
     case 4:
       system("clear");
-      numBilhetes();
+      test();
       break;
     }
   } while (option != 0);

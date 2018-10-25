@@ -12,6 +12,7 @@ Bilhete* FAssinatura();
 bool     Pagamento(float preco);
 void     Bilhetes();
 int      numBilhetes();
+void     test();
 
 
 #endif /*VENDA_H_*/

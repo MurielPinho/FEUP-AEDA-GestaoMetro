@@ -12,12 +12,14 @@ class Utentes {
 
 public:
 
-  void   adicionaAssinatura(Bilhete *a1);
-  void   adicionaOcasional(Bilhete *o1);
-  int    numOcasionais() const;
-  int    numAssinaturas() const;
-  string getOcasionais() const;
-  string getAssinaturas() const;
+  void     adicionaAssinatura(Bilhete *a1);
+  void     adicionaOcasional(Bilhete *o1);
+  int      numOcasionais() const;
+  int      numAssinaturas() const;
+  string   getOcasionais() const;
+  string   getAssinaturas() const;
+  Bilhete* getOcasional(int id) const;
+  Bilhete* getAssinatura(int id) const;
 };
 
 

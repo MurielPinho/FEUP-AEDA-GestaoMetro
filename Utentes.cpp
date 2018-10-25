@@ -48,12 +48,24 @@ string Utentes::getAssinaturas() const
   return ss.str();
 }
 
-// void Utentes::getOcasionais()
-// {
-//   vector<Bilhete *>::const_iterator it = ocasionais.begin();
-//
-//   while (it != ocasionais.end()) {
-//     cout << *it->getInformacao() << endl;
-//     it++;
-//   }
-// }
+Bilhete * Utentes::getOcasional(int id) const
+{
+  for (unsigned int i = 0; i < ocasionais.size(); i++) {
+    if (ocasionais[i]->getIdentificacao() == id)
+    {
+      return ocasionais[i];
+    }
+  }
+  return NULL;
+}
+
+Bilhete * Utentes::getAssinatura(int id) const
+{
+  for (unsigned int i = 0; i < assinaturas.size(); i++) {
+    if (assinaturas[i]->getIdentificacao() == id)
+    {
+      return assinaturas[i];
+    }
+  }
+  return NULL;
+}

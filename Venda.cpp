@@ -19,10 +19,12 @@ float    precosA(int Z);
 float    precosU(int Z);
 float    precosD(int Z);
 bool     Pagamento(float preco);
-int      numBilhetes();
+int      numBilhetes(bool A);
+void     test();
+
 Utentes u;
 
-int      Maquina()
+int Maquina()
 {
   Bilhete *B;
 
@@ -116,11 +118,11 @@ Bilhete* FOcasional()
   switch (i) {
   case 1:
 
-    B1 = new Unico(precosU(Z), 1, 2, 1);
+    B1 = new Unico(numBilhetes(0), precosU(Z), 1, 2, 1);
     break;
 
   case 2:
-    B1 = new Diario(precosD(Z), 1, 24, 1);
+    B1 = new Diario(numBilhetes(0), precosD(Z), 1, 24, 1);
     break;
   }
   return B1;
@@ -154,7 +156,7 @@ Bilhete* FAssinatura()
   system("clear");
 
   if (i == 1) {
-    B = new Normal(precosA(Z), 0, nm);
+    B = new Normal(numBilhetes(1), precosA(Z), 0, nm);
   }
   else if ((i > 1) & (i <= 4)) {
     cout << "Digite o numero do cartao de cidadao" << endl;
@@ -175,15 +177,15 @@ Bilhete* FAssinatura()
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
       system("clear");
-      B = new Estudante(precosA(Z) * 0.75, 0, nm, id, cc, esc);
+      B = new Estudante(numBilhetes(1), precosA(Z) * 0.75, 0, nm, id, cc, esc);
       break;
 
     case 3:
-      B = new Junior(precosA(Z) * 0.75, 0, nm, id, cc);
+      B = new Junior(numBilhetes(1), precosA(Z) * 0.75, 0, nm, id, cc);
       break;
 
     case 4:
-      B = new Senior(precosA(Z) * 0.75, 0, nm, id, cc);
+      B = new Senior(numBilhetes(1), precosA(Z) * 0.75, 0, nm, id, cc);
       break;
     }
   }
@@ -198,7 +200,7 @@ void Bilhetes()
   cout << u.getAssinaturas() <<  endl;
 }
 
-int numBilhetes()
+int numBilhetes(bool A)
 {
   int Num;
   ifstream infile;
@@ -206,8 +208,14 @@ int numBilhetes()
   string   file4write, strNum;
   ostringstream BilNum;
 
-
-  infile.open("NumBilhetes.txt");
+  if (A)
+  {
+    infile.open("NumAssinaturas.txt");
+  }
+  else
+  {
+    infile.open("NumOcasionais.txt");
+  }
 
   if (infile.fail())
   {
@@ -217,7 +225,15 @@ int numBilhetes()
   getline(infile, strNum);
   Num = stoi(strNum);
   Num++;
-  outfile.open("NumBilhetes.txt");
+
+  if (A)
+  {
+    outfile.open("NumAssinaturas.txt");
+  }
+  else
+  {
+    outfile.open("NumOcasionais.txt");
+  }
 
   // BilNum << "O";
   // BilNum << setfill('0') << setw(3) << to_string(Num) << ".txt";
@@ -226,6 +242,48 @@ int numBilhetes()
 
   outfile.close();
   return Num;
+}
+
+void test()
+{
+  int i, j;
+
+  cout << "Assinatura ou ocasional" << endl;
+
+  cin >> i;
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+  if (i == 1)
+  {
+    cout << "Insira o numero do bilhete" << endl;
+    cin >> j;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    // cout << (u.getOcasional(j))->getInformacao() << endl;
+
+    if (u.getOcasional(j) == NULL)
+    {
+      cout << "Assinatura não existe" << endl;
+    }
+    else {
+      cout << (u.getOcasional(j))->getInformacao() << endl;
+    }
+  }
+  else cout << "Insira o numero do bilhete" << endl;
+  cin >> j;
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  Bilhete *B = u.getAssinatura(j);
+
+  if (B == NULL)
+  {
+    cout << "Assinatura não existe" << endl;
+  }
+  else {
+    cout << B->getInformacao() << endl;
+  }
 }
 
 float precosA(int Z)

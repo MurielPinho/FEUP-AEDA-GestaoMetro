@@ -15,14 +15,16 @@ protected:
 
   float preco;
   bool tipo;
+  int identificacao;
 
 public:
 
   // Funções
-  Bilhete(float p, bool t);
+  Bilhete(int id, float p, bool t);
   float          getPreco() const;
   bool           getTipo() const;
   virtual string getInformacao() const;
+  int            getIdentificacao() const;
 };
 
 class Assinatura : public Bilhete {
@@ -33,15 +35,16 @@ protected:
 public:
 
   // Funções
-  Assinatura(float p, bool t, string n);
+  Assinatura(int id, float p, bool t, string n);
   virtual string getInformacao() const;
+
   float          precosA(int Z);
 };
 class Normal : public Assinatura {
 public:
 
   // Funções
-  Normal(float p, bool t, string n);
+  Normal(int id, float p, bool t, string n);
   string getInformacao() const;
 };
 class Estudante : public Assinatura {
@@ -53,7 +56,7 @@ protected:
 public:
 
   // Funções
-  Estudante(float p, bool t, string n, int id, int cc, string esc);
+  Estudante(int id, float p, bool t, string n, int idd, int cc, string esc);
   string getInformacao() const;
 };
 
@@ -63,7 +66,7 @@ class Junior : public Assinatura {
 public:
 
   // Funções
-  Junior(float p, bool t, string n, int id, int cc);
+  Junior(int id, float p, bool t, string n, int idd, int cc);
   string getInformacao() const;
 };
 
@@ -73,7 +76,7 @@ class Senior : public Assinatura {
 public:
 
   // Funções
-  Senior(float p, bool t, string n, int id, int cc);
+  Senior(int id, float p, bool t, string n, int idd, int cc);
   string getInformacao() const;
 };
 
@@ -86,7 +89,7 @@ protected:
 public:
 
   // Funções
-  Ocasional(float p, bool t, int d, int v);
+  Ocasional(int id, float p, bool t, int d, int v);
   string getInformacao() const;
 };
 
@@ -94,14 +97,14 @@ class Diario : public Ocasional {
 public:
 
   // Funções
-  Diario(float p, bool t, int d, int v);
+  Diario(int id, float p, bool t, int d, int v);
 };
 
 class Unico : public Ocasional {
 public:
 
   // Funções
-  Unico(float p, bool t, int d, int v);
+  Unico(int id, float p, bool t, int d, int v);
 };
 
 
