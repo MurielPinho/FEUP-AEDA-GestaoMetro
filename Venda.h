@@ -13,6 +13,8 @@ bool     Pagamento(float preco);
 void     Bilhetes();
 int      numBilhetes();
 void     test();
+void     read();
+void     write();
 
 
 #endif /*VENDA_H_*/

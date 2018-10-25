@@ -22,9 +22,15 @@ int main() {
 
         if (control == 'n')
         {
+          write();
           return 0;
         }
       } while (control != 's');
+    }
+
+    if (option == 0)
+    {
+      read();
     }
 
     system("clear");
@@ -34,7 +40,7 @@ int main() {
     cout << "1 - Loja                              \n" << endl;
     cout << "2 - Maquina                           \n" << endl;
     cout << "3 - Verificar Bilhetes                \n" << endl;
-    cout << "4 - Verificar Numero de Bilhetes      \n" << endl;
+    cout << "4 - Verificar dados de um bilhete     \n" << endl;
     cout << "0 - Sair                              \n" << endl;
 
     cin.clear();
@@ -60,8 +66,13 @@ int main() {
       system("clear");
       test();
       break;
+
+    case 5:
+      system("clear");
+
+      break;
     }
   } while (option != 0);
-
+  write();
   return 0;
 }

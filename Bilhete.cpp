@@ -1,5 +1,4 @@
 #include "Bilhete.h"
-#include "Precos.cpp"
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -18,7 +17,7 @@ Bilhete::Bilhete(int id, float p, bool t)
 string Bilhete::getInformacao() const {
   stringstream ss;
 
-  ss << setprecision(2) << fixed << identificacao << ", " <<  preco << ", " << tipo;
+  ss << setprecision(2) << fixed << identificacao << " " <<  preco << " " << tipo;
   return ss.str();
 }
 
@@ -37,32 +36,43 @@ int Bilhete::getIdentificacao() const
   return identificacao;
 }
 
+int Bilhete::getDuracao() const
+{
+  return 0;
+}
+
 Assinatura::Assinatura(int id, float p, bool t, string n) : Bilhete(id, p, t)
 {
   nome = n;
+}
+
+int Assinatura::getDuracao() const
+{
+  return 0;
 }
 
 string Assinatura::getInformacao() const
 {
   stringstream ss;
 
-  ss << nome << ", " << Bilhete::getInformacao();
+  ss << Bilhete::getInformacao() << " " << nome;
   return ss.str();
 }
 
 Normal::Normal(int id, float p, bool t, string n) : Assinatura(id, p, t, n)
 {}
 
+
 string Normal::getInformacao() const {
   stringstream ss;
 
-  ss << Assinatura::getInformacao();
+  ss << "Normal " << Assinatura::getInformacao();
   return ss.str();
 }
 
 Estudante::Estudante(int id, float p, bool t, string n, int idd, int cc, string esc) : Assinatura(id, p, t, n)
 {
-  idade  = id;
+  idade  = idd;
   CC     = cc;
   escola = esc;
 }
@@ -70,54 +80,75 @@ Estudante::Estudante(int id, float p, bool t, string n, int idd, int cc, string 
 string Estudante::getInformacao() const {
   stringstream ss;
 
-  ss << Assinatura::getInformacao() << ", " << idade << ", " << CC << ", " << escola;
+  ss << "Estudante " << Assinatura::getInformacao() << " " << idade << " " << CC << " " << escola;
   return ss.str();
 }
 
 Junior::Junior(int id, float p, bool t, string n, int idd, int cc) : Assinatura(id, p, t, n)
 {
-  idade = id;
+  idade = idd;
   CC    = cc;
 }
 
 string Junior::getInformacao() const {
   stringstream ss;
 
-  ss << Assinatura::getInformacao() << ", " << idade << ", " << CC;
+  ss << "Junior " << Assinatura::getInformacao() << " " << idade << " " << CC;
   return ss.str();
 }
 
 Senior::Senior(int id, float p, bool t, string n, int idd, int cc) : Assinatura(id, p, t, n)
 {
-  idade = id;
+  idade = idd;
   CC    = cc;
 }
 
 string Senior::getInformacao() const {
   stringstream ss;
 
-  ss << Assinatura::getInformacao() << ", " << idade << ", " << CC;
+  ss << "Senior " << Assinatura::getInformacao() << " " << idade << " " << CC;
   return ss.str();
 }
 
-Ocasional::Ocasional(int id, float p, bool t, int d, int v) : Bilhete(id, p, t)
+Ocasional::Ocasional(int id, float p, bool t, int d, string pt, int v, bool vdd) : Bilhete(id, p, t)
 {
   duracao  = d;
-  partida  = 0;
+  partida  = pt;
   viagens  = v;
-  validado = false;
+  validado = vdd;
 }
 
 string Ocasional::getInformacao() const
 {
   stringstream ss;
 
-  ss << Bilhete::getInformacao() << ", " << duracao << ", " << partida << ", " << viagens << ", " << validado;
+  ss << Bilhete::getInformacao() << " " << duracao << " " << partida << " " << viagens << " " << validado;
   return ss.str();
 }
 
-Diario::Diario(int id, float p, bool t, int d, int v) : Ocasional(id, p, t, d, v)
+int Ocasional::getDuracao() const
+{
+  return duracao;
+}
+
+Diario::Diario(int id, float p, bool t, int d, string pt, int v, bool vdd) : Ocasional(id, p, t, d, pt, v, vdd)
 {}
 
-Unico::Unico(int id, float p, bool t, int d, int v) : Ocasional(id, p, t, d, v)
+string Diario::getInformacao() const
+{
+  stringstream ss;
+
+  ss << "Diario " << Ocasional::getInformacao();
+  return ss.str();
+}
+
+Unico::Unico(int id, float p, bool t, int d, string pt, int v, bool vdd) : Ocasional(id, p, t, d, pt, v, vdd)
 {}
+
+string Unico::getInformacao() const
+{
+  stringstream ss;
+
+  ss << "Unico " << Ocasional::getInformacao();
+  return ss.str();
+}

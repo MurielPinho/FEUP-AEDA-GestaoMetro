@@ -1,0 +1,6 @@
+Diario 1 4.15 1 24 Trindade 1 0
+Unico 2 2.00 1 2 Trindade 1 0
+Diario 3 5.50 1 24 Trindade 1 0
+Normal 1 30.60 0 Muriel
+Estudante 2 22.95 0 Muriel 22 291645 FEUP
+Junior 3 22.95 0 Baby 1 0

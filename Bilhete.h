@@ -25,6 +25,7 @@ public:
   bool           getTipo() const;
   virtual string getInformacao() const;
   int            getIdentificacao() const;
+  virtual int    getDuracao() const;
 };
 
 class Assinatura : public Bilhete {
@@ -37,6 +38,8 @@ public:
   // Funções
   Assinatura(int id, float p, bool t, string n);
   virtual string getInformacao() const;
+  int            getDuracao() const;
+
 
   float          precosA(int Z);
 };
@@ -83,28 +86,32 @@ public:
 class Ocasional : public Bilhete {
 protected:
 
-  int duracao, partida, viagens;
+  int duracao, viagens;
   bool validado;
+  string partida;
 
 public:
 
   // Funções
-  Ocasional(int id, float p, bool t, int d, int v);
-  string getInformacao() const;
+  Ocasional(int id, float p, bool t, int d, string pt, int v, bool vdd);
+  virtual string getInformacao() const;
+  int            getDuracao() const;
 };
 
 class Diario : public Ocasional {
 public:
 
   // Funções
-  Diario(int id, float p, bool t, int d, int v);
+  Diario(int id, float p, bool t, int d, string pt, int v, bool vdd);
+  string getInformacao() const;
 };
 
 class Unico : public Ocasional {
 public:
 
   // Funções
-  Unico(int id, float p, bool t, int d, int v);
+  Unico(int id, float p, bool t, int d, string pt, int v, bool vdd);
+  string getInformacao() const;
 };
 
 
