@@ -40,7 +40,7 @@ string Assinatura::getInformacao() const
 {
   stringstream ss;
 
-  ss << Bilhete::getInformacao() << ", " << nome;
+  ss << nome << ", " << Bilhete::getInformacao();
   return ss.str();
 }
 

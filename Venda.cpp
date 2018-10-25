@@ -1,5 +1,9 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
+#include <sstream>
+
+
 #include "Precos.cpp"
 #include "Bilhete.h"
 #include "Utentes.h"
@@ -9,19 +13,20 @@ using namespace std;
 
 int      Maquina();
 int      Loja();
-Bilhete* Ocasio();
-Bilhete* Assina();
+Bilhete* FOcasional();
+Bilhete* FAssinatura();
 float    precosA(int Z);
 float    precosU(int Z);
 float    precosD(int Z);
 bool     Pagamento(float preco);
+int      numBilhetes();
 Utentes u;
 
 int      Maquina()
 {
   Bilhete *B;
 
-  B = Ocasio();
+  B = FOcasional();
 
 
   if (Pagamento(B->getPreco()))
@@ -29,11 +34,6 @@ int      Maquina()
     u.adicionaOcasional(B);
     cout << "Pagamento concluido" << endl << endl;
   }
-  cout << u.getOcasionais() << endl << endl;
-
-  // cout << u.numAssinaturas() << endl << endl;
-  // cout << u.numOcasionais() << endl << endl;
-
 
   return 0;
 }
@@ -53,10 +53,10 @@ int Loja()
   system("clear");
 
   if (i == 1) {
-    B = Ocasio();
+    B = FOcasional();
   }
   else  {
-    B =  Assina();
+    B =  FAssinatura();
   }
 
   if (Pagamento(B->getPreco()))
@@ -70,8 +70,7 @@ int Loja()
 
     cout << "Pagamento concluido" << endl << endl;
   }
-  cout << u.getOcasionais() << endl << endl;
-  cout << u.getAssinaturas() << endl << endl;
+
   return 0;
 }
 
@@ -96,7 +95,7 @@ bool Pagamento(float preco)
   return true;
 }
 
-Bilhete* Ocasio()
+Bilhete* FOcasional()
 {
   Bilhete *B1;
   int i, Z;
@@ -127,7 +126,7 @@ Bilhete* Ocasio()
   return B1;
 }
 
-Bilhete* Assina()
+Bilhete* FAssinatura()
 {
   Bilhete *B = NULL;
 
@@ -189,6 +188,44 @@ Bilhete* Assina()
     }
   }
   return B;
+}
+
+void Bilhetes()
+{
+  cout << "Ocasionais :" << endl << endl;
+  cout << u.getOcasionais() <<  endl;
+  cout << "Assinaturas :" << endl << endl;
+  cout << u.getAssinaturas() <<  endl;
+}
+
+int numBilhetes()
+{
+  int Num;
+  ifstream infile;
+  ofstream outfile;
+  string   file4write, strNum;
+  ostringstream BilNum;
+
+
+  infile.open("NumBilhetes.txt");
+
+  if (infile.fail())
+  {
+    cerr << "Erro ao abrir arquivo" << endl;
+    exit(1);
+  }
+  getline(infile, strNum);
+  Num = stoi(strNum);
+  Num++;
+  outfile.open("NumBilhetes.txt");
+
+  // BilNum << "O";
+  // BilNum << setfill('0') << setw(3) << to_string(Num) << ".txt";
+  outfile << Num << endl;
+
+
+  outfile.close();
+  return Num;
 }
 
 float precosA(int Z)

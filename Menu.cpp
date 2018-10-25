@@ -31,9 +31,10 @@ int main() {
     cout << "              Menu Inicial              " << endl;
     cout << "========================================" << endl;
     cout << "\nEscolha a operação desejada         \n" << endl;
-    cout << "1 - Comprar / Renovar bilhete         \n" << endl;
-    cout << "2 - Alterar localização               \n" << endl;
-    cout << "3 - Verificar Validade                \n" << endl;
+    cout << "1 - Loja                              \n" << endl;
+    cout << "2 - Maquina                           \n" << endl;
+    cout << "3 - Verificar Bilhetes                \n" << endl;
+    cout << "4 - Verificar Numero de Bilhetes      \n" << endl;
     cout << "0 - Sair                              \n" << endl;
 
     cin.clear();
@@ -48,6 +49,16 @@ int main() {
     case 2:
       system("clear");
       Maquina();
+      break;
+
+    case 3:
+      system("clear");
+      Bilhetes();
+      break;
+
+    case 4:
+      system("clear");
+      numBilhetes();
       break;
     }
   } while (option != 0);
