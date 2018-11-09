@@ -79,7 +79,7 @@ int main() {
 
     case 6:
       system("clear");
-      readFile();
+      test();
       break;
     }
   } while (option != 0);

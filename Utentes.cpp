@@ -85,6 +85,13 @@ Bilhete * Utentes::getOcasional(int id) const
   return NULL;
 }
 
+Bilhete * Utentes::getVecOcasional(int i) const
+{
+  return ocasionais[i];
+
+  return NULL;
+}
+
 Bilhete * Utentes::getAssinatura(int id) const
 {
   for (unsigned int i = 0; i < assinaturas.size(); i++) {
@@ -93,6 +100,13 @@ Bilhete * Utentes::getAssinatura(int id) const
       return assinaturas[i];
     }
   }
+  return NULL;
+}
+
+Bilhete * Utentes::getVecAssinatura(int i) const
+{
+  return assinaturas[i];
+
   return NULL;
 }
 
@@ -120,4 +134,66 @@ bool Utentes::removeOcasional(int id)
     }
   }
   return false;
+}
+
+void Utentes::OrdenarOcasional()
+{
+  int i, j, k, n;
+  Bilhete *B1, *B2, *T;
+
+  n = ocasionais.size();
+
+  for (i = n / 2; i > 0; i = i / 2)
+  {
+    for (j = i; j < n; j++)
+    {
+      for (k = j - i; k >= 0; k = k - i)
+      {
+        B1 = ocasionais.at(k + i);
+        B2 = ocasionais.at(k);
+
+        if (B1->getIdentificacao() >= B2->getIdentificacao())
+        {
+          break;
+        }
+        else
+        {
+          T                    = B2;
+          ocasionais.at(k)     = B1;
+          ocasionais.at(k + i) = T;
+        }
+      }
+    }
+  }
+}
+
+void Utentes::OrdenarAssinatura()
+{
+  int i, j, k, n;
+  Bilhete *B1, *B2, *T;
+
+  n = assinaturas.size();
+
+  for (i = n / 2; i > 0; i = i / 2)
+  {
+    for (j = i; j < n; j++)
+    {
+      for (k = j - i; k >= 0; k = k - i)
+      {
+        B1 = assinaturas.at(k + i);
+        B2 = assinaturas.at(k);
+
+        if (B1->getIdentificacao() >= B2->getIdentificacao())
+        {
+          break;
+        }
+        else
+        {
+          T                     = B2;
+          assinaturas.at(k)     = B1;
+          assinaturas.at(k + i) = T;
+        }
+      }
+    }
+  }
 }

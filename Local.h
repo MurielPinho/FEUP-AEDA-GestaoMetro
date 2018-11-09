@@ -20,6 +20,7 @@ public:
   string      getLocais() const;
   Pontovenda* getLocalAtual() const;
   bool        removeLocal(int id);
+  void        Organizar();
 };
 
 

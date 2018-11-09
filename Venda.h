@@ -22,6 +22,8 @@ void     AlterarLocal();
 string   LocalAtual();
 void     Locais();
 void     removeBilhete();
+void     test();
+
 
 
 

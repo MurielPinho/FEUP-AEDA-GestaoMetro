@@ -25,6 +25,7 @@ void     AlterarLocal();
 string   LocalAtual();
 void     Locais();
 void     removeBilhete();
+void     test();
 
 
 Utentes u;
@@ -60,6 +61,7 @@ void comprarMaquina()
   if (Pagamento(B->getPreco()))
   {
     u.adicionaOcasional(B);
+    u.OrdenarOcasional();
     cout << "Pagamento concluido" << endl << endl;
   }
 }
@@ -89,9 +91,11 @@ void comprarLoja()
   {
     if (B->getTipo()) {
       u.adicionaOcasional(B);
+      u.OrdenarOcasional();
     }
     else {
       u.adicionaAssinatura(B);
+      u.OrdenarAssinatura();
     }
 
     cout << "Pagamento concluido" << endl << endl;
@@ -178,7 +182,7 @@ Bilhete* FAssinatura()
 {
   Bilhete *B = NULL;
 
-  int i, cc, id, Z;
+  int i, cc, id, idd, Z;
   string nm, esc;
 
 
@@ -206,8 +210,17 @@ Bilhete* FAssinatura()
   getline(cin, nm);
   system("clear");
 
+  for (int i = 1; i <= u.numAssinaturas() + 1; i++)
+  {
+    if (u.getAssinatura(i) == NULL)
+    {
+      id = i;
+      break;
+    }
+  }
+
   if (i == 1) {
-    B = new Normal(u.numAssinaturas() + 1, Z, precos(Z, 0), 0, nm, 0);
+    B = new Normal(id, Z, precos(Z, 0), 0, nm, 0);
   }
   else if ((i > 1) & (i <= 4)) {
     do
@@ -225,20 +238,22 @@ Bilhete* FAssinatura()
       system("clear");
     } while (1);
 
+    if (i != 2)
+    {
+      do {
+        cout << "Digite sua idade" << endl;
+        cin >> idd;
 
-    do {
-      cout << "Digite sua idade" << endl;
-      cin >> id;
-
-      if (!cin.fail())
-      {
+        if (!cin.fail())
+        {
+          system("clear");
+          break;
+        }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         system("clear");
-        break;
-      }
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      system("clear");
-    } while (1);
+      } while (1);
+    }
 
     switch (i) {
     case 2:
@@ -247,15 +262,15 @@ Bilhete* FAssinatura()
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
       system("clear");
-      B = new Estudante(u.numAssinaturas() + 1, Z, precos(Z, 0) * 0.75, 0, nm, 1, id, cc, esc);
+      B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, nm, 1, id, cc, esc);
       break;
 
     case 3:
-      B = new Junior(u.numAssinaturas() + 1, Z, precos(Z, 0) * 0.75, 0, nm, 2, id, cc);
+      B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, nm, 2, id, cc);
       break;
 
     case 4:
-      B = new Senior(u.numAssinaturas() + 1, Z, precos(Z, 0) * 0.75, 0, nm, 3, id, cc);
+      B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, nm, 3, id, cc);
       break;
     }
   }
@@ -438,75 +453,6 @@ void readFile()
         B   = new Senior(identificacao, zona, preco, t,  n, d, idd, cc);
         u.adicionaAssinatura(B);
       }
-
-      {
-        // for (string line; getline(bilhetes, line);)
-        // {
-        //   istringstream in(line);
-        //   string tipo;
-        //   in >> tipo;
-        //
-        //   if (tipo == "Unico")
-        //   {
-        //     int    id, d, v, z;
-        //     float  p;
-        //     string pt;
-        //     bool   t, vdd;
-        //     in >> id >> z >> p  >> t  >> d >> pt  >> v >> vdd;
-        //     B = new Unico(id, z, p, t, d, pt, v, vdd);
-        //     u.adicionaOcasional(B);
-        //   }
-        //   else if (tipo == "Diario")
-        //   {
-        //     int    id, d, v, z;
-        //     float  p;
-        //     string pt;
-        //     bool   t, vdd;
-        //     in >> id  >> z >> p  >> t  >> d >> pt >> v >> vdd;
-        //     B = new Diario(id, z, p, t, d, pt, v, vdd);
-        //     u.adicionaOcasional(B);
-        //   }
-        //   else if (tipo == "Normal")
-        //   {
-        //     int    id, z, d;
-        //     float  p;
-        //     bool   t;
-        //     string n;
-        //     in >> id  >> z >> p  >> t  >> n >> d;
-        //     B = new Normal(id, z, p, t,  n, d);
-        //     u.adicionaAssinatura(B);
-        //   }
-        //   else if (tipo == "Estudante")
-        //   {
-        //     int    id, idd, cc, z, d;
-        //     float  p;
-        //     bool   t;
-        //     string n, esc;
-        //     in >> id  >> z >> p  >> t  >> n  >> d >> idd  >> cc  >> esc;
-        //     B = new Estudante(id, z, p, t, n, d, idd, cc, esc);
-        //     u.adicionaAssinatura(B);
-        //   }
-        //   else if (tipo == "Junior")
-        //   {
-        //     int    id, idd, cc, z, d;
-        //     float  p;
-        //     bool   t;
-        //     string n;
-        //     in >> id  >> z >> p  >> t  >> n  >> d >> idd  >> cc;
-        //     B = new Junior(id, z, p, t,  n, d, idd, cc);
-        //     u.adicionaAssinatura(B);
-        //   }
-        //   else if (tipo == "Senior")
-        //   {
-        //     int    id, idd, cc, z, d;
-        //     float  p;
-        //     bool   t;
-        //     string n;
-        //     in >> id  >> z >> p  >> t  >> n  >> d >> idd  >> cc;
-        //     B = new Senior(id, z, p, t,  n, d, idd, cc);
-        //     u.adicionaAssinatura(B);
-        //   }
-      }
     }
   }
 
@@ -561,15 +507,15 @@ void writeFile()
   int numO = u.numOcasionais();
   int numA = u.numAssinaturas();
 
-  for (int i = 1; i <= numO; i++)
+  for (int i = 0; i < numO; i++)
   {
-    Bilhete *B = u.getOcasional(i);
+    Bilhete *B = u.getVecOcasional(i);
     out << B->getInformacao() << endl;
   }
 
-  for (int i = 1; i <= numA; i++)
+  for (int i = 0; i < numA; i++)
   {
-    Bilhete *B = u.getAssinatura(i);
+    Bilhete *B = u.getVecAssinatura(i);
     out << B->getInformacao() << endl;
   }
 }
@@ -692,11 +638,14 @@ void removeBilhete()
   {
     if (u.removeAssinatura(j))
     {
-      cout << "Assinatura Removido" << endl << endl;
+      cout << "Assinatura Removida" << endl << endl;
     }
     else
     {
-      cout << "Assinatura nao encontrado" << endl << endl;
+      cout << "Assinatura nao encontrada" << endl << endl;
     }
   }
 }
+
+void test()
+{}

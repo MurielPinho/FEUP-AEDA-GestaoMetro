@@ -57,3 +57,31 @@ bool Local::removeLocal(int id)
   }
   return false;
 }
+
+void Local::Organizar()
+{
+  int i, j, k, n;
+  Pontovenda *P1, *P2, *T;
+
+  n = locais.size();
+
+  for (i = n / 2; i > 0; i = i / 2)
+  {
+    for (j = i; j < n; j++)
+    {
+      for (k = j - i; k >= 0; k = k - i)
+      {
+        P1 = locais.at(k + i);
+        P2 = locais.at(k);
+
+        if (P1->getIdentificacao() >= P2->getIdentificacao()) break;
+        else
+        {
+          T                = P2;
+          locais.at(k)     = P1;
+          locais.at(k + i) = T;
+        }
+      }
+    }
+  }
+}
