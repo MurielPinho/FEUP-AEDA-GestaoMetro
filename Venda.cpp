@@ -122,29 +122,53 @@ bool Pagamento(float preco)
 Bilhete* FOcasional()
 {
   Bilhete *B1;
-  int i, Z;
+  int i, Z, id, v;
 
-  cout << "Titulo unico ou diario ?" << endl << endl;
-  cout << "1 - Unico" << endl;
-  cout << "2 - Diario" << endl;
-  cin >> i;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  system("clear");
-  cout << "Tipo de bilhete: \n\n2 - Z2 \n3 - Z3 \n4 - Z4\n" << endl;
-  cin >> Z;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  system("clear");
+  do {
+    cout << "Titulo unico ou diario ?" << endl << endl;
+    cout << "1 - Unico" << endl;
+    cout << "2 - Diario" << endl;
+    cin >> i;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("clear");
+  } while (i != 1 && i != 2);
 
-  switch (i) {
+  do {
+    cout << "Tipo de bilhete: \n\n2 - Z2 \n3 - Z3 \n4 - Z4\n" << endl;
+    cin >> Z;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("clear");
+  } while (Z != 2 && Z != 3 && Z != 4);
+
+  do {
+    cout << "Numero de viagens ?" << endl;
+    cin >> v;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("clear");
+  } while (v <= 0);
+
+  for (int i = 1; i <= u.numOcasionais() + 1; i++)
+  {
+    if (u.getOcasional(i) == NULL)
+    {
+      id = i;
+      break;
+    }
+  }
+
+
+  switch (i)
+  {
   case 1:
 
-    B1 = new Unico(u.numOcasionais() + 1, Z, precos(Z, 1), 1, 2, LocalAtual(), 1, false);
+    B1 = new Unico(id, Z, precos(Z, 1) * v, 1, 2, LocalAtual(), v, false);
     break;
 
   case 2:
-    B1 = new Diario(u.numOcasionais() + 1, Z, precos(Z, 2), 1, 24, LocalAtual(), 1, false);
+    B1 = new Diario(id, Z, precos(Z, 2) * v, 1, 24, LocalAtual(), v, false);
     break;
   }
   return B1;
@@ -157,20 +181,27 @@ Bilhete* FAssinatura()
   int i, cc, id, Z;
   string nm, esc;
 
-  cout << "Tipo de bilhete:" << endl << endl;
-  cout << "1 - Normal" << endl;
-  cout << "2 - Estudante" << endl;
-  cout << "3 - Junior" << endl;
-  cout << "4 - Senior" << endl;
-  cin >> i;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  system("clear");
-  cout << "Tipo de bilhete: \n\n2 - Z2 \n3 - Z3 \n4 - Z4\n" << endl;
-  cin >> Z;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  system("clear");
+
+  do {
+    cout << "Tipo de bilhete:" << endl << endl;
+    cout << "1 - Normal" << endl;
+    cout << "2 - Estudante" << endl;
+    cout << "3 - Junior" << endl;
+    cout << "4 - Senior" << endl;
+    cin >> i;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("clear");
+  } while (i != 1 && i != 2 && i != 3 && i != 4);
+
+  do {
+    cout << "Tipo de bilhete: \n\n2 - Z2 \n3 - Z3 \n4 - Z4\n" << endl;
+    cin >> Z;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("clear");
+  } while (Z != 1 && Z != 2 && Z != 3 && Z != 4);
+
   cout << "Digite o seu nome" << endl;
   getline(cin, nm);
   system("clear");
@@ -179,16 +210,35 @@ Bilhete* FAssinatura()
     B = new Normal(u.numAssinaturas() + 1, Z, precos(Z, 0), 0, nm, 0);
   }
   else if ((i > 1) & (i <= 4)) {
-    cout << "Digite o numero do cartao de cidadao" << endl;
-    cin >> cc;
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    system("clear");
-    cout << "Digite sua idade" << endl;
-    cin >> id;
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    system("clear");
+    do
+    {
+      cout << "Digite o numero do cartao de cidadao" << endl;
+      cin >> cc;
+
+      if (!cin.fail())
+      {
+        system("clear");
+        break;
+      }
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      system("clear");
+    } while (1);
+
+
+    do {
+      cout << "Digite sua idade" << endl;
+      cin >> id;
+
+      if (!cin.fail())
+      {
+        system("clear");
+        break;
+      }
+      cin.clear();
+      cin.ignore(numeric_limits<streamsize>::max(), '\n');
+      system("clear");
+    } while (1);
 
     switch (i) {
     case 2:
@@ -224,22 +274,26 @@ void dadosBilhete()
 {
   int i, j;
 
-  cout << "Escolha o tipo de bilhete" << endl;
-  cout << "1 - Ocasional" << endl;
-  cout << "2 - Assinatura\n" << endl;
-  cin >> i;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  cout << endl;
+  do
+  {
+    cout << "Escolha o tipo de bilhete" << endl;
+    cout << "1 - Ocasional" << endl;
+    cout << "2 - Assinatura\n" << endl;
+    cin >> i;
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    system("clear");
+  } while (i != 1 && i != 2);
 
   if (i == 1)
   {
+    cout << "Ocasionais:" << endl << endl;
+    cout << u.getOcasionais() << endl;
     cout << "Insira o numero do bilhete" << endl;
     cin >> j;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << endl;
-
+    system("clear");
     Bilhete *B = u.getOcasional(j);
 
     if (B == NULL)
@@ -250,13 +304,15 @@ void dadosBilhete()
       cout << B->getInformacao() << endl << endl;
     }
   }
-  else {
+  else if (i == 2)
+  {
+    cout << "Assinaturas:" << endl << endl;
+    cout << u.getAssinaturas() << endl;
     cout << "Insira o numero do bilhete" << endl;
     cin >> j;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    cout << endl;
-
+    system("clear");
     Bilhete *B = u.getAssinatura(j);
 
     if (B == NULL)

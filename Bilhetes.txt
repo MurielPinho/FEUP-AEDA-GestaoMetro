@@ -1,2 +1,4 @@
 Unico,1,2,1.20,1,2,Trindade,1,0
-Estudante,1,4,36.04,0,Muriel Pinho,1,22,234567,FEUP
+Diario,2,3,5.50,1,24,Trindade,1,0
+Unico,3,2,1.20,1,2,Trindade,1,0
+Normal,1,2,30.60,0,Muriel,0
