@@ -6,7 +6,6 @@
 
 #include "Bilhete.h"
 #include "Utentes.h"
-#include "Menu.h"
 #include "Local.h"
 
 using namespace std;
@@ -523,35 +522,35 @@ float precos(int Z, int D)
   if (D == 0) {
     switch (Z) {
     case 2:
-      return Assinatura_Z2;
+      return 30.60f;
 
     case 3:
-      return Assinatura_Z3;
+      return 37.75f;
 
     case 4:
-      return Assinatura_Z4;
+      return 48.05f;
     }
   } else if (D == 1) {
     switch (Z) {
     case 2:
-      return Unico_Z2;
+      return 1.2f;
 
     case 3:
-      return Unico_Z3;
+      return 1.6f;
 
     case 4:
-      return Unico_Z4;
+      return 2.0f;
     }
   } else if (D == 2)  {
     switch (Z) {
     case 2:
-      return Diario_Z2;
+      return 4.15f;
 
     case 3:
-      return Diario_Z3;
+      return 5.50f;
 
     case 4:
-      return Diario_Z4;
+      return 6.90f;
     }
   }
 
@@ -579,7 +578,6 @@ void AlterarLocal()
 }
 
 string LocalAtual()
-
 {
   Pontovenda *P = l.getLocalAtual();
 
