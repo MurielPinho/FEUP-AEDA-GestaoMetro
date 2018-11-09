@@ -17,7 +17,8 @@ void Local::defineLocal(int i)
 
 Pontovenda * Local::getLocal(int id) const
 {
-  for (unsigned int i = 0; i < locais.size(); i++) {
+  for (unsigned int i = 0; i < locais.size(); i++)
+  {
     if (locais[i]->getIdentificacao() == id)
     {
       return locais[i];
@@ -32,7 +33,7 @@ string Local::getLocais() const
 
   for (unsigned int i = 0; i < locais.size(); i++)
   {
-    ss << locais[i]->getInformacao() << "\n";
+    ss << locais[i]->getInformacao() << " " << i << "\n";
   }
   return ss.str();
 }
@@ -42,4 +43,17 @@ Pontovenda * Local::getLocalAtual() const
   Pontovenda *P = getLocal(LocalAtual);
 
   return P;
+}
+
+bool Local::removeLocal(int id)
+{
+  for (int i = 0; i < locais.size(); i++)
+  {
+    if (locais[i]->getIdentificacao() == id)
+    {
+      locais.erase(locais.begin() + i);
+      return true;
+    }
+  }
+  return false;
 }

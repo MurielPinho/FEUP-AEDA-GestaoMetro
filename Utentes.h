@@ -22,6 +22,8 @@ public:
   string   getAssinaturas() const;
   Bilhete* getOcasional(int id) const;
   Bilhete* getAssinatura(int id) const;
+  bool     removeOcasional(int id);
+  bool     removeAssinatura(int id);
 };
 
 

@@ -24,6 +24,7 @@ void     writeFile();
 void     AlterarLocal();
 string   LocalAtual();
 void     Locais();
+void     removeBilhete();
 
 
 Utentes u;
@@ -565,6 +566,7 @@ void Locais()
 
 void AlterarLocal()
 {
+  Locais();
   int i;
 
   cout << "Insira o numero do local desejado:" << endl << endl;
@@ -586,4 +588,59 @@ string LocalAtual()
     return P->getNome();
   }
   return "Trindade";
+}
+
+void removeBilhete()
+{
+  int i, j;
+
+  cout << "Escolha o tipo de bilhete" << endl;
+  cout << "1 - Ocasional" << endl;
+  cout << "2 - Assinatura\n" << endl;
+  cin >> i;
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  cout << endl;
+  system("clear");
+
+  if (i == 1)
+  {
+    cout << "Ocasionais:" << endl << endl;
+    cout << u.getOcasionais() << endl;
+    cout << "Insira a identificacao do ocasional a ser removido:" << endl << endl;
+  }
+  else if (i == 2)
+  {
+    cout << "Assinaturas:" << endl << endl;
+    cout << u.getAssinaturas() << endl;
+    cout << "Insira a identificacao da assinatura a ser removida:" << endl << endl;
+  }
+
+  cin >> j;
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  system("clear");
+
+  if (i == 1)
+  {
+    if (u.removeOcasional(j))
+    {
+      cout << "Ocasional Removido" << endl << endl;
+    }
+    else
+    {
+      cout << "Ocasional nao encontrado" << endl << endl;
+    }
+  }
+  else if (i == 2)
+  {
+    if (u.removeAssinatura(j))
+    {
+      cout << "Assinatura Removido" << endl << endl;
+    }
+    else
+    {
+      cout << "Assinatura nao encontrado" << endl << endl;
+    }
+  }
 }

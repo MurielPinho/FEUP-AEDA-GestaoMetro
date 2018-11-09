@@ -18,9 +18,11 @@ int      numBilhetes();
 void     dadosBilhete();
 void     readFile();
 void     writeFile();
-void AlterarLocal();
-string LocalAtual();
-void Locais();
+void     AlterarLocal();
+string   LocalAtual();
+void     Locais();
+void     removeBilhete();
+
 
 
 #endif /*VENDA_H_*/

@@ -29,6 +29,7 @@ public:
   virtual int    getDuracao() const;
   virtual int    getDesconto() const;
   virtual string getNome() const;
+  virtual ~Bilhete() {}
 };
 
 class Assinatura : public Bilhete {

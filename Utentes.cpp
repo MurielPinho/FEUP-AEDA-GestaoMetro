@@ -95,3 +95,29 @@ Bilhete * Utentes::getAssinatura(int id) const
   }
   return NULL;
 }
+
+bool Utentes::removeAssinatura(int id)
+{
+  for (int i = 0; i < assinaturas.size(); i++)
+  {
+    if (assinaturas[i]->getIdentificacao() == id)
+    {
+      assinaturas.erase(assinaturas.begin() + i);
+      return true;
+    }
+  }
+  return false;
+}
+
+bool Utentes::removeOcasional(int id)
+{
+  for (int i = 0; i < ocasionais.size(); i++)
+  {
+    if (ocasionais[i]->getIdentificacao() == id)
+    {
+      ocasionais.erase(ocasionais.begin() + i);
+      return true;
+    }
+  }
+  return false;
+}

@@ -19,6 +19,7 @@ public:
   string getInformacao() const;
   int    getIdentificacao() const;
   int    getTipo() const;
+  virtual ~Pontovenda() {}
 };
 class Maquina : public Pontovenda {
 public:

@@ -19,6 +19,7 @@ public:
   Pontovenda* getLocal(int id) const;
   string      getLocais() const;
   Pontovenda* getLocalAtual() const;
+  bool        removeLocal(int id);
 };
 
 

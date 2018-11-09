@@ -59,6 +59,7 @@ int main() {
 
     case 2:
       system("clear");
+      removeBilhete();
       break;
 
     case 3:
@@ -73,7 +74,6 @@ int main() {
 
     case 5:
       system("clear");
-      Locais();
       AlterarLocal();
       break;
 

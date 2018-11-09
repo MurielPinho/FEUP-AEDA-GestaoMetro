@@ -180,7 +180,7 @@ string Diario::getInformacao() const
 {
   stringstream ss;
 
-  ss << "Diario " << Ocasional::getInformacao();
+  ss << "Diario" << "," << Ocasional::getInformacao();
   return ss.str();
 }
 
@@ -191,6 +191,6 @@ string Unico::getInformacao() const
 {
   stringstream ss;
 
-  ss << "Unico " << Ocasional::getInformacao();
+  ss << "Unico" << "," << Ocasional::getInformacao();
   return ss.str();
 }
