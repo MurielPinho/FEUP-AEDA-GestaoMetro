@@ -7,26 +7,50 @@
 #include "Bilhete.h"
 #include "Utentes.h"
 #include "Menu.h"
+#include "Local.h"
 
 using namespace std;
 
-int      Maquina();
-int      Loja();
+void     comprarBilhete();
+void     comprarMaquina();
+void     comprarLoja();
 Bilhete* FOcasional();
 Bilhete* FAssinatura();
-float    precosA(int Z);
-float    precosU(int Z);
-float    precosD(int Z);
+float    precos(int Z, int D);
 bool     Pagamento(float preco);
 int      numBilhetes(bool A);
-void     test();
-void     read();
-void     write();
+void     dadosBilhete();
+void     readFile();
+void     writeFile();
+void     AlterarLocal();
+string   LocalAtual();
+void     Locais();
 
 
 Utentes u;
+Local   l;
 
-int Maquina()
+void comprarBilhete()
+{
+  Pontovenda *P = l.getLocalAtual();
+  bool tipo;
+
+  if (P != NULL)
+  {
+    tipo = P->getTipo();
+
+    if (tipo)
+    {
+      comprarLoja();
+    }
+    else
+    {
+      comprarMaquina();
+    }
+  }
+}
+
+void comprarMaquina()
 {
   Bilhete *B;
 
@@ -38,11 +62,9 @@ int Maquina()
     u.adicionaOcasional(B);
     cout << "Pagamento concluido" << endl << endl;
   }
-
-  return 0;
 }
 
-int Loja()
+void comprarLoja()
 {
   Bilhete *B = NULL;
   int i;
@@ -74,8 +96,6 @@ int Loja()
 
     cout << "Pagamento concluido" << endl << endl;
   }
-
-  return 0;
 }
 
 bool Pagamento(float preco)
@@ -120,11 +140,11 @@ Bilhete* FOcasional()
   switch (i) {
   case 1:
 
-    B1 = new Unico(u.numOcasionais() + 1, precosU(Z), 1, 2, "Trindade", 1, false);
+    B1 = new Unico(u.numOcasionais() + 1, Z, precos(Z, 1), 1, 2, LocalAtual(), 1, false);
     break;
 
   case 2:
-    B1 = new Diario(u.numOcasionais() + 1, precosD(Z), 1, 24, "Trindade", 1, false);
+    B1 = new Diario(u.numOcasionais() + 1, Z, precos(Z, 2), 1, 24, LocalAtual(), 1, false);
     break;
   }
   return B1;
@@ -152,13 +172,11 @@ Bilhete* FAssinatura()
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
   system("clear");
   cout << "Digite o seu nome" << endl;
-  cin >> nm;
-  cin.clear();
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  getline(cin, nm);
   system("clear");
 
   if (i == 1) {
-    B = new Normal(u.numAssinaturas() + 1, precosA(Z), 0, nm);
+    B = new Normal(u.numAssinaturas() + 1, Z, precos(Z, 0), 0, nm, 0);
   }
   else if ((i > 1) & (i <= 4)) {
     cout << "Digite o numero do cartao de cidadao" << endl;
@@ -179,15 +197,15 @@ Bilhete* FAssinatura()
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
       system("clear");
-      B = new Estudante(u.numAssinaturas() + 1, precosA(Z) * 0.75, 0, nm, id, cc, esc);
+      B = new Estudante(u.numAssinaturas() + 1, Z, precos(Z, 0) * 0.75, 0, nm, 1, id, cc, esc);
       break;
 
     case 3:
-      B = new Junior(u.numAssinaturas() + 1, precosA(Z) * 0.75, 0, nm, id, cc);
+      B = new Junior(u.numAssinaturas() + 1, Z, precos(Z, 0) * 0.75, 0, nm, 2, id, cc);
       break;
 
     case 4:
-      B = new Senior(u.numAssinaturas() + 1, precosA(Z) * 0.75, 0, nm, id, cc);
+      B = new Senior(u.numAssinaturas() + 1, Z, precos(Z, 0) * 0.75, 0, nm, 3, id, cc);
       break;
     }
   }
@@ -202,7 +220,7 @@ void Bilhetes()
   cout << u.getAssinaturas() <<  endl;
 }
 
-void test()
+void dadosBilhete()
 {
   int i, j;
 
@@ -251,91 +269,235 @@ void test()
   }
 }
 
-void read()
+void readFile()
 {
-  ifstream source;
+  ifstream bilhetes, locais;
   Bilhete *B;
+  Pontovenda *P;
 
-  source.open("Bilhetes.txt", ios_base::in);
+  bilhetes.open("Bilhetes.txt", ios_base::in);
+  locais.open("Locais.txt", ios_base::in);
 
-  if (!source)
+  if (!bilhetes)
   {
-    cerr << "Can't open Data!\n";
+    cerr << "Arquivo não encontrado!\n";
   }
   else
   {
-    for (string line; getline(source, line);)
+    string line;
+    vector<string> word;
+
+    while (getline(bilhetes, line))
     {
-      istringstream in(line);
-      string tipo;
-      in >> tipo;
-      cout << tipo << endl;
+      stringstream linestream(line);
+      string value;
+      vector<string> data;
+
+      while (getline(linestream, value, ','))
+      {
+        data.push_back(value);
+      }
+      float  preco;
+      string tipo, nome;
+      int    identificacao, zona;
+      tipo          = data.at(0);
+      identificacao = stoi(data.at(1));
+      zona          = stoi(data.at(2));
+      preco         = stof(data.at(3));
 
       if (tipo == "Unico")
       {
-        int    id, d, v;
-        float  p;
+        int d, v;
         string pt;
         bool   t, vdd;
-        in >> id  >> p  >> t  >> d >> pt  >> v >> vdd;
-        B = new Unico(id, p, t, d, pt, v, vdd);
+        t   = 1;
+        d   = stoi(data.at(5));
+        pt  = data.at(6);
+        v   = stoi(data.at(7));
+        vdd = 0;
+        B   = new Unico(identificacao, zona, preco, t, d, pt, v, vdd);
         u.adicionaOcasional(B);
       }
       else if (tipo == "Diario")
       {
-        int    id, d, v;
-        float  p;
+        int d, v;
         string pt;
         bool   t, vdd;
-        in >> id  >> p  >> t  >> d >> pt >> v >> vdd;
-        B = new Diario(id, p, t, d, pt, v, vdd);
+        t   = 1;
+        d   = stoi(data.at(5));
+        pt  = data.at(6);
+        v   = stoi(data.at(7));
+        vdd = 0;
+        B   = new Diario(identificacao, zona, preco, t, d, pt, v, vdd);
         u.adicionaOcasional(B);
       }
       else if (tipo == "Normal")
       {
-        int    id;
-        float  p;
+        int    d;
         bool   t;
         string n;
-        in >> id  >> p  >> t  >> n;
-        B = new Normal(id, p, t,  n);
+        t = 0;
+        n = data.at(5);
+        d = stoi(data.at(6));
+        B = new Normal(identificacao, zona, preco, t,  n, d);
         u.adicionaAssinatura(B);
       }
       else if (tipo == "Estudante")
       {
-        int    id, idd, cc;
-        float  p;
+        int    idd, cc, d;
         bool   t;
         string n, esc;
-        in >> id  >> p  >> t  >> n  >> idd  >> cc  >> esc;
-        B = new Estudante(id, p, t, n, idd, cc, esc);
+        t   = 0;
+        n   = data.at(5);
+        d   = stoi(data.at(6));
+        idd = stoi(data.at(7));
+        cc  = stoi(data.at(8));
+        esc = data.at(9);
+        B   = new Estudante(identificacao, zona, preco, t, n, d, idd, cc, esc);
         u.adicionaAssinatura(B);
       }
       else if (tipo == "Junior")
       {
-        int    id, idd, cc;
-        float  p;
+        int    idd, cc, d;
         bool   t;
         string n;
-        in >> id  >> p  >> t  >> n  >> idd  >> cc;
-        B = new Junior(id, p, t,  n, idd, cc);
+        t   = 0;
+        n   = data.at(5);
+        d   = stoi(data.at(6));
+        idd = stoi(data.at(7));
+        cc  = stoi(data.at(8));
+        B   = new Junior(identificacao, zona, preco, t,  n, d, idd, cc);
         u.adicionaAssinatura(B);
       }
       else if (tipo == "Senior")
       {
-        int    id, idd, cc;
-        float  p;
+        int    idd, cc, d;
         bool   t;
         string n;
-        in >> id  >> p  >> t  >> n  >> idd  >> cc;
-        B = new Senior(id, p, t,  n, idd, cc);
+        t   = 0;
+        n   = data.at(5);
+        d   = stoi(data.at(6));
+        idd = stoi(data.at(7));
+        cc  = stoi(data.at(8));
+        B   = new Senior(identificacao, zona, preco, t,  n, d, idd, cc);
         u.adicionaAssinatura(B);
+      }
+
+      {
+        // for (string line; getline(bilhetes, line);)
+        // {
+        //   istringstream in(line);
+        //   string tipo;
+        //   in >> tipo;
+        //
+        //   if (tipo == "Unico")
+        //   {
+        //     int    id, d, v, z;
+        //     float  p;
+        //     string pt;
+        //     bool   t, vdd;
+        //     in >> id >> z >> p  >> t  >> d >> pt  >> v >> vdd;
+        //     B = new Unico(id, z, p, t, d, pt, v, vdd);
+        //     u.adicionaOcasional(B);
+        //   }
+        //   else if (tipo == "Diario")
+        //   {
+        //     int    id, d, v, z;
+        //     float  p;
+        //     string pt;
+        //     bool   t, vdd;
+        //     in >> id  >> z >> p  >> t  >> d >> pt >> v >> vdd;
+        //     B = new Diario(id, z, p, t, d, pt, v, vdd);
+        //     u.adicionaOcasional(B);
+        //   }
+        //   else if (tipo == "Normal")
+        //   {
+        //     int    id, z, d;
+        //     float  p;
+        //     bool   t;
+        //     string n;
+        //     in >> id  >> z >> p  >> t  >> n >> d;
+        //     B = new Normal(id, z, p, t,  n, d);
+        //     u.adicionaAssinatura(B);
+        //   }
+        //   else if (tipo == "Estudante")
+        //   {
+        //     int    id, idd, cc, z, d;
+        //     float  p;
+        //     bool   t;
+        //     string n, esc;
+        //     in >> id  >> z >> p  >> t  >> n  >> d >> idd  >> cc  >> esc;
+        //     B = new Estudante(id, z, p, t, n, d, idd, cc, esc);
+        //     u.adicionaAssinatura(B);
+        //   }
+        //   else if (tipo == "Junior")
+        //   {
+        //     int    id, idd, cc, z, d;
+        //     float  p;
+        //     bool   t;
+        //     string n;
+        //     in >> id  >> z >> p  >> t  >> n  >> d >> idd  >> cc;
+        //     B = new Junior(id, z, p, t,  n, d, idd, cc);
+        //     u.adicionaAssinatura(B);
+        //   }
+        //   else if (tipo == "Senior")
+        //   {
+        //     int    id, idd, cc, z, d;
+        //     float  p;
+        //     bool   t;
+        //     string n;
+        //     in >> id  >> z >> p  >> t  >> n  >> d >> idd  >> cc;
+        //     B = new Senior(id, z, p, t,  n, d, idd, cc);
+        //     u.adicionaAssinatura(B);
+        //   }
       }
     }
   }
+
+  if (!locais)
+  {
+    cerr << "Arquivo não encontrado!\n";
+  }
+  else
+  {
+    string line;
+    vector<string> word;
+
+    while (getline(locais, line))
+    {
+      stringstream linestream(line);
+      string value;
+      vector<string> word;
+
+      while (getline(linestream, value, ','))
+      {
+        word.push_back(value);
+      }
+      string tipo, nome;
+      int    identificacao;
+      tipo          = word.at(0);
+      identificacao = stoi(word.at(1));
+      nome          = word.at(2);
+
+      if (tipo == "Maquina")
+      {
+        cout << "maquina criada" << endl;
+        P = new Maquina(identificacao, nome, 0);
+        l.adicionaLocal(P);
+      }
+      else if (tipo == "Loja") {
+        P = new Loja(identificacao, nome, 1);
+        l.adicionaLocal(P);
+      }
+    }
+
+    l.defineLocal(1);
+  }
+  bilhetes.close();
+  locais.close();
 }
 
-void write()
+void writeFile()
 {
   ofstream out;
 
@@ -346,12 +508,7 @@ void write()
   for (int i = 1; i <= numO; i++)
   {
     Bilhete *B = u.getOcasional(i);
-
-    if (B->getDuracao() == 2) {
-      out << B->getInformacao() << endl;
-    } else {
-      out << B->getInformacao() << endl;
-    }
+    out << B->getInformacao() << endl;
   }
 
   for (int i = 1; i <= numA; i++)
@@ -361,47 +518,74 @@ void write()
   }
 }
 
-float precosA(int Z)
+float precos(int Z, int D)
 {
-  switch (Z) {
-  case 2:
-    return Assinatura_Z2;
+  if (D == 0) {
+    switch (Z) {
+    case 2:
+      return Assinatura_Z2;
 
-  case 3:
-    return Assinatura_Z3;
+    case 3:
+      return Assinatura_Z3;
 
-  case 4:
-    return Assinatura_Z4;
+    case 4:
+      return Assinatura_Z4;
+    }
+  } else if (D == 1) {
+    switch (Z) {
+    case 2:
+      return Unico_Z2;
+
+    case 3:
+      return Unico_Z3;
+
+    case 4:
+      return Unico_Z4;
+    }
+  } else if (D == 2)  {
+    switch (Z) {
+    case 2:
+      return Diario_Z2;
+
+    case 3:
+      return Diario_Z3;
+
+    case 4:
+      return Diario_Z4;
+    }
   }
+
   return 0.00f;
 }
 
-float precosU(int Z)
+void Locais()
 {
-  switch (Z) {
-  case 2:
-    return Unico_Z2;
-
-  case 3:
-    return Unico_Z3;
-
-  case 4:
-    return Unico_Z4;
-  }
-  return 0.00f;
+  cout << "Locais de venda :" << endl << endl;
+  cout << l.getLocais() <<  endl;
 }
 
-float precosD(int Z)
+void AlterarLocal()
 {
-  switch (Z) {
-  case 2:
-    return Diario_Z2;
+  int i;
 
-  case 3:
-    return Diario_Z3;
+  cout << "Insira o numero do local desejado:" << endl << endl;
+  cin >> i;
+  cin.clear();
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-  case 4:
-    return Diario_Z4;
+
+  l.defineLocal(i);
+  system("clear");
+}
+
+string LocalAtual()
+
+{
+  Pontovenda *P = l.getLocalAtual();
+
+  if (P != NULL)
+  {
+    return P->getNome();
   }
-  return 0.00f;
+  return "Trindade";
 }

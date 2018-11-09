@@ -15,39 +15,42 @@ protected:
 
   float preco;
   bool tipo;
-  int identificacao;
+  int identificacao, zona;
 
 public:
 
   // Funções
-  Bilhete(int id, float p, bool t);
+  Bilhete(int id, int z, float p, bool t);
   float          getPreco() const;
+  int            getZona() const;
   bool           getTipo() const;
   virtual string getInformacao() const;
   int            getIdentificacao() const;
   virtual int    getDuracao() const;
+  virtual int    getDesconto() const;
+  virtual string getNome() const;
 };
 
 class Assinatura : public Bilhete {
 protected:
 
   string nome;
+  int desconto;
 
 public:
 
   // Funções
-  Assinatura(int id, float p, bool t, string n);
+  Assinatura(int id, int z, float p, bool t, string n, int d);
   virtual string getInformacao() const;
   int            getDuracao() const;
-
-
-  float          precosA(int Z);
+  int            getDesconto() const;
+  string         getNome() const;
 };
 class Normal : public Assinatura {
 public:
 
   // Funções
-  Normal(int id, float p, bool t, string n);
+  Normal(int id, int z, float p, bool t, string n, int d);
   string getInformacao() const;
 };
 class Estudante : public Assinatura {
@@ -59,7 +62,7 @@ protected:
 public:
 
   // Funções
-  Estudante(int id, float p, bool t, string n, int idd, int cc, string esc);
+  Estudante(int id, int z, float p, bool t, string n, int d, int idd, int cc, string esc);
   string getInformacao() const;
 };
 
@@ -69,7 +72,7 @@ class Junior : public Assinatura {
 public:
 
   // Funções
-  Junior(int id, float p, bool t, string n, int idd, int cc);
+  Junior(int id, int z, float p, bool t, string n, int d, int idd, int cc);
   string getInformacao() const;
 };
 
@@ -79,7 +82,7 @@ class Senior : public Assinatura {
 public:
 
   // Funções
-  Senior(int id, float p, bool t, string n, int idd, int cc);
+  Senior(int id, int z, float p, bool t, string n, int d, int idd, int cc);
   string getInformacao() const;
 };
 
@@ -93,16 +96,18 @@ protected:
 public:
 
   // Funções
-  Ocasional(int id, float p, bool t, int d, string pt, int v, bool vdd);
+  Ocasional(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
   virtual string getInformacao() const;
   int            getDuracao() const;
+  string         getNome() const;
+  int            getDesconto() const;
 };
 
 class Diario : public Ocasional {
 public:
 
   // Funções
-  Diario(int id, float p, bool t, int d, string pt, int v, bool vdd);
+  Diario(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
   string getInformacao() const;
 };
 
@@ -110,7 +115,7 @@ class Unico : public Ocasional {
 public:
 
   // Funções
-  Unico(int id, float p, bool t, int d, string pt, int v, bool vdd);
+  Unico(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
   string getInformacao() const;
 };
 

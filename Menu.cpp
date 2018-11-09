@@ -3,10 +3,12 @@
 #include "Utentes.h"
 #include "Venda.h"
 #include "Menu.h"
+#include "Pontovenda.h"
+#include "Local.h"
+
 using namespace std;
 
 // Este arquivo de origem simula a venda de um bilhete em uma maquina
-
 int main() {
   int  option = 0;
   char control;
@@ -22,7 +24,7 @@ int main() {
 
         if (control == 'n')
         {
-          write();
+          writeFile();
           return 0;
         }
       } while (control != 's');
@@ -30,18 +32,22 @@ int main() {
 
     if (option == 0)
     {
-      read();
+      readFile();
     }
 
     system("clear");
     cout << "              Menu Inicial              " << endl;
     cout << "========================================" << endl;
+    cout << "Local Atual: " << LocalAtual() << " "     << endl;
+    cout << "========================================" << endl;
     cout << "\nEscolha a operação desejada         \n" << endl;
-    cout << "1 - Loja                              \n" << endl;
-    cout << "2 - Maquina                           \n" << endl;
+    cout << "1 - Comprar Bilhetes                  \n" << endl;
+    cout << "2 - Remover Bilhete                   \n" << endl;
     cout << "3 - Verificar Bilhetes                \n" << endl;
     cout << "4 - Verificar dados de um bilhete     \n" << endl;
+    cout << "5 - Alterar localidade                \n" << endl;
     cout << "0 - Sair                              \n" << endl;
+
 
     cin.clear();
     cin >> option;
@@ -49,12 +55,11 @@ int main() {
     switch (option) {
     case 1:
       system("clear");
-      Loja();
+      comprarBilhete();
       break;
 
     case 2:
       system("clear");
-      Maquina();
       break;
 
     case 3:
@@ -64,15 +69,21 @@ int main() {
 
     case 4:
       system("clear");
-      test();
+      dadosBilhete();
       break;
 
     case 5:
       system("clear");
+      Locais();
+      AlterarLocal();
+      break;
 
+    case 6:
+      system("clear");
+      readFile();
       break;
     }
   } while (option != 0);
-  write();
+  writeFile();
   return 0;
 }

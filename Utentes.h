@@ -7,6 +7,8 @@ using namespace std;
 
 
 class Utentes {
+protected:
+
   vector<Bilhete *>assinaturas;
   vector<Bilhete *>ocasionais;
 
