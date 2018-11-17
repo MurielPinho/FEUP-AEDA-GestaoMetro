@@ -1,10 +1,10 @@
-#include "Pontovenda.h"
+#include "pontoVenda.h"
 #include <sstream>
 #include <iostream>
 
 using namespace std;
 
-Pontovenda::Pontovenda(int id, string n, bool t)
+pontoVenda::pontoVenda(int id, string n, bool t)
 
 {
   identificacao = id;
@@ -12,22 +12,22 @@ Pontovenda::Pontovenda(int id, string n, bool t)
   tipo          = t;
 }
 
-string Pontovenda::getNome() const
+string pontoVenda::getNome() const
 {
   return nome;
 }
 
-int Pontovenda::getIdentificacao() const
+int pontoVenda::getIdentificacao() const
 {
   return identificacao;
 }
 
-int Pontovenda::getTipo() const
+int pontoVenda::getTipo() const
 {
   return tipo;
 }
 
-string Pontovenda::getInformacao() const {
+string pontoVenda::getInformacao() const {
   stringstream ss;
 
   if (tipo)
@@ -41,8 +41,8 @@ string Pontovenda::getInformacao() const {
   return ss.str();
 }
 
-Maquina::Maquina(int id, string n, bool t) : Pontovenda(id, n, t)
+Maquina::Maquina(int id, string n, bool t) : pontoVenda(id, n, t)
 {}
 
-Loja::Loja(int id, string n, bool t) : Pontovenda(id, n, t)
+Loja::Loja(int id, string n, bool t) : pontoVenda(id, n, t)
 {}

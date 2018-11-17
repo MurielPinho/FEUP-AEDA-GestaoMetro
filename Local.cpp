@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void Local::adicionaLocal(Pontovenda *l1)
+void Local::adicionaLocal(pontoVenda *l1)
 {
   locais.push_back(l1);
 }
@@ -15,7 +15,7 @@ void Local::defineLocal(int i)
   LocalAtual = i;
 }
 
-Pontovenda * Local::getLocal(int id) const
+pontoVenda * Local::getLocal(int id) const
 {
   for (unsigned int i = 0; i < locais.size(); i++)
   {
@@ -33,14 +33,14 @@ string Local::getLocais() const
 
   for (unsigned int i = 0; i < locais.size(); i++)
   {
-    ss << locais[i]->getInformacao() << " " << i << "\n";
+    ss << locais[i]->getInformacao() << "\n";
   }
   return ss.str();
 }
 
-Pontovenda * Local::getLocalAtual() const
+pontoVenda * Local::getLocalAtual() const
 {
-  Pontovenda *P = getLocal(LocalAtual);
+  pontoVenda *P = getLocal(LocalAtual);
 
   return P;
 }
@@ -58,10 +58,10 @@ bool Local::removeLocal(int id)
   return false;
 }
 
-void Local::Organizar()
+void Local::OrdenarLocais()
 {
   int i, j, k, n;
-  Pontovenda *P1, *P2, *T;
+  pontoVenda *P1, *P2, *T;
 
   n = locais.size();
 

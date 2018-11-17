@@ -1,11 +1,3 @@
-Maquina,9,Aliados
-Maquina,10,Sao Bento
-Maquina,11,Jardim do Morro
-Loja,12,General Torres
-Maquina,13,Camara de Gaia
-Maquina,14,Joao de Deus
-Maquina,15,D. Joao II
-Maquina,16,Santo Ovidio
 Loja,1,Trindade
 Loja,2,Hospital Sao Joao
 Maquina,3,IPO
@@ -14,3 +6,11 @@ Maquina,5,Salgueiros
 Maquina,6,Combatentes
 Maquina,7,Marques
 Maquina,8,Faria Guimaraes
+Maquina,9,Aliados
+Maquina,10,Sao Bento
+Maquina,11,Jardim do Morro
+Loja,12,General Torres
+Maquina,13,Camara de Gaia
+Maquina,14,Joao de Deus
+Maquina,15,D. Joao II
+Maquina,16,Santo Ovidio

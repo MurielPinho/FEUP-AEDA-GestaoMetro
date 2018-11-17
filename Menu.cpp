@@ -2,18 +2,19 @@
 #include "Bilhete.h"
 #include "Utentes.h"
 #include "Venda.h"
-#include "Pontovenda.h"
+#include "pontoVenda.h"
 #include "Local.h"
 
 using namespace std;
 
-// Este arquivo de origem simula a venda de um bilhete em uma maquina
 int main() {
   int  option = 0;
   char control;
 
+  readData();
+
   do {
-    if (option != 0)
+    if ((option >= 1) && (option <= 5))
     {
       do {
         cout << "Deseja realizar outra operação ? (s/n)" << endl;
@@ -23,21 +24,15 @@ int main() {
 
         if (control == 'n')
         {
-          writeFile();
+          writeData();
           return 0;
         }
       } while (control != 's');
     }
-
-    if (option == 0)
-    {
-      readFile();
-    }
-
     system("clear");
     cout << "              Menu Inicial              " << endl;
     cout << "========================================" << endl;
-    cout << "Local Atual: " << LocalAtual() << " "     << endl;
+    cout << "Local Atual: " << localAtual() << " "     << endl;
     cout << "========================================" << endl;
     cout << "\nEscolha a operação desejada         \n" << endl;
     cout << "1 - Comprar Bilhetes                  \n" << endl;
@@ -74,15 +69,10 @@ int main() {
 
     case 5:
       system("clear");
-      AlterarLocal();
-      break;
-
-    case 6:
-      system("clear");
-      test();
+      alterarLocal();
       break;
     }
   } while (option != 0);
-  writeFile();
+  writeData();
   return 0;
 }
