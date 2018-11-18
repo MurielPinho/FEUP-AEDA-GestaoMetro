@@ -1,6 +1,7 @@
 #include "pontoVenda.h"
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -32,11 +33,15 @@ string pontoVenda::getInformacao() const {
 
   if (tipo)
   {
-    ss << identificacao << " " <<  nome << " " << "Loja";
+    ss << left << setw(3) << identificacao;
+    ss << left << setw(20) << nome;
+    ss << left << setw(7) << "Loja";
   }
   else
   {
-    ss << identificacao << " " <<  nome << " " << "Maquina";
+    ss << left << setw(3) << identificacao;
+    ss << left << setw(20) << nome;
+    ss << left << setw(7) <<  "Maquina";
   }
   return ss.str();
 }

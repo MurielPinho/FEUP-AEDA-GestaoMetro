@@ -2,6 +2,7 @@
 #include <sstream>
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -33,11 +34,21 @@ string Utentes::getOcasionais() const
   for (unsigned int i = 0; i < ocasionais.size(); i++) {
     if (ocasionais[i]->getDuracao() == 2)
     {
-      ss << "Unico" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
+      ss << left << setw(8) << "Unico";
+      ss << left << setw(4) << ocasionais[i]->getIdentificacao();
+      ss << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
+      ss << "\n";
+
+      // ss << "Unico" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
     }
     else
     {
-      ss << "Diario" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
+      ss << left << setw(8) << "Diario";
+      ss << left << setw(4) << ocasionais[i]->getIdentificacao();
+      ss << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
+      ss << "\n";
+
+      //  ss << "Diario" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
     }
   }
   return ss.str();
@@ -51,24 +62,25 @@ string Utentes::getAssinaturas() const
   for (unsigned int i = 0; i < assinaturas.size(); i++) {
     if (assinaturas[i]->getDesconto() == 0)
     {
-      ss << "Normal" << " ";
+      ss << left << setw(11) << "Normal";
     }
     else if (assinaturas[i]->getDesconto() == 1)
     {
-      ss << "Estudante" << " ";
+      ss << left << setw(11) << "Estudante";
     }
     else if (assinaturas[i]->getDesconto() == 2)
     {
-      ss << "Junior" << " ";
+      ss << left << setw(11) << "Junior";
     }
     else if (assinaturas[i]->getDesconto() == 3)
     {
-      ss << "Senior" << " ";
+      ss << left << setw(11) << "Senior";
     }
 
-    ss << assinaturas[i]->getIdentificacao() << " ";
-    ss << assinaturas[i]->getNome() << " " << "Z";
-    ss << assinaturas[i]->getZona() << "\n";
+    ss << left << setw(4) << assinaturas[i]->getIdentificacao();
+    ss << left << setw(15) << assinaturas[i]->getNome();
+    ss << "Z" << left << setw(3) << assinaturas[i]->getZona();
+    ss << "\n";
   }
   return ss.str();
 }
