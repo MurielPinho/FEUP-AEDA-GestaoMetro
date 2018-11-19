@@ -33,6 +33,7 @@ public:
 
   // ! Retorna uma string com toda a informacao sobre um bilhete.
   virtual string getInformacao() const;
+  virtual string getInformacaoTab() const;
 
   // ! Retorna a identificacao do bilhete
   int            getIdentificacao() const;
@@ -60,6 +61,7 @@ public:
   // ! Constroi um bilhete do tipo Assinatura, que adiciona as informacoes de nome e desconto ao Bilhete Generico
   Assinatura(int id, int z, float p, bool t, string n, int d);
   virtual string getInformacao() const;
+  virtual string getInformacaoTab() const;
   int            getDuracao() const;
   int            getDesconto() const;
   string         getNome() const;
@@ -71,6 +73,7 @@ public:
   // ! Constroi um bilhete do tipo Normal, que adiciona as informacoes do Bilhete Assinatura
   Normal(int id, int z, float p, bool t, string n, int d);
   string getInformacao() const;
+  string getInformacaoTab() const;
 };
 class Estudante : public Assinatura {
 protected:
@@ -84,6 +87,7 @@ public:
   // ! Constroi um bilhete do tipo Estudante, que adiciona as informacoes de idade, CC e escola ao Bilhete Assinatura
   Estudante(int id, int z, float p, bool t, string n, int d, int idd, int cc, string esc);
   string getInformacao() const;
+  string getInformacaoTab() const;
 };
 
 class Junior : public Assinatura {
@@ -95,6 +99,7 @@ public:
   // ! Constroi um bilhete do tipo Junior, que adiciona as informacoes de idade e CC ao Bilhete Assinatura
   Junior(int id, int z, float p, bool t, string n, int d, int idd, int cc);
   string getInformacao() const;
+  string getInformacaoTab() const;
 };
 
 class Senior : public Assinatura {
@@ -106,6 +111,7 @@ public:
   // ! Constroi um bilhete do tipo Senior, que adiciona as informacoes de idade e CC ao Bilhete Assinatura
   Senior(int id, int z, float p, bool t, string n, int d, int idd, int cc);
   string getInformacao() const;
+  string getInformacaoTab() const;
 };
 
 class Ocasional : public Bilhete {
@@ -121,6 +127,7 @@ public:
   // ! Constroi um bilhete do tipo Ocasional que adiciona duracao, partida, viagens e validado ao Bilhete Generico
   Ocasional(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
   virtual string getInformacao() const;
+  virtual string getInformacaoTab() const;
   int            getDuracao() const;
   string         getNome() const;
   int            getDesconto() const;
@@ -133,6 +140,7 @@ public:
   // ! Constroi um bilhete do tipo Diario que adiciona informacoes do Bilhete Ocasional
   Diario(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
   string getInformacao() const;
+  string getInformacaoTab() const;
 };
 
 class Unico : public Ocasional {
@@ -142,6 +150,7 @@ public:
   // ! Constroi um bilhete do tipo Unico que adiciona informacoes do Bilhete Ocasional
   Unico(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
   string getInformacao() const;
+  string getInformacaoTab() const;
 };
 
 

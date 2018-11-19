@@ -34,18 +34,18 @@ string Utentes::getOcasionais() const
   for (unsigned int i = 0; i < ocasionais.size(); i++) {
     if (ocasionais[i]->getDuracao() == 2)
     {
-      ss << left << setw(8) << "Unico";
-      ss << left << setw(4) << ocasionais[i]->getIdentificacao();
-      ss << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
+      ss << right << setw(7) << "Unico";
+      ss << " " << right << setw(4) << ocasionais[i]->getIdentificacao();
+      ss << "   " << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
       ss << "\n";
 
       // ss << "Unico" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
     }
     else
     {
-      ss << left << setw(8) << "Diario";
-      ss << left << setw(4) << ocasionais[i]->getIdentificacao();
-      ss << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
+      ss << right << setw(7) << "Diario";
+      ss << " "  << right << setw(4) << ocasionais[i]->getIdentificacao();
+      ss << "   " << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
       ss << "\n";
 
       //  ss << "Diario" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
@@ -62,24 +62,24 @@ string Utentes::getAssinaturas() const
   for (unsigned int i = 0; i < assinaturas.size(); i++) {
     if (assinaturas[i]->getDesconto() == 0)
     {
-      ss << left << setw(11) << "Normal";
+      ss << right << setw(10) << "Normal";
     }
     else if (assinaturas[i]->getDesconto() == 1)
     {
-      ss << left << setw(11) << "Estudante";
+      ss << right << setw(10) << "Estudante";
     }
     else if (assinaturas[i]->getDesconto() == 2)
     {
-      ss << left << setw(11) << "Junior";
+      ss << right << setw(10) << "Junior";
     }
     else if (assinaturas[i]->getDesconto() == 3)
     {
-      ss << left << setw(11) << "Senior";
+      ss << right << setw(10) << "Senior";
     }
 
-    ss << left << setw(4) << assinaturas[i]->getIdentificacao();
-    ss << left << setw(15) << assinaturas[i]->getNome();
-    ss << "Z" << left << setw(3) << assinaturas[i]->getZona();
+    ss << " " << right << setw(4) << assinaturas[i]->getIdentificacao();
+    ss << "  " << left << setw(15) << assinaturas[i]->getNome();
+    ss << " Z" << left << setw(3) << assinaturas[i]->getZona();
     ss << "\n";
   }
   return ss.str();

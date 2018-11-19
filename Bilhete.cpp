@@ -22,6 +22,18 @@ string Bilhete::getInformacao() const {
   return ss.str();
 }
 
+string Bilhete::getInformacaoTab() const {
+  stringstream ss;
+
+  ss << right << setw(4) << identificacao;
+  ss << right << setw(7) << zona;
+  ss << " " << right << setw(7) << preco;
+
+
+  // ss << setprecision(2) << fixed << identificacao << "," << zona << "," <<  preco << "," << tipo;
+  return ss.str();
+}
+
 float Bilhete::getPreco() const
 {
   return preco;
@@ -86,6 +98,17 @@ string Assinatura::getInformacao() const
   return ss.str();
 }
 
+string Assinatura::getInformacaoTab() const
+{
+  stringstream ss;
+
+  ss << Bilhete::getInformacaoTab();
+  ss << " " <<  right << setw(14) << nome;
+
+  // ss << Bilhete::getInformacao() << "," << nome << "," << desconto;
+  return ss.str();
+}
+
 Normal::Normal(int id, int z, float p, bool t, string n, int d) : Assinatura(id, z, p, t, n, d)
 {}
 
@@ -94,6 +117,16 @@ string Normal::getInformacao() const {
   stringstream ss;
 
   ss << "Normal" << "," << Assinatura::getInformacao();
+  return ss.str();
+}
+
+string Normal::getInformacaoTab() const {
+  stringstream ss;
+
+  ss << "    Normal ";
+  ss << Assinatura::getInformacaoTab();
+
+  // ss << "Normal" << "," << Assinatura::getInformacao();
   return ss.str();
 }
 
@@ -115,6 +148,19 @@ string Estudante::getInformacao() const {
   return ss.str();
 }
 
+string Estudante::getInformacaoTab() const {
+  stringstream ss;
+
+  ss << " Estudante ";
+  ss << Assinatura::getInformacaoTab();
+  ss << " " << right << setw(7) << idade;
+  ss << " " << right << setw(16) << CC;
+  ss << " " << right << setw(13) << escola;
+
+  // ss << "Estudante" << "," << Assinatura::getInformacao() << "," << idade << "," << CC << "," << escola;
+  return ss.str();
+}
+
 Junior::Junior(int id, int z, float p, bool t, string n, int d, int idd, int cc) : Assinatura(id, z, p, t, n, d)
 {
   idade = idd;
@@ -125,6 +171,18 @@ string Junior::getInformacao() const {
   stringstream ss;
 
   ss << "Junior" << "," << Assinatura::getInformacao() << "," << idade << "," << CC;
+  return ss.str();
+}
+
+string Junior::getInformacaoTab() const {
+  stringstream ss;
+
+  ss << "    Junior ";
+  ss << Assinatura::getInformacaoTab();
+  ss << " " << right << setw(7) << idade;
+  ss << " " << right << setw(16) << CC;
+
+  // ss << "Junior" << "," << Assinatura::getInformacao() << "," << idade << "," << CC;
   return ss.str();
 }
 
@@ -141,6 +199,18 @@ string Senior::getInformacao() const {
   return ss.str();
 }
 
+string Senior::getInformacaoTab() const {
+  stringstream ss;
+
+  ss << "    Senior ";
+  ss << Assinatura::getInformacaoTab();
+  ss << " " << right << setw(7) << idade;
+  ss << " " << right << setw(16) << CC;
+
+  // ss << "Senior" << "," << Assinatura::getInformacao() << "," << idade << "," << CC;
+  return ss.str();
+}
+
 Ocasional::Ocasional(int id, int z, float p, bool t, int d, string pt, int v, bool vdd) : Bilhete(id, z, p, t)
 {
   duracao  = d;
@@ -154,6 +224,17 @@ string Ocasional::getInformacao() const
   stringstream ss;
 
   ss << Bilhete::getInformacao() << "," << duracao << "," << partida << "," << viagens << "," << validado;
+  return ss.str();
+}
+
+string Ocasional::getInformacaoTab() const
+{
+  stringstream ss;
+
+  ss << Bilhete::getInformacaoTab();
+  ss << right << setw(9) << viagens;
+
+  // ss << Bilhete::getInformacaoTab() << "," << duracao << "," << partida << "," << viagens << "," << validado;
   return ss.str();
 }
 
@@ -184,6 +265,17 @@ string Diario::getInformacao() const
   return ss.str();
 }
 
+string Diario::getInformacaoTab() const
+{
+  stringstream ss;
+
+  ss << "    Diario ";
+  ss << Ocasional::getInformacaoTab();
+
+  // ss << "Diario" << "," << Ocasional::getInformacao();
+  return ss.str();
+}
+
 Unico::Unico(int id, int z, float p, bool t, int d, string pt, int v, bool vdd) : Ocasional(id, z, p, t, d, pt, v, vdd)
 {}
 
@@ -192,5 +284,16 @@ string Unico::getInformacao() const
   stringstream ss;
 
   ss << "Unico" << "," << Ocasional::getInformacao();
+  return ss.str();
+}
+
+string Unico::getInformacaoTab() const
+{
+  stringstream ss;
+
+  ss << "     Unico ";
+  ss << Ocasional::getInformacaoTab();
+
+  // ss << "Unico" << "," << Ocasional::getInformacao();
   return ss.str();
 }

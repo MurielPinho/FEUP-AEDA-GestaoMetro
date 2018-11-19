@@ -223,26 +223,11 @@ Bilhete* criarAssinatura()
     B = new Normal(id, Z, precos(Z, 0), 0, nm, 0);
   }
   else if ((i >= 2) & (i <= 4)) {
-    do
-    {
-      cout << "Digite o numero do cartao de cidadao" << endl;
-      cin >> cc;
-
-      if (!cin.fail())
+    do {
+      do
       {
-        system("clear");
-        break;
-      }
-      cin.clear();
-      cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      system("clear");
-    } while (1);
-
-    if (i != 2)
-    {
-      do {
-        cout << "Digite sua idade" << endl;
-        cin >> idd;
+        cout << "Digite o numero do cartao de cidadao (8 digitos)" << endl;
+        cin >> cc;
 
         if (!cin.fail())
         {
@@ -253,6 +238,25 @@ Bilhete* criarAssinatura()
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         system("clear");
       } while (1);
+    } while (cc <= 9999999 || cc > 99999999);
+
+    if (i != 2)
+    {
+      do {
+        do {
+          cout << "Digite sua idade (3 digitos)" << endl;
+          cin >> idd;
+
+          if (!cin.fail())
+          {
+            system("clear");
+            break;
+          }
+          cin.clear();
+          cin.ignore(numeric_limits<streamsize>::max(), '\n');
+          system("clear");
+        } while (1);
+      } while (idd <= 0 || idd > 199);
     }
 
     switch (i) {
@@ -262,15 +266,15 @@ Bilhete* criarAssinatura()
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
       system("clear");
-      B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, nm, 1, id, cc, esc);
+      B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, nm, 1, idd, cc, esc);
       break;
 
     case 3:
-      B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, nm, 2, id, cc);
+      B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, nm, 2, idd, cc);
       break;
 
     case 4:
-      B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, nm, 3, id, cc);
+      B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, nm, 3, idd, cc);
       break;
     }
   }
@@ -280,8 +284,10 @@ Bilhete* criarAssinatura()
 void Bilhetes()
 {
   cout << "Ocasionais :" << endl << endl;
+  cout << "  Tipo | ID | Zona |" << endl;
   cout << u.getOcasionais() <<  endl;
   cout << "Assinaturas :" << endl << endl;
+  cout << "   Tipo   | ID |     Nome     | Zona |" << endl;
   cout << u.getAssinaturas() <<  endl;
 }
 
@@ -303,6 +309,7 @@ void dadosBilhete()
   if (i == 1)
   {
     cout << "Ocasionais:" << endl << endl;
+    cout << " Tipo  | ID | Zona |" << endl;
     cout << u.getOcasionais() << endl;
     cout << "Insira o numero do bilhete" << endl;
     cin >> j;
@@ -316,12 +323,20 @@ void dadosBilhete()
       cout << "Ocasional não existe" << endl;
     }
     else {
-      cout << B->getInformacao() << endl << endl;
+      int d = B->getDuracao();
+
+      if (d == 2)      {
+        cout << "   Tipo   | ID | Zonas | Preco | Viagens |" << endl;
+      } else if (d == 24) {
+        cout << "   Tipo   | ID | Zonas | Preco | Viagens |" << endl;
+      }
+      cout << B->getInformacaoTab() << endl << endl;
     }
   }
   else if (i == 2)
   {
     cout << "Assinaturas:" << endl << endl;
+    cout << "   Tipo   | ID |     Nome     | Zona |" << endl;
     cout << u.getAssinaturas() << endl;
     cout << "Insira o numero do bilhete" << endl;
     cin >> j;
@@ -335,7 +350,19 @@ void dadosBilhete()
       cout << "Assinatura não existe" << endl;
     }
     else {
-      cout << B->getInformacao() << endl << endl;
+      int d = B->getDesconto();
+
+      if (d == 0)      {
+        cout << "   Tipo   | ID | Zonas | Preco |     Nome     |" << endl;
+      } else if (d == 1) {
+        cout << "   Tipo   | ID | Zonas | Preco |     Nome     | Idade | Cartao Cidadao | Instituicao |" <<
+          endl;
+      } else if (d == 2) {
+        cout << "   Tipo   | ID | Zonas | Preco |     Nome     | Idade | Cartao Cidadao |" << endl;
+      } else if (d == 3) {
+        cout << "   Tipo   | ID | Zonas | Preco |     Nome     | Idade | Cartao Cidadao |" << endl;
+      }
+      cout << B->getInformacaoTab() << endl << endl;
     }
   }
 }

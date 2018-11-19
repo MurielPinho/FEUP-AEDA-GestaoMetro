@@ -2,5 +2,7 @@ Unico,1,2,1.20,1,2,Trindade,1,0
 Diario,2,3,5.50,1,24,Trindade,1,0
 Unico,3,3,1.60,1,2,Trindade,1,0
 Diario,4,2,4.15,1,24,Trindade,1,0
-Estudante,1,4,36.04,0,Muriel,1,1,2207,FEUP
-Normal,2,3,37.75,0,Gustavo,0
+Estudante,1,4,36.04,0,Muriel Pinho,1,22,22961907,FEUP
+Normal,2,3,37.75,0,Gustavo Tosi,0
+Junior,3,2,22.95,0,Enzo Neves,2,12,12345678
+Senior,4,3,28.31,0,Horacio Konig,3,47,87654321
