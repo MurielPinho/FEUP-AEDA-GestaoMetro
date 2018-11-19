@@ -8,7 +8,7 @@
 
 
 using namespace std;
-
+// !  Classe Bilhete.
 
 class Bilhete {
 protected:

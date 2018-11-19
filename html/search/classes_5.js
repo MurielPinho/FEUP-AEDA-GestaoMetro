@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['local',['Local',['../classLocal.html',1,'']]],
-  ['loja',['Loja',['../classLoja.html',1,'']]]
+  ['local',['Local',['../a00078.html',1,'']]],
+  ['loja',['Loja',['../a00090.html',1,'']]]
 ];
