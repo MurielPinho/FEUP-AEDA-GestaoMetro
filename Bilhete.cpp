@@ -28,9 +28,6 @@ string Bilhete::getInformacaoTab() const {
   ss << right << setw(4) << identificacao;
   ss << right << setw(7) << zona;
   ss << " " << right << setw(7) << preco;
-
-
-  // ss << setprecision(2) << fixed << identificacao << "," << zona << "," <<  preco << "," << tipo;
   return ss.str();
 }
 
@@ -104,8 +101,6 @@ string Assinatura::getInformacaoTab() const
 
   ss << Bilhete::getInformacaoTab();
   ss << " " <<  right << setw(14) << nome;
-
-  // ss << Bilhete::getInformacao() << "," << nome << "," << desconto;
   return ss.str();
 }
 
@@ -125,8 +120,6 @@ string Normal::getInformacaoTab() const {
 
   ss << "    Normal ";
   ss << Assinatura::getInformacaoTab();
-
-  // ss << "Normal" << "," << Assinatura::getInformacao();
   return ss.str();
 }
 
@@ -156,8 +149,6 @@ string Estudante::getInformacaoTab() const {
   ss << " " << right << setw(7) << idade;
   ss << " " << right << setw(16) << CC;
   ss << " " << right << setw(13) << escola;
-
-  // ss << "Estudante" << "," << Assinatura::getInformacao() << "," << idade << "," << CC << "," << escola;
   return ss.str();
 }
 
@@ -181,8 +172,6 @@ string Junior::getInformacaoTab() const {
   ss << Assinatura::getInformacaoTab();
   ss << " " << right << setw(7) << idade;
   ss << " " << right << setw(16) << CC;
-
-  // ss << "Junior" << "," << Assinatura::getInformacao() << "," << idade << "," << CC;
   return ss.str();
 }
 
@@ -206,8 +195,6 @@ string Senior::getInformacaoTab() const {
   ss << Assinatura::getInformacaoTab();
   ss << " " << right << setw(7) << idade;
   ss << " " << right << setw(16) << CC;
-
-  // ss << "Senior" << "," << Assinatura::getInformacao() << "," << idade << "," << CC;
   return ss.str();
 }
 
@@ -233,8 +220,6 @@ string Ocasional::getInformacaoTab() const
 
   ss << Bilhete::getInformacaoTab();
   ss << right << setw(9) << viagens;
-
-  // ss << Bilhete::getInformacaoTab() << "," << duracao << "," << partida << "," << viagens << "," << validado;
   return ss.str();
 }
 
@@ -293,7 +278,5 @@ string Unico::getInformacaoTab() const
 
   ss << "     Unico ";
   ss << Ocasional::getInformacaoTab();
-
-  // ss << "Unico" << "," << Ocasional::getInformacao();
   return ss.str();
 }

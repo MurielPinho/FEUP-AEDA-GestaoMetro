@@ -32,14 +32,12 @@ public:
 class Maquina : public pontoVenda {
 public:
 
-  // Funções
   // ! Constroi um ponto de venda do tipo Maquina, que adiciona as informacoes do pontoVenda
   Maquina(int id, string n, bool t);
 };
 class Loja : public pontoVenda {
 public:
 
-  // Funções
   // ! Constroi um ponto de venda do tipo Loja, que adiciona as informacoes do pontoVenda
   Loja(int id, string n, bool t);
 };

@@ -38,8 +38,6 @@ string Utentes::getOcasionais() const
       ss << " " << right << setw(4) << ocasionais[i]->getIdentificacao();
       ss << "   " << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
       ss << "\n";
-
-      // ss << "Unico" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
     }
     else
     {
@@ -47,8 +45,6 @@ string Utentes::getOcasionais() const
       ss << " "  << right << setw(4) << ocasionais[i]->getIdentificacao();
       ss << "   " << "Z" << left << setw(3) <<  ocasionais[i]->getZona();
       ss << "\n";
-
-      //  ss << "Diario" << " " << ocasionais[i]->getIdentificacao() << " " << "Z" << ocasionais[i]->getZona() << "\n";
     }
   }
   return ss.str();
