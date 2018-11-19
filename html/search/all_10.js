@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_7epontovenda',['~pontoVenda',['../a00082.html#a7d568a46cdac08ff39a097c14094fd00',1,'pontoVenda']]]
+  ['unico',['Unico',['../a00074.html',1,'Unico'],['../a00074.html#a60affd8166fce63b3c85b5148577205a',1,'Unico::Unico()']]],
+  ['utentes',['Utentes',['../a00094.html',1,'']]]
 ];

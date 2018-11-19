@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['removeassinatura',['removeAssinatura',['../a00094.html#a40cd1966e10c7c8b5f43388371b3bc9b',1,'Utentes']]],
-  ['removelocal',['removeLocal',['../a00078.html#a3f042ea4e60a7884fd3b8c823ed74952',1,'Local']]],
-  ['removeocasional',['removeOcasional',['../a00094.html#adbcc5c702868c3d0059d584e6c0c76b3',1,'Utentes']]]
+  ['partida',['partida',['../a00066.html#ace6ef27d88351608d72b8f9bc2a587cf',1,'Ocasional']]],
+  ['pontovenda',['pontoVenda',['../a00082.html',1,'pontoVenda'],['../a00082.html#ab92199860478714402c6b0211217cf55',1,'pontoVenda::pontoVenda()']]],
+  ['preco',['preco',['../a00042.html#a793d8499d737bdc6bebcaac9d1164b77',1,'Bilhete']]]
 ];

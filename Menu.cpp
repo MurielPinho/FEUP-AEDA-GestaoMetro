@@ -6,7 +6,22 @@
 #include "Local.h"
 
 using namespace std;
-
+/*! \mainpage Documentação Das Classes
+* Este site tem como objetivo ilustrar o sistema de classes utilizado.
+ *
+ * \section intro_sec Diagrama
+ *
+ *
+ * Pode acessar cada classe individualmente clicando em seu nome no diagrama abaixo.
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 int main() {
   int  option = 0;
   char control;

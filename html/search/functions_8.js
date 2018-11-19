@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['removeassinatura',['removeAssinatura',['../a00094.html#a40cd1966e10c7c8b5f43388371b3bc9b',1,'Utentes']]],
-  ['removelocal',['removeLocal',['../a00078.html#a3f042ea4e60a7884fd3b8c823ed74952',1,'Local']]],
-  ['removeocasional',['removeOcasional',['../a00094.html#adbcc5c702868c3d0059d584e6c0c76b3',1,'Utentes']]]
+  ['normal',['Normal',['../a00050.html#a8594a10a566718bc2259a22fdc34836c',1,'Normal']]],
+  ['numassinaturas',['numAssinaturas',['../a00094.html#a0495f362d01814bd804eda630fda9b94',1,'Utentes']]],
+  ['numocasionais',['numOcasionais',['../a00094.html#a6ba3b2fd50b28d97bef683c91cb7b8ce',1,'Utentes']]]
 ];

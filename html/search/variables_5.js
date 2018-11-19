@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tipo',['tipo',['../a00082.html#a93c604341b1cc52d3a62726273129e49',1,'pontoVenda']]]
+  ['locais',['locais',['../a00078.html#ac87190d3c6fd2e17c41972940d81c0db',1,'Local']]],
+  ['localatual',['LocalAtual',['../a00078.html#a3a388222c6194bb54b7856fbd829768c',1,'Local']]]
 ];

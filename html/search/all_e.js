@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tipo',['tipo',['../a00082.html#a93c604341b1cc52d3a62726273129e49',1,'pontoVenda']]]
+  ['senior',['Senior',['../a00062.html',1,'Senior'],['../a00062.html#ad8cf0c08d3b131aa27ceb171ecaaa01e',1,'Senior::Senior()']]]
 ];

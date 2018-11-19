@@ -70,77 +70,590 @@ $(function() {
 <div class="title">Referência à classe Diario</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Contem funcoes e dados dos bilhetes ocasionais do tipo diario.  
+</p>
+
+<p><code>#include &lt;<a class="el" href="a00005_source.html">Bilhete.h</a>&gt;</code></p>
 <div class="dynheader">
 Diagrama de heranças da classe Diario</div>
 <div class="dyncontent">
  <div class="center">
   <img src="a00070.png" usemap="#Diario_map" alt=""/>
   <map id="Diario_map" name="Diario_map">
-<area href="a00066.html" alt="Ocasional" shape="rect" coords="0,56,69,80"/>
-<area href="a00042.html" alt="Bilhete" shape="rect" coords="0,0,69,24"/>
+<area href="a00066.html" title="Contem funcoes e dados dos bilhetes do tipo ocasional. " alt="Ocasional" shape="rect" coords="0,56,69,80"/>
+<area href="a00042.html" title="Contem funcoes e dados dos bilhetes. " alt="Bilhete" shape="rect" coords="0,0,69,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Membros públicos</h2></td></tr>
-<tr class="memitem:a38ee8a53dc3e2dc1af53342130e3d506"><td class="memItemLeft" align="right" valign="top"><a id="a38ee8a53dc3e2dc1af53342130e3d506"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Diario</b> (int id, int z, float p, bool t, int d, string pt, int v, bool vdd)</td></tr>
+<tr class="memitem:a38ee8a53dc3e2dc1af53342130e3d506"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#a38ee8a53dc3e2dc1af53342130e3d506">Diario</a> (int id, int z, float p, bool t, int d, string pt, int v, bool vdd)</td></tr>
+<tr class="memdesc:a38ee8a53dc3e2dc1af53342130e3d506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contrutor que recebe quatro inteiros, uma string, um float e dois booleanos.  <a href="#a38ee8a53dc3e2dc1af53342130e3d506">Mais...</a><br /></td></tr>
 <tr class="separator:a38ee8a53dc3e2dc1af53342130e3d506"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a891900397f682f3ea0115c4e3e7a9355"><td class="memItemLeft" align="right" valign="top"><a id="a891900397f682f3ea0115c4e3e7a9355"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getInformacao</b> () const</td></tr>
+<tr class="memitem:a891900397f682f3ea0115c4e3e7a9355"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#a891900397f682f3ea0115c4e3e7a9355">getInformacao</a> () const</td></tr>
+<tr class="memdesc:a891900397f682f3ea0115c4e3e7a9355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro virtual.  <a href="#a891900397f682f3ea0115c4e3e7a9355">Mais...</a><br /></td></tr>
 <tr class="separator:a891900397f682f3ea0115c4e3e7a9355"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abce758e396a86aa033ad5d9718e36273"><td class="memItemLeft" align="right" valign="top"><a id="abce758e396a86aa033ad5d9718e36273"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getInformacaoTab</b> () const</td></tr>
+<tr class="memitem:abce758e396a86aa033ad5d9718e36273"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00070.html#abce758e396a86aa033ad5d9718e36273">getInformacaoTab</a> () const</td></tr>
+<tr class="memdesc:abce758e396a86aa033ad5d9718e36273"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro virtual.  <a href="#abce758e396a86aa033ad5d9718e36273">Mais...</a><br /></td></tr>
 <tr class="separator:abce758e396a86aa033ad5d9718e36273"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c5dfdd3fb99eeb7d508eb2dd13ba80"><td class="memItemLeft" align="right" valign="top"><a id="a62c5dfdd3fb99eeb7d508eb2dd13ba80"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getDuracao</b> () const</td></tr>
+<tr class="memitem:a62c5dfdd3fb99eeb7d508eb2dd13ba80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#a62c5dfdd3fb99eeb7d508eb2dd13ba80">getDuracao</a> () const</td></tr>
+<tr class="memdesc:a62c5dfdd3fb99eeb7d508eb2dd13ba80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro virtual.  <a href="#a62c5dfdd3fb99eeb7d508eb2dd13ba80">Mais...</a><br /></td></tr>
 <tr class="separator:a62c5dfdd3fb99eeb7d508eb2dd13ba80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0be2979e7c4a9225cfe9f410c4acb4fc"><td class="memItemLeft" align="right" valign="top"><a id="a0be2979e7c4a9225cfe9f410c4acb4fc"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getNome</b> () const</td></tr>
+<tr class="memitem:a0be2979e7c4a9225cfe9f410c4acb4fc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#a0be2979e7c4a9225cfe9f410c4acb4fc">getNome</a> () const</td></tr>
+<tr class="memdesc:a0be2979e7c4a9225cfe9f410c4acb4fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro virtual.  <a href="#a0be2979e7c4a9225cfe9f410c4acb4fc">Mais...</a><br /></td></tr>
 <tr class="separator:a0be2979e7c4a9225cfe9f410c4acb4fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeac209179b1bb75f8175f3afc9524767"><td class="memItemLeft" align="right" valign="top"><a id="aeac209179b1bb75f8175f3afc9524767"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getDesconto</b> () const</td></tr>
+<tr class="memitem:aeac209179b1bb75f8175f3afc9524767"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#aeac209179b1bb75f8175f3afc9524767">getDesconto</a> () const</td></tr>
+<tr class="memdesc:aeac209179b1bb75f8175f3afc9524767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro virtual.  <a href="#aeac209179b1bb75f8175f3afc9524767">Mais...</a><br /></td></tr>
 <tr class="separator:aeac209179b1bb75f8175f3afc9524767"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb7d74fba0b97f216807e14ddadaf8c9"><td class="memItemLeft" align="right" valign="top"><a id="abb7d74fba0b97f216807e14ddadaf8c9"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>getPreco</b> () const</td></tr>
+<tr class="memitem:abb7d74fba0b97f216807e14ddadaf8c9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#abb7d74fba0b97f216807e14ddadaf8c9">getPreco</a> () const</td></tr>
+<tr class="memdesc:abb7d74fba0b97f216807e14ddadaf8c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro normal.  <a href="#abb7d74fba0b97f216807e14ddadaf8c9">Mais...</a><br /></td></tr>
 <tr class="separator:abb7d74fba0b97f216807e14ddadaf8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a181d6d9ee27e25bc8434ab74e6a80c17"><td class="memItemLeft" align="right" valign="top"><a id="a181d6d9ee27e25bc8434ab74e6a80c17"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getZona</b> () const</td></tr>
+<tr class="memitem:a181d6d9ee27e25bc8434ab74e6a80c17"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#a181d6d9ee27e25bc8434ab74e6a80c17">getZona</a> () const</td></tr>
+<tr class="memdesc:a181d6d9ee27e25bc8434ab74e6a80c17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro normal.  <a href="#a181d6d9ee27e25bc8434ab74e6a80c17">Mais...</a><br /></td></tr>
 <tr class="separator:a181d6d9ee27e25bc8434ab74e6a80c17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a41f11e74646f65dbc3acf7fd2c9991"><td class="memItemLeft" align="right" valign="top"><a id="a2a41f11e74646f65dbc3acf7fd2c9991"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>getTipo</b> () const</td></tr>
+<tr class="memitem:a2a41f11e74646f65dbc3acf7fd2c9991"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#a2a41f11e74646f65dbc3acf7fd2c9991">getTipo</a> () const</td></tr>
+<tr class="memdesc:a2a41f11e74646f65dbc3acf7fd2c9991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro normal.  <a href="#a2a41f11e74646f65dbc3acf7fd2c9991">Mais...</a><br /></td></tr>
 <tr class="separator:a2a41f11e74646f65dbc3acf7fd2c9991"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa39b48d96d2f1b52f3eed4257bb64b41"><td class="memItemLeft" align="right" valign="top"><a id="aa39b48d96d2f1b52f3eed4257bb64b41"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getIdentificacao</b> () const</td></tr>
+<tr class="memitem:aa39b48d96d2f1b52f3eed4257bb64b41"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#aa39b48d96d2f1b52f3eed4257bb64b41">getIdentificacao</a> () const</td></tr>
+<tr class="memdesc:aa39b48d96d2f1b52f3eed4257bb64b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membro normal.  <a href="#aa39b48d96d2f1b52f3eed4257bb64b41">Mais...</a><br /></td></tr>
 <tr class="separator:aa39b48d96d2f1b52f3eed4257bb64b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Atributos Protegidos</h2></td></tr>
-<tr class="memitem:aedbdd7660405adeb95d3f740e8a677cb"><td class="memItemLeft" align="right" valign="top"><a id="aedbdd7660405adeb95d3f740e8a677cb"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>duracao</b></td></tr>
+<tr class="memitem:aedbdd7660405adeb95d3f740e8a677cb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#aedbdd7660405adeb95d3f740e8a677cb">duracao</a></td></tr>
+<tr class="memdesc:aedbdd7660405adeb95d3f740e8a677cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inteiro.  <a href="#aedbdd7660405adeb95d3f740e8a677cb">Mais...</a><br /></td></tr>
 <tr class="separator:aedbdd7660405adeb95d3f740e8a677cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b1c0023f2713f848fc5b45a29af61e3"><td class="memItemLeft" align="right" valign="top"><a id="a3b1c0023f2713f848fc5b45a29af61e3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>viagens</b></td></tr>
+<tr class="memitem:a3b1c0023f2713f848fc5b45a29af61e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#a3b1c0023f2713f848fc5b45a29af61e3">viagens</a></td></tr>
+<tr class="memdesc:a3b1c0023f2713f848fc5b45a29af61e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inteiro.  <a href="#a3b1c0023f2713f848fc5b45a29af61e3">Mais...</a><br /></td></tr>
 <tr class="separator:a3b1c0023f2713f848fc5b45a29af61e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad34ed7c5440d38076726c0e248ccda68"><td class="memItemLeft" align="right" valign="top"><a id="ad34ed7c5440d38076726c0e248ccda68"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>validado</b></td></tr>
+<tr class="memitem:ad34ed7c5440d38076726c0e248ccda68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#ad34ed7c5440d38076726c0e248ccda68">validado</a></td></tr>
+<tr class="memdesc:ad34ed7c5440d38076726c0e248ccda68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Booleano.  <a href="#ad34ed7c5440d38076726c0e248ccda68">Mais...</a><br /></td></tr>
 <tr class="separator:ad34ed7c5440d38076726c0e248ccda68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace6ef27d88351608d72b8f9bc2a587cf"><td class="memItemLeft" align="right" valign="top"><a id="ace6ef27d88351608d72b8f9bc2a587cf"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>partida</b></td></tr>
+<tr class="memitem:ace6ef27d88351608d72b8f9bc2a587cf"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066.html#ace6ef27d88351608d72b8f9bc2a587cf">partida</a></td></tr>
+<tr class="memdesc:ace6ef27d88351608d72b8f9bc2a587cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">String.  <a href="#ace6ef27d88351608d72b8f9bc2a587cf">Mais...</a><br /></td></tr>
 <tr class="separator:ace6ef27d88351608d72b8f9bc2a587cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a793d8499d737bdc6bebcaac9d1164b77"><td class="memItemLeft" align="right" valign="top"><a id="a793d8499d737bdc6bebcaac9d1164b77"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>preco</b></td></tr>
+<tr class="memitem:a793d8499d737bdc6bebcaac9d1164b77"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#a793d8499d737bdc6bebcaac9d1164b77">preco</a></td></tr>
+<tr class="memdesc:a793d8499d737bdc6bebcaac9d1164b77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Float.  <a href="#a793d8499d737bdc6bebcaac9d1164b77">Mais...</a><br /></td></tr>
 <tr class="separator:a793d8499d737bdc6bebcaac9d1164b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef44378e8a64a61dfe96df101ed78ec7"><td class="memItemLeft" align="right" valign="top"><a id="aef44378e8a64a61dfe96df101ed78ec7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>tipo</b></td></tr>
+<tr class="memitem:aef44378e8a64a61dfe96df101ed78ec7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#aef44378e8a64a61dfe96df101ed78ec7">tipo</a></td></tr>
+<tr class="memdesc:aef44378e8a64a61dfe96df101ed78ec7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Booleano.  <a href="#aef44378e8a64a61dfe96df101ed78ec7">Mais...</a><br /></td></tr>
 <tr class="separator:aef44378e8a64a61dfe96df101ed78ec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f6fbe2f43b802ac4dc20a4c6071efff"><td class="memItemLeft" align="right" valign="top"><a id="a4f6fbe2f43b802ac4dc20a4c6071efff"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>identificacao</b></td></tr>
+<tr class="memitem:a4f6fbe2f43b802ac4dc20a4c6071efff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#a4f6fbe2f43b802ac4dc20a4c6071efff">identificacao</a></td></tr>
+<tr class="memdesc:a4f6fbe2f43b802ac4dc20a4c6071efff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inteiro.  <a href="#a4f6fbe2f43b802ac4dc20a4c6071efff">Mais...</a><br /></td></tr>
 <tr class="separator:a4f6fbe2f43b802ac4dc20a4c6071efff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ff3b5e577a35f612715f431d85c19aa"><td class="memItemLeft" align="right" valign="top"><a id="a0ff3b5e577a35f612715f431d85c19aa"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>zona</b></td></tr>
+<tr class="memitem:a0ff3b5e577a35f612715f431d85c19aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html#a0ff3b5e577a35f612715f431d85c19aa">zona</a></td></tr>
+<tr class="memdesc:a0ff3b5e577a35f612715f431d85c19aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inteiro.  <a href="#a0ff3b5e577a35f612715f431d85c19aa">Mais...</a><br /></td></tr>
 <tr class="separator:a0ff3b5e577a35f612715f431d85c19aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Documentação dos Construtores &amp; Destrutor</h2>
+<a id="a38ee8a53dc3e2dc1af53342130e3d506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38ee8a53dc3e2dc1af53342130e3d506">&#9670;&nbsp;</a></span>Diario()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Diario::Diario </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>d</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>pt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>vdd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Constroi um bilhete ocasional do tipo diario. </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>inteiro de identificacao do bilhete. </td></tr>
+    <tr><td class="paramname">z</td><td>numero de zonas do bilhete. </td></tr>
+    <tr><td class="paramname">p</td><td>float de preco do bilhete. </td></tr>
+    <tr><td class="paramname">t</td><td>booleano de tipo do bilhete, 0 para ocasional e 1 para assinatura. </td></tr>
+    <tr><td class="paramname">d</td><td>inteiro de duracao do bilhete. </td></tr>
+    <tr><td class="paramname">pt</td><td>string de nome do local de partida do bilhete. </td></tr>
+    <tr><td class="paramname">v</td><td>numero de viagens do bilhete. </td></tr>
+    <tr><td class="paramname">vdd</td><td>booleano de estado de validacao do bilhete. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos métodos</h2>
+<a id="aeac209179b1bb75f8175f3afc9524767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeac209179b1bb75f8175f3afc9524767">&#9670;&nbsp;</a></span>getDesconto()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Ocasional::getDesconto </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna o desconto do bilhete, caso este parametro nao exista, retorna 0. </dd></dl>
+
+<p>Reimplementado de <a class="el" href="a00042.html#a82c741bf82878bacf49187068cd40de6">Bilhete</a>.</p>
+
+</div>
+</div>
+<a id="a62c5dfdd3fb99eeb7d508eb2dd13ba80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c5dfdd3fb99eeb7d508eb2dd13ba80">&#9670;&nbsp;</a></span>getDuracao()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Ocasional::getDuracao </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna a duracao do bilhete, caso este parametro nao exista, retorna 0. </dd></dl>
+
+<p>Reimplementado de <a class="el" href="a00042.html#a1fcb306c872e66b2d786ee68c661939d">Bilhete</a>.</p>
+
+</div>
+</div>
+<a id="aa39b48d96d2f1b52f3eed4257bb64b41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa39b48d96d2f1b52f3eed4257bb64b41">&#9670;&nbsp;</a></span>getIdentificacao()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Bilhete::getIdentificacao </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna a identificacao do bilhete. </dd></dl>
+
+</div>
+</div>
+<a id="a891900397f682f3ea0115c4e3e7a9355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a891900397f682f3ea0115c4e3e7a9355">&#9670;&nbsp;</a></span>getInformacao()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Diario::getInformacao </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna uma string com a informacao essencial de um bilhete. </dd></dl>
+
+<p>Reimplementado de <a class="el" href="a00066.html#a526fb43e9a9373401b25b5a82d9567af">Ocasional</a>.</p>
+
+</div>
+</div>
+<a id="abce758e396a86aa033ad5d9718e36273"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abce758e396a86aa033ad5d9718e36273">&#9670;&nbsp;</a></span>getInformacaoTab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Diario::getInformacaoTab </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna uma string com a informacao essencial de um bilhete tabulada. </dd></dl>
+
+<p>Reimplementado de <a class="el" href="a00066.html#ad86bcab9c7c564a303f023f47cc1e99d">Ocasional</a>.</p>
+
+</div>
+</div>
+<a id="a0be2979e7c4a9225cfe9f410c4acb4fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0be2979e7c4a9225cfe9f410c4acb4fc">&#9670;&nbsp;</a></span>getNome()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Ocasional::getNome </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna a duracao do bilhete, caso este parametro nao exista, retorna string vazia. </dd></dl>
+
+<p>Reimplementado de <a class="el" href="a00042.html#a03c8a1ac12710554dbb90e7fdb8a6335">Bilhete</a>.</p>
+
+</div>
+</div>
+<a id="abb7d74fba0b97f216807e14ddadaf8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb7d74fba0b97f216807e14ddadaf8c9">&#9670;&nbsp;</a></span>getPreco()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Bilhete::getPreco </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna o preco do bilhete. </dd></dl>
+
+</div>
+</div>
+<a id="a2a41f11e74646f65dbc3acf7fd2c9991"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a41f11e74646f65dbc3acf7fd2c9991">&#9670;&nbsp;</a></span>getTipo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Bilhete::getTipo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna o tipo de bilhete. </dd></dl>
+
+</div>
+</div>
+<a id="a181d6d9ee27e25bc8434ab74e6a80c17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a181d6d9ee27e25bc8434ab74e6a80c17">&#9670;&nbsp;</a></span>getZona()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Bilhete::getZona </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Retorna</dt><dd>Retorna a zona do <a class="el" href="a00042.html" title="Contem funcoes e dados dos bilhetes. ">Bilhete</a>. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentação dos dados membro</h2>
+<a id="aedbdd7660405adeb95d3f740e8a677cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedbdd7660405adeb95d3f740e8a677cb">&#9670;&nbsp;</a></span>duracao</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Ocasional::duracao</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Tempo de duracao do bilhete </p>
+
+</div>
+</div>
+<a id="a4f6fbe2f43b802ac4dc20a4c6071efff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f6fbe2f43b802ac4dc20a4c6071efff">&#9670;&nbsp;</a></span>identificacao</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Bilhete::identificacao</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Identificacao do bilhete. </p>
+
+</div>
+</div>
+<a id="ace6ef27d88351608d72b8f9bc2a587cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace6ef27d88351608d72b8f9bc2a587cf">&#9670;&nbsp;</a></span>partida</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Ocasional::partida</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p><a class="el" href="a00078.html" title="Contem funcoes e dados sobre o local onde o usuario se encontra. ">Local</a> de partida </p>
+
+</div>
+</div>
+<a id="a793d8499d737bdc6bebcaac9d1164b77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a793d8499d737bdc6bebcaac9d1164b77">&#9670;&nbsp;</a></span>preco</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Bilhete::preco</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Preco do bilhete. </p>
+
+</div>
+</div>
+<a id="aef44378e8a64a61dfe96df101ed78ec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef44378e8a64a61dfe96df101ed78ec7">&#9670;&nbsp;</a></span>tipo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Bilhete::tipo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Tipo do bilhete. </p>
+
+</div>
+</div>
+<a id="ad34ed7c5440d38076726c0e248ccda68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad34ed7c5440d38076726c0e248ccda68">&#9670;&nbsp;</a></span>validado</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Ocasional::validado</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Estado do bilhete ocasional, 0 para nao validade e 1 para validado </p>
+
+</div>
+</div>
+<a id="a3b1c0023f2713f848fc5b45a29af61e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b1c0023f2713f848fc5b45a29af61e3">&#9670;&nbsp;</a></span>viagens</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Ocasional::viagens</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Numero de viagens </p>
+
+</div>
+</div>
+<a id="a0ff3b5e577a35f612715f431d85c19aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ff3b5e577a35f612715f431d85c19aa">&#9670;&nbsp;</a></span>zona</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Bilhete::zona</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">inherited</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Zona do bilhete. </p>
+
+</div>
+</div>
 <hr/>A documentação para esta classe foi gerada a partir dos seguintes ficheiros:<ul>
 <li><a class="el" href="a00005_source.html">Bilhete.h</a></li>
 <li>Bilhete.cpp</li>

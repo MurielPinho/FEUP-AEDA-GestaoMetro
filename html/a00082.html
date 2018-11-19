@@ -81,8 +81,8 @@ Diagrama de heranças da classe pontoVenda</div>
  <div class="center">
   <img src="a00082.png" usemap="#pontoVenda_map" alt=""/>
   <map id="pontoVenda_map" name="pontoVenda_map">
-<area href="a00090.html" alt="Loja" shape="rect" coords="0,56,80,80"/>
-<area href="a00086.html" alt="Maquina" shape="rect" coords="90,56,170,80"/>
+<area href="a00090.html" title="Contem funcoes e dados de ponto de vendas do tipo loja. " alt="Loja" shape="rect" coords="0,56,80,80"/>
+<area href="a00086.html" title="Contem funcoes e dados de ponto de vendas do tipo maquina. " alt="Maquina" shape="rect" coords="90,56,170,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -152,7 +152,14 @@ Atributos Protegidos</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Constroi um ponto de venda generico com identificacao, nome e tipo. </p>
+<p>Constroi um ponto de venda generico. </p><dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>inteiro de identificacao do ponto de venda. </td></tr>
+    <tr><td class="paramname">n</td><td>string de nome do ponto de venda. </td></tr>
+    <tr><td class="paramname">t</td><td>booleano de tipo do ponto de venda, 0 para loja e 1 para maquina. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -295,7 +302,7 @@ Atributos Protegidos</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Indica o tipo do ponto de venda, 0 para loja e 1 para maquina. </p>
+<p>Indica o tipo do ponto de venda. </p>
 
 </div>
 </div>

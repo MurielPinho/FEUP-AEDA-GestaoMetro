@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['locais',['locais',['../a00078.html#ac87190d3c6fd2e17c41972940d81c0db',1,'Local']]],
-  ['localatual',['LocalAtual',['../a00078.html#a3a388222c6194bb54b7856fbd829768c',1,'Local']]]
+  ['desconto',['desconto',['../a00046.html#a4ad19095f61368524a75eb73db658ff9',1,'Assinatura']]],
+  ['duracao',['duracao',['../a00066.html#aedbdd7660405adeb95d3f740e8a677cb',1,'Ocasional']]]
 ];

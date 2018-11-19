@@ -7,7 +7,7 @@ using namespace std;
 
 // !  Classe Utentes.
 /*!
-   Contem funcoes e dados sobre os utentes e bilhetes do sistema de metro.
+   Contem funcoes e dados sobre os utentes e bilhetes.
  */
 class Utentes {
 protected:
@@ -22,7 +22,7 @@ public:
   //! Membro normal que recebe um ponteiro da classe bilhete.
   /*!
   Adiciona o bilhete *a1 ao vetor de assinaturas.
-  
+
     \param *a1 um ponteiro de bilhete.
    */
   void     adicionaAssinatura(Bilhete *a1);
