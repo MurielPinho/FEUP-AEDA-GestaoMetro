@@ -5,38 +5,111 @@
 #include "Bilhete.h"
 
 using namespace std;
+// !  Classe Venda.
+/*!
+   Contem funcoes responsaveis por controlar a gestao dos bilhetes.
+ */
+class Venda{
+public:
 
-
-//! Chama a cadeia de funcoes que ira efetuar a compra do Bilhete
+//! Membro normal.
+/*!
+  Chama a cadeia de funcoes para a compra do Bilhete.
+*/
 void     comprarBilhete();
-//! Continuacao da funcao comprarBilhete() para a opcao de compra em Maquina
+
+//! Membro normal.
+/*!
+   Continuacao da funcao comprarBilhete() para compra em Maquina, adiciona o Bilhete ao vetor seu respectivo vetor.
+ */
 void     comprarMaquina();
-//! Continuacao da funcao comprarBilhete() para a opcao de compra em Loja
+
+//! Membro normal.
+/*!
+   Continuacao da funcao comprarBilhete() para compra em Loja, adiciona o Bilhete ao vetor seu respectivo vetor.
+ */
 void     comprarLoja();
-//! Continuacao da funcao comprarBilhete() para bilhetes ocasionais e cria o objeto bilhete ocasional
+
+//! Membro normal.
+/*!
+  Continuacao da funcao comprarBilhete() para bilhetes ocasionais.
+  \return Retorna um ponteiro de Bilhete do tipo ocasional.
+ */
 Bilhete* criarOcasional();
-//! Continuacao da funcao comprarBilhete() para bilhetes assinaturas e cria o objeto bilhete assinatura
+
+//! Membro normal.
+/*!
+    Continuacao da funcao comprarBilhete() para bilhetes assinaturas.
+    \return Retorna um ponteiro de Bilhete do tipo assinatura.
+ */
 Bilhete* criarAssinatura();
-//! Efetua a confirmacao do pagamento, apos o output de preco
+
+//! Membro normal.
+/*!
+    Efetua a confirmacao do pagamento, apos o output de preco.
+    \param preco float contendo o preco do bilhete.
+    \return Retorna o booleano relativo a realizacao do pagamento.
+ */
 bool     Pagamento(float preco);
-//! Imprime na tela a informacao de todos os bilhetes
+
+//! Membro normal.
+/*!
+    Imprime na tela a informacao resumida de cada bilhete atual.
+ */
 void     Bilhetes();
-//! Imprime na tela os dados de determinado bilhete de acordo com as informacoes de input: tipo e identificacao
+
+//! Membro normal.
+/*!
+    Imprime na tela todos os dados do bilhete escolhido pelo usuario.
+ */
 void     dadosBilhete();
-//! Faz a leitura do ficheiro com os dados da execucao anterior e adiciona nos vetores apropriados
+
+//! Membro normal.
+/*!
+    Faz a leitura do ficheiro, bilhetes.txt, com os dados da execucao anterior e do ficheiro, locais.txt, com os dados dos pontos de venda e os adiciona nos vetores apropriados.
+ */
 void     readData();
-//! Escreve os bilhetes no ficheiro de bilhetes
+
+//! Membro normal.
+/*!
+    Escreve os bilhetes presentes nos vetores no ficheiro bilhetes.txt .
+ */
 void     writeData();
-//! Altera o local de acordo com o input: numero do local
+
+//! Membro normal.
+/*!
+    Altera o localAtual de acordo com o numero do local escolhido.
+ */
 void     alterarLocal();
-//! Retorna uma string com o nome do local atual
+
+//! Membro normal.
+/*!
+    \return Uma string com o nome do local atual.
+ */
 string   localAtual();
-//! Imprime na tela todos os locais
+
+//! Membro normal.
+/*!
+    Imprime na tela a informacao de todos os pontos de venda.
+ */
 void     Locais();
-//! Remove o bilhete de acordo com as informacoes de input: tipo e identificacao
+
+//! Membro normal.
+/*!
+    Remove o bilhete escolhido pelo usuario, caso esse exista.
+ */
 void     removeBilhete();
 
+//! Membro normal.
+/*!
+    \param Z inteiro contendo o numero de zonas.
+    \param D inteiro contendo a identificacao do desconto.
+    \return Um float do preco de bilhete de acordo com o numero de zonas e seu desconto.
+ */
+float precos(int Z, int D);
 
+
+};
 
 
 #endif /*VENDA_H_*/

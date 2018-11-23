@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <ctime>
 #include <string>
 
 
@@ -185,11 +184,12 @@ public:
    Contem funcoes e dados dos bilhetes de assinatura do tipo junior.
  */
 class Junior : public Assinatura {
+protected:
   //!Inteiro.
-  /*!Idade do estudante*/
+  /*!Idade do utente*/
   int idade;
   //!Inteiro.
-  /*!Cartao cidadao do estudante*/
+  /*!Cartao cidadao do utente */
   int CC;
 public:
   //! Contrutor que recebe cinco inteiros, uma string, um float e um booleano.
@@ -208,16 +208,17 @@ public:
   string getInformacao() const;
   string getInformacaoTab() const;
 };
-// !  Classe Junior.
+// !  Classe Senior.
 /*!
    Contem funcoes e dados dos bilhetes de assinatura do tipo junior.
  */
 class Senior : public Assinatura {
+protected:
   //!Inteiro.
-  /*!Idade do estudante*/
+  /*!Idade do utente*/
   int idade;
   //!Inteiro.
-  /*!Cartao cidadao do estudante*/
+  /*!Cartao cidadao do utente*/
   int CC;
 public:
   //! Contrutor que recebe cinco inteiros, uma string, um float e um booleano.

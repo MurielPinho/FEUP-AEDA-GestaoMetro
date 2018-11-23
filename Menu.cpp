@@ -7,12 +7,12 @@
 
 using namespace std;
 /*! \mainpage Documentação Das Classes
-* Este site tem como objetivo ilustrar o sistema de classes utilizado.
+* Este site tem como objetivo ilustrar o sistema de classes utilizado, contendo descrições detalhadas dos membros-dado e membros-função de todas as classes criadas.
  *
  * \section intro_sec Diagrama
  *
  *
- * Pode acessar cada classe individualmente clicando em seu nome no diagrama abaixo.
+ * Todas as classes podem ser acessadas através do menu abaixo que está ordenado alfabeticamente e além disso segue a hierarquia das classes, agrupando classes e subclasses.
  *
  *
  *
@@ -23,10 +23,11 @@ using namespace std;
  *
  */
 int main() {
+  Venda v;
   int  option = 0;
   char control;
 
-  readData();
+  v.readData();
 
   do {
     if ((option >= 1) && (option <= 5))
@@ -39,7 +40,7 @@ int main() {
 
         if (control == 'n')
         {
-          writeData();
+          v.writeData();
           return 0;
         }
       } while (control != 's');
@@ -47,7 +48,7 @@ int main() {
     system("clear");
     cout << "              Menu Inicial              " << endl;
     cout << "========================================" << endl;
-    cout << "Local Atual: " << localAtual() << " "     << endl;
+    cout << "Local Atual: " << v.localAtual() << " "     << endl;
     cout << "========================================" << endl;
     cout << "\nEscolha a operação desejada         \n" << endl;
     cout << "1 - Comprar Bilhetes                  \n" << endl;
@@ -64,30 +65,30 @@ int main() {
     switch (option) {
     case 1:
       system("clear");
-      comprarBilhete();
+      v.comprarBilhete();
       break;
 
     case 2:
       system("clear");
-      removeBilhete();
+      v.removeBilhete();
       break;
 
     case 3:
       system("clear");
-      Bilhetes();
+      v.Bilhetes();
       break;
 
     case 4:
       system("clear");
-      dadosBilhete();
+      v.dadosBilhete();
       break;
 
     case 5:
       system("clear");
-      alterarLocal();
+      v.alterarLocal();
       break;
     }
   } while (option != 0);
-  writeData();
+  v.writeData();
   return 0;
 }

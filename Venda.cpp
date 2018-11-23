@@ -11,27 +11,27 @@
 
 using namespace std;
 
-void     comprarBilhete();
-void     comprarMaquina();
-void     comprarLoja();
-Bilhete* criarOcasional();
-Bilhete* criarAssinatura();
-float    precos(int Z, int D);
-bool     Pagamento(float preco);
-void     Bilhetes();
-void     dadosBilhete();
-void     readData();
-void     writeData();
-void     alterarLocal();
-string   localAtual();
-void     Locais();
-void     removeBilhete();
+// void     comprarBilhete();
+// void     comprarMaquina();
+// void     comprarLoja();
+// Bilhete* criarOcasional();
+// Bilhete* criarAssinatura();
+// float    precos(int Z, int D);
+// bool     Pagamento(float preco);
+// void     Bilhetes();
+// void     dadosBilhete();
+// void     readData();
+// void     writeData();
+// void     alterarLocal();
+// string   localAtual();
+// void     Locais();
+// void     removeBilhete();
 
 
 Utentes u;
 Local   l;
 
-void comprarBilhete()
+void Venda::comprarBilhete()
 {
   pontoVenda *P = l.getLocalAtual();
   bool tipo;
@@ -51,7 +51,7 @@ void comprarBilhete()
   }
 }
 
-void comprarMaquina()
+void Venda::comprarMaquina()
 {
   Bilhete *B;
 
@@ -66,7 +66,7 @@ void comprarMaquina()
   }
 }
 
-void comprarLoja()
+void Venda::comprarLoja()
 {
   Bilhete *B = NULL;
   int i;
@@ -102,7 +102,7 @@ void comprarLoja()
   }
 }
 
-bool Pagamento(float preco)
+bool Venda::Pagamento(float preco)
 {
   char control;
 
@@ -123,7 +123,7 @@ bool Pagamento(float preco)
   return true;
 }
 
-Bilhete* criarOcasional()
+Bilhete* Venda::criarOcasional()
 {
   Bilhete *B1;
   int i, Z, id, v;
@@ -178,7 +178,7 @@ Bilhete* criarOcasional()
   return B1;
 }
 
-Bilhete* criarAssinatura()
+Bilhete* Venda::criarAssinatura()
 {
   Bilhete *B = NULL;
 
@@ -281,7 +281,7 @@ Bilhete* criarAssinatura()
   return B;
 }
 
-void Bilhetes()
+void Venda::Bilhetes()
 {
   cout << "Ocasionais :" << endl << endl;
   cout << "  Tipo | ID | Zona |" << endl;
@@ -291,7 +291,7 @@ void Bilhetes()
   cout << u.getAssinaturas() <<  endl;
 }
 
-void dadosBilhete()
+void Venda::dadosBilhete()
 {
   int i, j;
 
@@ -367,7 +367,7 @@ void dadosBilhete()
   }
 }
 
-void readData()
+void Venda::readData()
 {
   ifstream bilhetes, locais;
   Bilhete *B;
@@ -526,7 +526,7 @@ void readData()
   locais.close();
 }
 
-void writeData()
+void Venda::writeData()
 {
   ofstream out;
 
@@ -547,7 +547,7 @@ void writeData()
   }
 }
 
-float precos(int Z, int D)
+float Venda::precos(int Z, int D)
 {
   if (D == 0) {
     switch (Z) {
@@ -587,13 +587,13 @@ float precos(int Z, int D)
   return 0.00f;
 }
 
-void Locais()
+void Venda::Locais()
 {
   cout << "Locais de venda :" << endl << endl;
   cout << l.getLocais() <<  endl;
 }
 
-void alterarLocal()
+void Venda::alterarLocal()
 {
   int i;
 
@@ -610,7 +610,7 @@ void alterarLocal()
   l.defineLocal(i);
 }
 
-string localAtual()
+string Venda::localAtual()
 {
   pontoVenda *P = l.getLocalAtual();
 
@@ -621,7 +621,7 @@ string localAtual()
   return "Trindade";
 }
 
-void removeBilhete()
+void Venda::removeBilhete()
 {
   int i, j;
 
