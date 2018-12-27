@@ -63,6 +63,7 @@ int main() {
                 cout << "6 - Adicionar Funcionario             \n" << endl;
                 cout << "7 - Remover Funcionario               \n" << endl;
                 cout << "8 - Verificar funcionarios            \n" << endl;
+                cout << "9 - Verificar dados de um funcionario \n" << endl;
                 cout << "0 - Sair                              \n" << endl;
 
 
@@ -105,6 +106,10 @@ int main() {
                 case 8:
                         system("clear");
                         m.dadosFuncionario();
+                        break;
+                case 9:
+                        system("clear");
+                        m.dadoFuncionario();
                         break;
                 }
         } while (option != 0);

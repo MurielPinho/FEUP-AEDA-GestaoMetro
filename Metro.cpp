@@ -203,7 +203,6 @@ void Metro::removeFuncionario(){
                 }
         } while (control != 's');
 
-        BSTItrIn<Funcionario> it(funcionarios);
         Funcionario fNotFound(0,"","","");
         Funcionario fTry = funcionarios.find(f);
         if(fTry == fNotFound) {
@@ -220,5 +219,27 @@ void Metro::dadosFuncionario(){
         while(!it.isAtEnd()) {
                 cout << it.retrieve().getInfo() << endl;
                 it.advance();
+        }
+}
+
+void Metro::dadoFuncionario(){
+        string nm;
+        float sal;
+        cout << "Nome : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, nm);
+        system("clear");
+        cout << "Salario : ";
+        cin >> sal;
+        system("clear");
+        Funcionario f(sal, "", nm, "");
+        Funcionario fNotFound(0,"","","");
+        Funcionario fTry = funcionarios.find(f);
+        if(fTry == fNotFound) {
+                cout << "Funcionario não existe" << endl << endl;
+        }
+        else {
+                cout << fTry.getInformacao() << endl;
         }
 }

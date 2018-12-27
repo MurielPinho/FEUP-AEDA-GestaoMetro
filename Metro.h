@@ -21,7 +21,7 @@ Metro();
 void addFuncionario();
 void removeFuncionario();
 void dadosFuncionario();
-
+void dadoFuncionario();
 //! Membro normal.
 /*!
     Faz a leitura do ficheiro, funcionarios.txt, com os dados da execucao anterior e do ficheiro, locais.txt, com os dados dos pontos de venda e os adiciona nos vetores apropriados.
