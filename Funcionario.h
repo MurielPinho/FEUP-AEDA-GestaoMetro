@@ -34,51 +34,60 @@ public:
     \param n string de nome do funcionario.
     \param s float de salario do funcionario.
     \param l string de local do funcionario.
+    \param f string de funcao do funcionario.
  */
 Funcionario(float sal, string l, string n, string f);
-
-//! Membro normal.
-
-float getSalario() const;
 
 //! Membro normal.
 /*!
    \return Retorna o salario do funcionario.
  */
-string getLocal() const;
+
+float getSalario() const;
 
 //! Membro normal.
 /*!
    \return Retorna o ponto de venda do funcionario.
  */
-string getName() const;
+string getLocal() const;
 
 //! Membro normal.
 /*!
    \return Retorna o nome do funcionario.
  */
-string getFuncao() const;
+string getName() const;
 
 //! Membro normal.
 /*!
    \return Retorna a funcao do funcionario.
  */
-string getInformacao() const;
+string getFuncao() const;
 
 //! Membro normal.
 /*!
    \return Retorna uma string com a informacao essencial de um funcionario.
  */
-string getInfo() const;
+string getInformacao() const;
 
 //! Membro normal.
 /*!
    \return Retorna uma string com a informacao do funcionario em forma de escrita do ficheiro.
  */
+string getInfo() const;
 
+//! Membro normal.
+/*!
+   \return valor booleano resultante da comparacao entre 2 funcionarios.
+ */
 bool operator<(const Funcionario &f1) const;
+
+//! Membro normal.
+/*!
+   \return valor booleano resultante da comparacao entre 2 funcionarios.
+ */
 bool operator==(const Funcionario &f1) const;
 
+//! Destrutor.
 ~Funcionario() {
 }
 };

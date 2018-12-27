@@ -17,10 +17,27 @@ class Metro {
 BST<Funcionario> funcionarios;
 
 public:
+//! Contrutor do Metro
 Metro();
+//! Membro normal.
+/*!
+    Adiciona um funcionario a arvore binaria de pesquisa funcionarios.
+ */
 void addFuncionario();
+//! Membro normal.
+/*!
+    Remove um funcionario da arvore binaria de pesquisa funcionarios.
+ */
 void removeFuncionario();
+//! Membro normal.
+/*!
+    Imprime na tela os dados de todos os funcionarios.
+ */
 void dadosFuncionario();
+//! Membro normal.
+/*!
+    Imprime na tela os dados de um funcionario especifico.
+ */
 void dadoFuncionario();
 //! Membro normal.
 /*!
