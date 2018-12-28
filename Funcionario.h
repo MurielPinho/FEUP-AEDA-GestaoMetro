@@ -25,6 +25,9 @@ string nome;
 //!String,
 /*!Funcao do funcionario.*/
 string funcao;
+//!Inteiro,
+/*!identificacao do funcionario.*/
+int identificacao;
 
 
 public:
@@ -35,8 +38,16 @@ public:
     \param s float de salario do funcionario.
     \param l string de local do funcionario.
     \param f string de funcao do funcionario.
+    \param id int de identificacao do funcionario.
  */
-Funcionario(float sal, string l, string n, string f);
+Funcionario(string n, int id, string l, float sal, string f);
+
+//! Membro normal.
+/*!
+   \return Retorna a identificacao do funcionario.
+ */
+
+int getId() const;
 
 //! Membro normal.
 /*!
