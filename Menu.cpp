@@ -33,7 +33,7 @@ int main() {
         m.readData();
 
         do {
-                if ((option >= 1) && (option <= 87))
+                if ((option >= 1) && (option <= 10))
                 {
                         do {
                                 cout << "Deseja realizar outra operação ? (s/n)" << endl;
@@ -60,10 +60,11 @@ int main() {
                 cout << "3 - Verificar Bilhetes                \n" << endl;
                 cout << "4 - Verificar dados de um bilhete     \n" << endl;
                 cout << "5 - Alterar localidade                \n" << endl;
-                cout << "6 - Adicionar Funcionario             \n" << endl;
-                cout << "7 - Remover Funcionario               \n" << endl;
+                cout << "6 - Contratar Funcionario             \n" << endl;
+                cout << "7 - Demitir Funcionario               \n" << endl;
                 cout << "8 - Verificar funcionarios            \n" << endl;
                 cout << "9 - Verificar dados de um funcionario \n" << endl;
+                cout << "10 - Alterar Salario de um funcionario\n" << endl;
                 cout << "0 - Sair                              \n" << endl;
 
 
@@ -110,6 +111,10 @@ int main() {
                 case 9:
                         system("clear");
                         m.dadoFuncionario();
+                        break;
+                case 10:
+                        system("clear");
+                        m.SalarioFuncionario();
                         break;
                 }
         } while (option != 0);

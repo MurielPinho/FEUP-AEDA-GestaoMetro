@@ -260,3 +260,35 @@ void Metro::dadoFuncionario(){
 
         cout << "Funcionario nao existe" << endl << endl;
 }
+
+void Metro::SalarioFuncionario(){
+        char control;
+        int id;
+        float newS;
+        cout << "Identificacao : ";
+        cin >> id;
+        system("clear");
+
+        Funcionario f("",id,"",0,"");
+        Funcionario *FS;
+
+        BSTItrIn<Funcionario> it(funcionarios);
+
+        while(!it.isAtEnd()) {
+                if(it.retrieve() == f) {
+
+                        cout << it.retrieve().getInformacao() << endl;
+                        cout << "Salario Novo : ";
+                        cin >> newS;
+                        system("clear");
+                        FS = new Funcionario(it.retrieve());
+                        FS->setSalario(newS);
+                        funcionarios.remove(it.retrieve());
+                        funcionarios.insert(*FS);
+                        return;
+                }
+                it.advance();
+        }
+
+        cout << "Funcionario nao existe" << endl << endl;
+}

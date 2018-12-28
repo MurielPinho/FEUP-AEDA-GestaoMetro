@@ -41,6 +41,11 @@ void dadosFuncionario();
 void dadoFuncionario();
 //! Membro normal.
 /*!
+    Altera o salario de um funcionario especifico.
+ */
+void     SalarioFuncionario();
+//! Membro normal.
+/*!
     Faz a leitura do ficheiro, funcionarios.txt, com os dados da execucao anterior e do ficheiro, locais.txt, com os dados dos pontos de venda e os adiciona nos vetores apropriados.
  */
 void     readData();
