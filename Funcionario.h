@@ -57,10 +57,10 @@ int getId() const;
 float getSalario() const;
 //! Membro normal.
 /*!
-   \return Altera o salario do funcionario.
+   Altera o salario do funcionario.
  */
 
-float setSalario(float nS);
+void setSalario(float nS);
 
 //! Membro normal.
 /*!

@@ -39,7 +39,7 @@ float Funcionario::getSalario() const
         return salario;
 }
 
-float Funcionario::setSalario(float nS)
+void Funcionario::setSalario(float nS)
 {
         salario = nS;
 }

@@ -58,6 +58,13 @@ void     writeData();
 
 //! Membro normal.
 /*!
+    Altera a dataAtual.
+ */
+void     alterarData();
+
+
+//! Membro normal.
+/*!
     Altera o localAtual de acordo com o numero do local escolhido.
  */
 void     alterarLocal();

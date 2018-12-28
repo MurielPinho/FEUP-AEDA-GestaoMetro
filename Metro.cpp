@@ -1,19 +1,42 @@
 #include "Metro.h"
 
 Local local;
+vector<int> dataAtual;
 
 Metro::Metro() : funcionarios(Funcionario("",-1,"",0,"")){
 }
 
 void Metro::readData()
 {
-        ifstream locais, fs;
+        ifstream locais, fs, tm;
         Funcionario *F;
         pontoVenda *P;
 
+        tm.open("Data.txt", ios_base::in);
         fs.open("Funcionarios.txt", ios_base::in);
         locais.open("Locais.txt", ios_base::in);
 
+        if(!tm) {
+                cerr << "Arquivo não encontrado!\n";
+        }
+        else {
+                string line;
+
+                getline(tm, line);
+                stringstream linestream(line);
+                string value;
+                vector<string> data;
+                while(getline(linestream,value,'/')) {
+                        data.push_back(value);
+                }
+                int dia,mes,ano;
+                dia = stoi(data.at(0));
+                mes = stoi(data.at(1));
+                ano = stoi(data.at(2));
+                dataAtual.push_back(dia);
+                dataAtual.push_back(mes);
+                dataAtual.push_back(ano);
+        }
         if(!fs) {
                 cerr << "Arquivo não encontrado!\n";
         }
@@ -79,24 +102,137 @@ void Metro::readData()
         }
         locais.close();
         fs.close();
+        tm.close();
 }
 
 void Metro::writeData()
 {
-        ofstream out;
+        ofstream out, tm;
 
         out.open("Funcionarios.txt");
+        tm.open("Data.txt");
         BSTItrIn<Funcionario> it(funcionarios);
         while(!it.isAtEnd()) {
                 out << it.retrieve().getInfo() << endl;
                 it.advance();
         }
+        tm << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2];
+        out.close();
+        tm.close();
 }
 
 void Metro::Locais()
 {
         cout << "Locais de Venda :" << endl << endl;
         cout << local.getLocais() <<  endl;
+}
+
+void Metro::alterarData()
+{
+        int dia, mes, ano;
+        cout << "Dia : ";
+        cin >> dia;
+        cout << "Mes : ";
+        cin >> mes;
+        cout << "Ano : ";
+        cin >> ano;
+        if(ano < 0) {
+                cout << "Data Invalida" << endl << endl;
+                return;
+        }
+        if((mes < 1) && (mes > 12)) {
+                cout << "Data Invalida" << endl << endl;
+                return;
+        }
+
+        switch(mes) {
+        case 1:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 2:
+                if(ano%4 == 0) {
+                        if((dia < 1) && (dia > 29)) {
+                                cout << "Data Invalida" << endl << endl;
+                                return;
+                        }
+                }
+                else{
+                        if((dia < 1) && (dia > 28)) {
+                                cout << "Data Invalida" << endl << endl;
+                                return;
+                        }
+                }
+                break;
+        case 3:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 4:
+                if((dia < 1) && (dia > 30)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 5:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 6:
+                if((dia < 1) && (dia > 30)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 7:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 8:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 9:
+                if((dia < 1) && (dia > 30)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 10:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 11:
+                if((dia < 1) && (dia > 30)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        case 12:
+                if((dia < 1) && (dia > 31)) {
+                        cout << "Data Invalida" << endl << endl;
+                        return;
+                }
+                break;
+        }
+
+        cout << "Data Alterada para : " << setw(2) << setfill('0') << dia << "/" << setw(2) << setfill('0') << mes << "/" << setw(4) << setfill('0') << ano << endl << endl;
+
+        dataAtual.at(0) = dia;
+        dataAtual.at(1) = mes;
+        dataAtual.at(2) = ano;
 }
 
 void Metro::alterarLocal()
@@ -239,7 +375,6 @@ void Metro::dadosFuncionario(){
 }
 
 void Metro::dadoFuncionario(){
-        char control;
         int id;
         cout << "Identificacao : ";
         cin >> id;
@@ -262,7 +397,6 @@ void Metro::dadoFuncionario(){
 }
 
 void Metro::SalarioFuncionario(){
-        char control;
         int id;
         float newS;
         cout << "Identificacao : ";
