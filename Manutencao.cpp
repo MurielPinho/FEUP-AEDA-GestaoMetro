@@ -10,7 +10,12 @@ Manutencao::Manutencao(string tr, string tp, bool av, int dia, int mes, int ano)
         avaria = av;
         trem = tr;
         tipo = tp;
-        data = {dia,mes,ano};
+        data[0]=dia;
+        data[1]=mes;
+        data[2]=ano;
+
+
+
 }
 
 
@@ -53,7 +58,7 @@ void Manutencao::setAvaria(bool av)
         avaria = av;
 }
 
-vector<int> Manutencao::getData() const
+array<int,3>  Manutencao::getData() const
 {
         return data;
 }

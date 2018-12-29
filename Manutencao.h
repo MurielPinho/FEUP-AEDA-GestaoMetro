@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <array>
 
 
 using namespace std;
@@ -23,7 +24,7 @@ string trem;
 string tipo;
 //!Vector de Inteiros.
 /*!Data da manutencao.*/
-vector<int> data;
+array<int,3> data;
 
 public:
 
@@ -62,7 +63,7 @@ void setTipo(string tp);
 /*!
    \return Retorna a data da manutencao.
  */
-vector<int> getData() const;
+array<int,3> getData() const;
 
 //! Membro normal.
 /*!

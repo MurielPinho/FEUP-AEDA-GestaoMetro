@@ -2,7 +2,7 @@
 #include "Bilhete.h"
 #include "Utentes.h"
 #include "Venda.h"
-#include "Pontovenda.h"
+#include "pontoVenda.h"
 #include "Local.h"
 #include "Metro.h"
 

@@ -333,7 +333,7 @@ void Metro::removeFuncionario(){
         system("clear");
 
         Funcionario f("",id,"",-1,"");
-        Funcionario *fTry;
+        //Funcionario *fTry;
 
         BSTItrIn<Funcionario> it(funcionarios);
 
