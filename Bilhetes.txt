@@ -1,14 +1,4 @@
-Diario,1,3,22.00,1,29,12,2018,16,7,24,Trindade,4,0
-Diario,2,3,22.00,1,29,12,2018,16,7,24,Trindade,4,0
-Diario,3,3,22.00,1,29,12,2018,16,7,24,Trindade,4,0
-Unico,4,2,6.00,1,29,12,2018,16,7,2,Trindade,5,0
-Diario,5,4,13.80,1,29,12,2018,16,7,24,Trindade,2,0
-Estudante,1,3,28.31,0,29,12,2018,16,7,Gustavo Tavares,1,21,24581295,FEUP
-Estudante,1,3,28.31,0,29,12,2018,16,7,Gustavo Tavares,1,21,24581295,FEUP
-Senior,2,3,28.31,0,29,12,2018,16,7,Arthur Matta,3,45,57682742
-Senior,2,3,28.31,0,29,12,2018,16,7,Arthur Matta,3,45,57682742
-Normal,3,2,30.60,0,29,12,2018,16,7,Muriel Pinho,0
-Normal,3,2,30.60,0,29,12,2018,16,7,Muriel Pinho,0
-Junior,4,2,22.95,0,29,12,2018,16,7,Andre Mori,2,20,67498673
-Junior,4,2,22.95,0,29,12,2018,16,7,Andre Mori,2,20,67498673
-Estudante,5,3,28.31,0,29,12,2018,16,7,Bowser,1,55,66666666,Bowser
+Diario,2,2,12.45,1,6,8,2019,15,3,24,Trindade,2,0
+Unico,3,2,6.00,1,6,8,2019,15,3,2,Trindade,4,0
+Estudante,1,2,22.95,0,12,12,2012,19,55,Gustavo Tavares,1,32,57274828,FEUP
+Estudante,2,2,22.95,0,31,12,2018,19,55,Muriel,1,22,23525124,FEUP

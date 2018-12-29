@@ -312,6 +312,26 @@ void Venda::renovarAss() {
         B->Renovar(dataAt);
 }
 
+void Venda::validar() {
+        int i;
+        cout << "Ocasionais:" << endl << endl;
+        cout << "   Tipo   | ID |     Nome     | Zona |" << endl;
+        cout << u.getOcasionais() << endl;
+        cout << "Insira o numero do bilhete" << endl;
+        cin >> i;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        system("clear");
+        Bilhete *B = u.getOcasional(i);
+
+        if (B == NULL)
+        {
+                cout << "Bilhete não existe" << endl;
+        }
+
+        B->Validacao(true);
+}
+
 void Venda::dadosBilhete()
 {
         int i, j;
@@ -388,52 +408,13 @@ void Venda::dadosBilhete()
         }
 }
 
-
-void Venda::readTime()
-{
-        ifstream tm;
-
-        tm.open("Data.txt", ios_base::in);
-
-        if(!tm) {
-                cerr << "Arquivo não encontrado!\n";
-        }
-        else {
-                string line;
-
-                getline(tm, line);
-                stringstream linestream(line);
-                string value;
-                vector<string> data;
-                while(getline(linestream,value,'/')) {
-                        data.push_back(value);
-                }
-                int dia,mes,ano;
-                dia = stoi(data.at(0));
-                mes = stoi(data.at(1));
-                ano = stoi(data.at(2));
-                getline(tm, line);
-                stringstream lines(line);
-                while(getline(lines,value,':')) {
-                        data.push_back(value);
-                }
-                int hora, min;
-                hora = stoi(data.at(3));
-                min = stoi(data.at(4));
-                dataAt.at(0) = dia;
-                dataAt.at(1) = mes;
-                dataAt.at(2) = ano;
-                dataAt.at(3) = hora;
-                dataAt.at(4) = min;
-        }
-        tm.close();
-}
-
 void Venda::readData()
 {
         ifstream bilhetes, locais,tm;
         Bilhete *B;
         pontoVenda *P;
+
+        u.Clean();
 
         bilhetes.open("Bilhetes.txt", ios_base::in);
         locais.open("Locais.txt", ios_base::in);
@@ -453,6 +434,7 @@ void Venda::readData()
                         data.push_back(value);
                 }
                 int dia,mes,ano;
+                int i, j;
                 dia = stoi(data.at(0));
                 mes = stoi(data.at(1));
                 ano = stoi(data.at(2));
@@ -505,30 +487,42 @@ void Venda::readData()
 
                         if (tipo == "Unico")
                         {
-                                if(DataDiff(dt,dataAt) < 120) {
-                                        int d, v;
+                                int v;
+                                v   = stoi(data.at(12));
+                                bool vdd;
+                                vdd = stoi(data.at(13));
+                                if((DataDiff(dt,dataAt) > 120) && (vdd = true)) {
+                                        v--;
+                                        vdd = false;
+                                }
+                                if(v > 0) {
+                                        int d;
                                         string pt;
-                                        bool t, vdd;
+                                        bool t;
                                         t   = 1;
                                         d   = stoi(data.at(10));
                                         pt  = data.at(11);
-                                        v   = stoi(data.at(12));
-                                        vdd = 0;
                                         B   = new Unico(identificacao, zona, preco, t, dataAt, d, pt, v, vdd);
                                         u.adicionaOcasional(B);
                                 }
                         }
                         else if (tipo == "Diario")
                         {
-                                if(DataDiff(dt,dataAt) < 1440) {
-                                        int d, v;
+                                int v;
+                                v   = stoi(data.at(12));
+                                bool vdd;
+                                vdd = stoi(data.at(13));
+                                if((DataDiff(dt,dataAt) > 1440) && (vdd = true)) {
+                                        v--;
+                                        vdd = false;
+                                }
+                                if(v > 0) {
+                                        int d;
                                         string pt;
-                                        bool t, vdd;
+                                        bool t;
                                         t   = 1;
                                         d   = stoi(data.at(10));
                                         pt  = data.at(11);
-                                        v   = stoi(data.at(12));
-                                        vdd = 0;
                                         B   = new Diario(identificacao, zona, preco, t, dataAt, d, pt, v, vdd);
                                         u.adicionaOcasional(B);
                                 }
@@ -542,7 +536,7 @@ void Venda::readData()
                                 t = 0;
                                 n = data.at(10);
                                 d = stoi(data.at(11));
-                                B = new Normal(identificacao, zona, preco, t, dataAt, n, d);
+                                B = new Normal(identificacao, zona, preco, t, dt, n, d);
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Estudante")
@@ -556,7 +550,7 @@ void Venda::readData()
                                 idd = stoi(data.at(12));
                                 cc  = stoi(data.at(13));
                                 esc = data.at(14);
-                                B   = new Estudante(identificacao, zona, preco, t, dataAt, n, d, idd, cc, esc);
+                                B   = new Estudante(identificacao, zona, preco, t, dt, n, d, idd, cc, esc);
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Junior")
@@ -569,7 +563,7 @@ void Venda::readData()
                                 d   = stoi(data.at(11));
                                 idd = stoi(data.at(12));
                                 cc  = stoi(data.at(13));
-                                B   = new Junior(identificacao, zona, preco, t, dataAt, n, d, idd, cc);
+                                B   = new Junior(identificacao, zona, preco, t, dt, n, d, idd, cc);
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Senior")
@@ -582,7 +576,7 @@ void Venda::readData()
                                 d   = stoi(data.at(11));
                                 idd = stoi(data.at(12));
                                 cc  = stoi(data.at(13));
-                                B   = new Senior(identificacao, zona, preco, t, dataAt, n, d, idd, cc);
+                                B   = new Senior(identificacao, zona, preco, t, dt, n, d, idd, cc);
                                 u.adicionaAssinatura(B);
                         }
                 }

@@ -259,8 +259,8 @@ void Metro::alterarData()
                 return;
         }
 
-        cout << "Data Alterada para : " << setw(2) << setfill('0') << dia << "/" << setw(2) << setfill('0') << mes << "/" << setw(4) << setfill('0') << ano << endl;
-        cout << setw(2) << setfill('0') << fixed << hora << ":" << min;
+        cout << "Data Alterada para : " << setw(2) << setfill('0') << dia << "/" << setw(2) << setfill('0') << mes << "/" << setw(4) << setfill('0') << ano << " ";
+        cout << setw(2) << setfill('0') << hora << ":"  << setw(2) << setfill('0') << min << endl << endl;
 
         dataAtual.at(0) = dia;
         dataAtual.at(1) = mes;

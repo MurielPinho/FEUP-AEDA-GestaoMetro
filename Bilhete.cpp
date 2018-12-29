@@ -75,6 +75,9 @@ string Bilhete::getNome() const
 void Bilhete::Renovar(vector<int> dt){
 }
 
+void Bilhete::Validacao(bool vdd){
+}
+
 Assinatura::Assinatura(int id, int z, float p, bool t, vector<int> dt, string n, int d) : Bilhete(id, z, p, t, dt)
 {
         nome     = n;
@@ -222,6 +225,10 @@ Ocasional::Ocasional(int id, int z, float p, bool t, vector<int> dt, int d, stri
         duracao  = d;
         partida  = pt;
         viagens  = v;
+        validado = vdd;
+}
+
+void Ocasional::Validacao(bool vdd){
         validado = vdd;
 }
 

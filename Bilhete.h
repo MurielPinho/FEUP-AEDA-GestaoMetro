@@ -96,9 +96,15 @@ virtual int    getDesconto() const;
 virtual string getNome() const;
 //! Membro virtual.
 /*!
-   \return Renova os bilhetes de tipo Assinatura.
+   Renova os bilhetes de tipo Assinatura.
  */
 virtual void Renovar(vector<int> dt);
+//! Membro virtual.
+/*!
+   Altera a validacao dos bilhetes.
+ */
+virtual void Validacao(bool vdd);
+
 //! Destrutor.
 virtual ~Bilhete() {
 }
@@ -286,6 +292,7 @@ virtual string getInformacaoTab() const;
 int            getDuracao() const;
 string         getNome() const;
 int            getDesconto() const;
+void           Validacao(bool vdd);
 };
 // !  Classe Diario.
 /*!

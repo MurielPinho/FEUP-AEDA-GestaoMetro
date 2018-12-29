@@ -60,6 +60,12 @@ void     renovarAss();
 
 //! Membro normal.
 /*!
+   Valida um bilhete
+ */
+void     validar();
+
+//! Membro normal.
+/*!
     Imprime na tela a informacao resumida de cada bilhete atual.
  */
 void     Bilhetes();

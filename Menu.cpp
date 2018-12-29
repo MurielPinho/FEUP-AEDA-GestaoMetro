@@ -33,7 +33,7 @@ int main() {
         m.readData();
 
         do {
-                if (((op == 1) && ((option >= 1) && (option <= 7))) || ((op == 2) && ((option >= 1) && (option <= 6))))
+                if (((op == 1) && ((option >= 1) && (option <= 8))) || ((op == 2) && ((option >= 1) && (option <= 6))))
                 {
                         do {
                                 cout << "Deseja realizar outra operação ? (s/n)" << endl;
@@ -89,10 +89,11 @@ int main() {
                         cout << "1 - Comprar Bilhetes                  \n" << endl;
                         cout << "2 - Remover Bilhete                   \n" << endl;
                         cout << "3 - Renovar Assinatura                \n" << endl;
-                        cout << "4 - Verificar Bilhetes                \n" << endl;
-                        cout << "5 - Verificar dados de um bilhete     \n" << endl;
-                        cout << "6 - Alterar localidade                \n" << endl;
-                        cout << "7 - Alterar Data                      \n" << endl;
+                        cout << "4 - Validar Bilhete                   \n" << endl;
+                        cout << "5 - Verificar Bilhetes                \n" << endl;
+                        cout << "6 - Verificar dados de um bilhete     \n" << endl;
+                        cout << "7 - Alterar localidade                \n" << endl;
+                        cout << "8 - Alterar Data                      \n" << endl;
                         cout << "0 - Sair                              \n" << endl;
 
                         cin.clear();
@@ -114,19 +115,23 @@ int main() {
                                 break;
                         case 4:
                                 system("clear");
-                                v.Bilhetes();
+                                v.validar();
                                 break;
-
                         case 5:
                                 system("clear");
-                                v.dadosBilhete();
+                                v.Bilhetes();
                                 break;
 
                         case 6:
                                 system("clear");
+                                v.dadosBilhete();
+                                break;
+
+                        case 7:
+                                system("clear");
                                 v.alterarLocal();
                                 break;
-                        case 7:
+                        case 8:
                                 system("clear");
                                 m.alterarData();
                                 m.writeData();
@@ -179,7 +184,7 @@ int main() {
                                 system("clear");
                                 m.alterarData();
                                 m.writeData();
-                                v.readTime();
+                                v.readData();
                                 break;
                         }
 
