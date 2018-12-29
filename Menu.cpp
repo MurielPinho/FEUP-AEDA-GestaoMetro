@@ -33,7 +33,7 @@ int main() {
         m.readData();
 
         do {
-                if (((op == 1) && ((option >= 1) && (option <= 6))) || ((op == 2) && ((option >= 1) && (option <= 6))))
+                if (((op == 1) && ((option >= 1) && (option <= 7))) || ((op == 2) && ((option >= 1) && (option <= 6))))
                 {
                         do {
                                 cout << "Deseja realizar outra operação ? (s/n)" << endl;
@@ -88,10 +88,11 @@ int main() {
                         cout << "\nEscolha a operação desejada         \n" << endl;
                         cout << "1 - Comprar Bilhetes                  \n" << endl;
                         cout << "2 - Remover Bilhete                   \n" << endl;
-                        cout << "3 - Verificar Bilhetes                \n" << endl;
-                        cout << "4 - Verificar dados de um bilhete     \n" << endl;
-                        cout << "5 - Alterar localidade                \n" << endl;
-                        cout << "6 - Alterar Data                      \n" << endl;
+                        cout << "3 - Renovar Assinatura                \n" << endl;
+                        cout << "4 - Verificar Bilhetes                \n" << endl;
+                        cout << "5 - Verificar dados de um bilhete     \n" << endl;
+                        cout << "6 - Alterar localidade                \n" << endl;
+                        cout << "7 - Alterar Data                      \n" << endl;
                         cout << "0 - Sair                              \n" << endl;
 
                         cin.clear();
@@ -107,26 +108,29 @@ int main() {
                                 system("clear");
                                 v.removeBilhete();
                                 break;
-
                         case 3:
+                                system("clear");
+                                v.renovarAss();
+                                break;
+                        case 4:
                                 system("clear");
                                 v.Bilhetes();
                                 break;
 
-                        case 4:
+                        case 5:
                                 system("clear");
                                 v.dadosBilhete();
                                 break;
 
-                        case 5:
+                        case 6:
                                 system("clear");
                                 v.alterarLocal();
                                 break;
-                        case 6:
+                        case 7:
                                 system("clear");
                                 m.alterarData();
                                 m.writeData();
-                                v.readData();
+                                v.readTime();
                                 break;
                         }
                 }
@@ -175,7 +179,7 @@ int main() {
                                 system("clear");
                                 m.alterarData();
                                 m.writeData();
-                                v.readData();
+                                v.readTime();
                                 break;
                         }
 

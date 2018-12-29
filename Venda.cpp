@@ -72,7 +72,7 @@ void Venda::comprarLoja()
         Bilhete *B = NULL;
         int i;
 
-        cout << "Comprar bilhete ocasional ou renovar assinatura ?" << endl << endl;
+        cout << "Comprar bilhete ocasional ou assinatura ?" << endl << endl;
         cout << "1 - Ocasional" << endl;
         cout << "2 - Assinatura\n" << endl;
         cin >> i;
@@ -292,6 +292,26 @@ void Venda::Bilhetes()
         cout << u.getAssinaturas() <<  endl;
 }
 
+void Venda::renovarAss() {
+        int i;
+        cout << "Assinaturas:" << endl << endl;
+        cout << "   Tipo   | ID |     Nome     | Zona |" << endl;
+        cout << u.getAssinaturas() << endl;
+        cout << "Insira o numero do bilhete" << endl;
+        cin >> i;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        system("clear");
+        Bilhete *B = u.getAssinatura(i);
+
+        if (B == NULL)
+        {
+                cout << "Assinatura não existe" << endl;
+        }
+
+        B->Renovar(dataAt);
+}
+
 void Venda::dadosBilhete()
 {
         int i, j;
@@ -366,6 +386,47 @@ void Venda::dadosBilhete()
                         cout << B->getInformacaoTab() << endl << endl;
                 }
         }
+}
+
+
+void Venda::readTime()
+{
+        ifstream tm;
+
+        tm.open("Data.txt", ios_base::in);
+
+        if(!tm) {
+                cerr << "Arquivo não encontrado!\n";
+        }
+        else {
+                string line;
+
+                getline(tm, line);
+                stringstream linestream(line);
+                string value;
+                vector<string> data;
+                while(getline(linestream,value,'/')) {
+                        data.push_back(value);
+                }
+                int dia,mes,ano;
+                dia = stoi(data.at(0));
+                mes = stoi(data.at(1));
+                ano = stoi(data.at(2));
+                getline(tm, line);
+                stringstream lines(line);
+                while(getline(lines,value,':')) {
+                        data.push_back(value);
+                }
+                int hora, min;
+                hora = stoi(data.at(3));
+                min = stoi(data.at(4));
+                dataAt.at(0) = dia;
+                dataAt.at(1) = mes;
+                dataAt.at(2) = ano;
+                dataAt.at(3) = hora;
+                dataAt.at(4) = min;
+        }
+        tm.close();
 }
 
 void Venda::readData()

@@ -54,6 +54,12 @@ bool     Pagamento(float preco);
 
 //! Membro normal.
 /*!
+   Renova o bilhete do tipo Assinatura.
+ */
+void     renovarAss();
+
+//! Membro normal.
+/*!
     Imprime na tela a informacao resumida de cada bilhete atual.
  */
 void     Bilhetes();
@@ -75,6 +81,12 @@ void     readData();
     Escreve os bilhetes presentes nos vetores no ficheiro bilhetes.txt .
  */
 void     writeData();
+
+//! Membro normal.
+/*!
+    Atualiza o tempo DataAt.
+ */
+void     readTime();
 
 //! Membro normal.
 /*!

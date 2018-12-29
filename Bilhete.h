@@ -94,6 +94,11 @@ virtual int    getDesconto() const;
    \return Retorna o nome do dono do bilhete, caso este parametro nao exista, retorna string vazia.
  */
 virtual string getNome() const;
+//! Membro virtual.
+/*!
+   \return Renova os bilhetes de tipo Assinatura.
+ */
+virtual void Renovar(vector<int> dt);
 //! Destrutor.
 virtual ~Bilhete() {
 }
@@ -128,6 +133,7 @@ virtual string getInformacaoTab() const;
 int            getDuracao() const;
 int            getDesconto() const;
 string         getNome() const;
+void           Renovar(vector<int> dt);
 };
 // !  Classe Normal.
 /*!

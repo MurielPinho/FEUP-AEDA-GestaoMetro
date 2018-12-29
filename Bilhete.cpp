@@ -72,6 +72,9 @@ string Bilhete::getNome() const
         return "";
 }
 
+void Bilhete::Renovar(vector<int> dt){
+}
+
 Assinatura::Assinatura(int id, int z, float p, bool t, vector<int> dt, string n, int d) : Bilhete(id, z, p, t, dt)
 {
         nome     = n;
@@ -108,6 +111,14 @@ string Assinatura::getInformacaoTab() const
         ss << Bilhete::getInformacaoTab();
         ss << " " <<  right << setw(14) << nome;
         return ss.str();
+}
+
+void Assinatura::Renovar(vector<int> dt){
+        data.at(0) = dt.at(0);
+        data.at(1) = dt.at(1);
+        data.at(2) = dt.at(2);
+        data.at(3) = dt.at(3);
+        data.at(4) = dt.at(4);
 }
 
 Normal::Normal(int id, int z, float p, bool t, vector<int> dt, string n, int d) : Assinatura(id, z, p, t, dt, n, d)
