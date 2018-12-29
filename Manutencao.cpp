@@ -6,30 +6,29 @@
 
 using namespace std;
 
-Manutencao::Manutencao(string tr, string tp, bool av, int dia, int mes, int ano){
+Manutencao::Manutencao(string tr, string tp, bool av, int dia, int mes, int ano, int hora, int min){
         avaria = av;
         trem = tr;
         tipo = tp;
-        data[0]=dia;
-        data[1]=mes;
-        data[2]=ano;
-
-
-
+        data = {dia,mes,ano,hora,min};
 }
 
 
 string Manutencao::getInformacao() const {
         stringstream ss;
 
-        ss << setw(2) << setfill('0') << fixed << "Trem : " << trem << endl << "Avaria : " << avaria << endl << "Tipo : " << tipo << endl << "Data : " << data.at(0) << "/" << data.at(1) << "/" << setw(4) << data.at(2);
+        ss << "Trem : " << trem << endl;
+        ss << "Avaria : " << avaria << endl;
+        ss << "Tipo : " << tipo << endl;
+        ss << "Data : " << setw(2) << setfill('0') << data.at(0) << "/" << setw(2) << setfill('0') << data.at(1) << "/" << setw(4) << setfill('0') << data.at(2);
+        ss << "Hora : " << setw(2) << setfill('0') << fixed << data.at(3) << ":" << data.at(4);
         return ss.str();
 }
 
 string Manutencao::getInfo() const {
         stringstream ss;
 
-        ss << setw(2) << setfill('0') << fixed << trem << "," << avaria << "," << tipo << "," << data.at(0) << "," << data.at(1) << "," << setw(4) << data.at(2);
+        ss << setw(2) << setfill('0') << fixed << trem << "," << avaria << "," << tipo << "," << data.at(0) << "," << data.at(1) << "," << data.at(2) << data.at(3) << "," << data.at(4);
         return ss.str();
 }
 
@@ -58,7 +57,7 @@ void Manutencao::setAvaria(bool av)
         avaria = av;
 }
 
-array<int,3>  Manutencao::getData() const
+vector<int> Manutencao::getData() const
 {
         return data;
 }

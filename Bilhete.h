@@ -25,6 +25,9 @@ int identificacao;
 //!Inteiro.
 /*!Zona do bilhete.*/
 int zona;
+//!Vector de Inteiros.
+/*!Data de emissao do bilhete.*/
+vector<int> data;
 
 public:
 //! Contrutor que recebe dois inteiros, uma string e um booleano.
@@ -34,8 +37,9 @@ public:
     \param z numero de zonas do bilhete.
     \param p float de preco do bilhete.
     \param t booleano de tipo do bilhete, 0 para ocasional e 1 para assinatura.
+    \param dt vector de inteiros para a data de emissao do bilhete.
  */
-Bilhete(int id, int z, float p, bool t);
+Bilhete(int id, int z, float p, bool t, vector<int> dt);
 
 //! Membro normal.
 /*!
@@ -118,7 +122,7 @@ public:
     \param n string de nome da assinatura.
     \param d inteiro de desconto da assinatura.
  */
-Assinatura(int id, int z, float p, bool t, string n, int d);
+Assinatura(int id, int z, float p, bool t, vector<int> dt, string n, int d);
 virtual string getInformacao() const;
 virtual string getInformacaoTab() const;
 int            getDuracao() const;
@@ -141,7 +145,7 @@ public:
     \param n string de nome da assinatura.
     \param d inteiro de desconto da assinatura.
  */
-Normal(int id, int z, float p, bool t, string n, int d);
+Normal(int id, int z, float p, bool t, vector<int> dt, string n, int d);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -176,7 +180,7 @@ public:
     \param n string de nome da instituicao de ensino do titular da assinatura.
 
  */
-Estudante(int id, int z, float p, bool t, string n, int d, int idd, int cc, string esc);
+Estudante(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc, string esc);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -205,7 +209,7 @@ public:
     \param idd inteiro de idade do titular da assinatura.
     \param cc numero do cartao cidadao do titular  da assinatura.
  */
-Junior(int id, int z, float p, bool t, string n, int d, int idd, int cc);
+Junior(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -234,7 +238,7 @@ public:
     \param idd inteiro de idade do titular da assinatura.
     \param cc numero do cartao cidadao do titular  da assinatura.
  */
-Senior(int id, int z, float p, bool t, string n, int d, int idd, int cc);
+Senior(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -270,7 +274,7 @@ public:
     \param v numero de viagens do bilhete.
     \param vdd booleano de estado de validacao do bilhete.
  */
-Ocasional(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
+Ocasional(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd);
 virtual string getInformacao() const;
 virtual string getInformacaoTab() const;
 int            getDuracao() const;
@@ -295,7 +299,7 @@ public:
     \param v numero de viagens do bilhete.
     \param vdd booleano de estado de validacao do bilhete.
  */
-Diario(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
+Diario(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -317,7 +321,7 @@ public:
     \param v numero de viagens do bilhete.
     \param vdd booleano de estado de validacao do bilhete.
  */
-Unico(int id, int z, float p, bool t, int d, string pt, int v, bool vdd);
+Unico(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd);
 string getInformacao() const;
 string getInformacaoTab() const;
 };

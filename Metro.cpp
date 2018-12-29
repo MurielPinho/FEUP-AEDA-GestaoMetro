@@ -1,4 +1,5 @@
 #include "Metro.h"
+#include <ctime>
 
 Local local;
 vector<int> dataAtual;
@@ -33,10 +34,21 @@ void Metro::readData()
                 dia = stoi(data.at(0));
                 mes = stoi(data.at(1));
                 ano = stoi(data.at(2));
+                getline(tm, line);
+                stringstream lines(line);
+                while(getline(lines,value,':')) {
+                        data.push_back(value);
+                }
+                int hora, min;
+                hora = stoi(data.at(3));
+                min = stoi(data.at(4));
                 dataAtual.push_back(dia);
                 dataAtual.push_back(mes);
                 dataAtual.push_back(ano);
+                dataAtual.push_back(hora);
+                dataAtual.push_back(min);
         }
+        tm.close();
         if(!fs) {
                 cerr << "Arquivo não encontrado!\n";
         }
@@ -116,7 +128,8 @@ void Metro::writeData()
                 out << it.retrieve().getInfo() << endl;
                 it.advance();
         }
-        tm << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2];
+        tm << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2] << endl;
+        tm << setw(2) << setfill('0') << dataAtual[3] << ":" << setw(2) << setfill('0') << dataAtual[4];
         out.close();
         tm.close();
 }
@@ -127,15 +140,28 @@ void Metro::Locais()
         cout << local.getLocais() <<  endl;
 }
 
+string Metro::dataAt()
+{
+        stringstream ss;
+
+        ss << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2];
+        ss << " " << setw(2) << setfill('0') << dataAtual[3] << ":" << setw(2) << setfill('0') << dataAtual[4];
+        return ss.str();
+}
+
 void Metro::alterarData()
 {
-        int dia, mes, ano;
+        int dia, mes, ano, hora, min;
         cout << "Dia : ";
         cin >> dia;
         cout << "Mes : ";
         cin >> mes;
         cout << "Ano : ";
         cin >> ano;
+        cout << "Hora : ";
+        cin >> hora;
+        cout << "Minutos : ";
+        cin >> min;
         if(ano < 0) {
                 cout << "Data Invalida" << endl << endl;
                 return;
@@ -228,11 +254,118 @@ void Metro::alterarData()
                 break;
         }
 
-        cout << "Data Alterada para : " << setw(2) << setfill('0') << dia << "/" << setw(2) << setfill('0') << mes << "/" << setw(4) << setfill('0') << ano << endl << endl;
+        if(((0 > min) && (min > 60)) || ((0 > hora) && (hora > 23))) {
+                cout << "Data Invalida" << endl << endl;
+                return;
+        }
+
+        cout << "Data Alterada para : " << setw(2) << setfill('0') << dia << "/" << setw(2) << setfill('0') << mes << "/" << setw(4) << setfill('0') << ano << endl;
+        cout << setw(2) << setfill('0') << fixed << hora << ":" << min;
 
         dataAtual.at(0) = dia;
         dataAtual.at(1) = mes;
         dataAtual.at(2) = ano;
+        dataAtual.at(3) = hora;
+        dataAtual.at(4) = min;
+}
+
+int Metro::DataDiff(vector<int> d1, vector<int> d2){
+        int t1, t2, ano, mes, dia;
+        switch(d1[1]) {
+        case 1:
+                mes = 31;
+                break;
+        case 2:
+                mes = 59;
+                break;
+        case 3:
+                mes = 90;
+                break;
+        case 4:
+                mes = 120;
+                break;
+        case 5:
+                mes = 151;
+                break;
+        case 6:
+                mes = 181;
+                break;
+        case 7:
+                mes = 212;
+                break;
+        case 8:
+                mes = 243;
+                break;
+        case 9:
+                mes = 273;
+                break;
+        case 10:
+                mes = 304;
+                break;
+        case 11:
+                mes = 334;
+                break;
+        case 12:
+                mes = 365;
+                break;
+        }
+        if(d1[0]%4 == 0) {
+                ano = 366*d1[2];
+                mes++;
+        }
+        else
+                ano = 365*d1[2];
+        dia = d1[0];
+        t1 = ano + mes + dia;
+        switch(d2[1]) {
+        case 1:
+                mes = 31;
+                break;
+        case 2:
+                mes = 59;
+                break;
+        case 3:
+                mes = 90;
+                break;
+        case 4:
+                mes = 120;
+                break;
+        case 5:
+                mes = 151;
+                break;
+        case 6:
+                mes = 181;
+                break;
+        case 7:
+                mes = 212;
+                break;
+        case 8:
+                mes = 243;
+                break;
+        case 9:
+                mes = 273;
+                break;
+        case 10:
+                mes = 304;
+                break;
+        case 11:
+                mes = 334;
+                break;
+        case 12:
+                mes = 365;
+                break;
+        }
+        if(d2[0]%4 == 0) {
+                ano = 366*d2[2];
+                mes++;
+        }
+        else
+                ano = 365*d2[2];
+        dia = d2[0];
+        t2 = ano + mes + dia;
+        t1 = t1*24*60 + d1[3]*60 + d1[4];
+        t2 = t2*24*60 + d2[3]*60 + d2[4];
+        return abs(t1-t2);
 }
 
 void Metro::alterarLocal()
@@ -333,7 +466,7 @@ void Metro::removeFuncionario(){
         system("clear");
 
         Funcionario f("",id,"",-1,"");
-        //Funcionario *fTry;
+        Funcionario *fTry;
 
         BSTItrIn<Funcionario> it(funcionarios);
 

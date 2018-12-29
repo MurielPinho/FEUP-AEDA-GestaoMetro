@@ -9,13 +9,13 @@ using namespace std;
 /*!
    Contem funcoes responsaveis por controlar a gestao dos bilhetes.
  */
-class Venda{
+class Venda {
 public:
 
 //! Membro normal.
 /*!
-  Chama a cadeia de funcoes para a compra do Bilhete.
-*/
+   Chama a cadeia de funcoes para a compra do Bilhete.
+ */
 void     comprarBilhete();
 
 //! Membro normal.
@@ -32,8 +32,8 @@ void     comprarLoja();
 
 //! Membro normal.
 /*!
-  Continuacao da funcao comprarBilhete() para bilhetes ocasionais.
-  \return Retorna um ponteiro de Bilhete do tipo ocasional.
+   Continuacao da funcao comprarBilhete() para bilhetes ocasionais.
+   \return Retorna um ponteiro de Bilhete do tipo ocasional.
  */
 Bilhete* criarOcasional();
 
@@ -75,6 +75,12 @@ void     readData();
     Escreve os bilhetes presentes nos vetores no ficheiro bilhetes.txt .
  */
 void     writeData();
+
+//! Membro normal.
+/*!
+    \return a diferenca de duas datas.
+ */
+int     DataDiff(vector<int> d1, vector<int> d2);
 
 //! Membro normal.
 /*!

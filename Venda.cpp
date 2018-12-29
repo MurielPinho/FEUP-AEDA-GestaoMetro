@@ -30,6 +30,7 @@ using namespace std;
 
 Utentes u;
 Local l;
+vector<int> dataAt;
 
 void Venda::comprarBilhete()
 {
@@ -168,11 +169,11 @@ Bilhete* Venda::criarOcasional()
         {
         case 1:
 
-                B1 = new Unico(id, Z, precos(Z, 1) * v, 1, 2, localAtual(), v, false);
+                B1 = new Unico(id, Z, precos(Z, 1) * v, 1, dataAt, 2, localAtual(), v, false);
                 break;
 
         case 2:
-                B1 = new Diario(id, Z, precos(Z, 2) * v, 1, 24, localAtual(), v, false);
+                B1 = new Diario(id, Z, precos(Z, 2) * v, 1, dataAt, 24, localAtual(), v, false);
                 break;
         }
         return B1;
@@ -220,7 +221,7 @@ Bilhete* Venda::criarAssinatura()
         }
 
         if (i == 1) {
-                B = new Normal(id, Z, precos(Z, 0), 0, nm, 0);
+                B = new Normal(id, Z, precos(Z, 0), 0, dataAt, nm, 0);
         }
         else if ((i >= 2) & (i <= 4)) {
                 do {
@@ -240,7 +241,7 @@ Bilhete* Venda::criarAssinatura()
                         } while (1);
                 } while (cc <= 9999999 || cc > 99999999);
 
-                if (i != 2)
+                if (i != 1)
                 {
                         do {
                                 do {
@@ -266,15 +267,15 @@ Bilhete* Venda::criarAssinatura()
                         cin.clear();
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         system("clear");
-                        B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, nm, 1, idd, cc, esc);
+                        B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, dataAt, nm, 1, idd, cc, esc);
                         break;
 
                 case 3:
-                        B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, nm, 2, idd, cc);
+                        B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, dataAt, nm, 2, idd, cc);
                         break;
 
                 case 4:
-                        B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, nm, 3, idd, cc);
+                        B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, dataAt, nm, 3, idd, cc);
                         break;
                 }
         }
@@ -369,13 +370,45 @@ void Venda::dadosBilhete()
 
 void Venda::readData()
 {
-        ifstream bilhetes, locais;
+        ifstream bilhetes, locais,tm;
         Bilhete *B;
         pontoVenda *P;
 
         bilhetes.open("Bilhetes.txt", ios_base::in);
         locais.open("Locais.txt", ios_base::in);
+        tm.open("Data.txt", ios_base::in);
 
+        if(!tm) {
+                cerr << "Arquivo não encontrado!\n";
+        }
+        else {
+                string line;
+
+                getline(tm, line);
+                stringstream linestream(line);
+                string value;
+                vector<string> data;
+                while(getline(linestream,value,'/')) {
+                        data.push_back(value);
+                }
+                int dia,mes,ano;
+                dia = stoi(data.at(0));
+                mes = stoi(data.at(1));
+                ano = stoi(data.at(2));
+                getline(tm, line);
+                stringstream lines(line);
+                while(getline(lines,value,':')) {
+                        data.push_back(value);
+                }
+                int hora, min;
+                hora = stoi(data.at(3));
+                min = stoi(data.at(4));
+                dataAt.push_back(dia);
+                dataAt.push_back(mes);
+                dataAt.push_back(ano);
+                dataAt.push_back(hora);
+                dataAt.push_back(min);
+        }
         if (!bilhetes)
         {
                 cerr << "Arquivo não encontrado!\n";
@@ -398,36 +431,47 @@ void Venda::readData()
                         float preco;
                         string tipo, nome;
                         int identificacao, zona;
+                        vector<int> dt;
                         tipo          = data.at(0);
                         identificacao = stoi(data.at(1));
                         zona          = stoi(data.at(2));
                         preco         = stof(data.at(3));
+                        dt.push_back(stoi(data.at(5)));
+                        dt.push_back(stoi(data.at(6)));
+                        dt.push_back(stoi(data.at(7)));
+                        dt.push_back(stoi(data.at(8)));
+                        dt.push_back(stoi(data.at(9)));
 
                         if (tipo == "Unico")
                         {
-                                int d, v;
-                                string pt;
-                                bool t, vdd;
-                                t   = 1;
-                                d   = stoi(data.at(5));
-                                pt  = data.at(6);
-                                v   = stoi(data.at(7));
-                                vdd = 0;
-                                B   = new Unico(identificacao, zona, preco, t, d, pt, v, vdd);
-                                u.adicionaOcasional(B);
+                                if(DataDiff(dt,dataAt) < 120) {
+                                        int d, v;
+                                        string pt;
+                                        bool t, vdd;
+                                        t   = 1;
+                                        d   = stoi(data.at(10));
+                                        pt  = data.at(11);
+                                        v   = stoi(data.at(12));
+                                        vdd = 0;
+                                        B   = new Unico(identificacao, zona, preco, t, dataAt, d, pt, v, vdd);
+                                        u.adicionaOcasional(B);
+                                }
                         }
                         else if (tipo == "Diario")
                         {
-                                int d, v;
-                                string pt;
-                                bool t, vdd;
-                                t   = 1;
-                                d   = stoi(data.at(5));
-                                pt  = data.at(6);
-                                v   = stoi(data.at(7));
-                                vdd = 0;
-                                B   = new Diario(identificacao, zona, preco, t, d, pt, v, vdd);
-                                u.adicionaOcasional(B);
+                                if(DataDiff(dt,dataAt) < 1440) {
+                                        int d, v;
+                                        string pt;
+                                        bool t, vdd;
+                                        t   = 1;
+                                        d   = stoi(data.at(10));
+                                        pt  = data.at(11);
+                                        v   = stoi(data.at(12));
+                                        vdd = 0;
+                                        B   = new Diario(identificacao, zona, preco, t, dataAt, d, pt, v, vdd);
+                                        u.adicionaOcasional(B);
+                                }
+
                         }
                         else if (tipo == "Normal")
                         {
@@ -435,9 +479,9 @@ void Venda::readData()
                                 bool t;
                                 string n;
                                 t = 0;
-                                n = data.at(5);
-                                d = stoi(data.at(6));
-                                B = new Normal(identificacao, zona, preco, t,  n, d);
+                                n = data.at(10);
+                                d = stoi(data.at(11));
+                                B = new Normal(identificacao, zona, preco, t, dataAt, n, d);
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Estudante")
@@ -446,12 +490,12 @@ void Venda::readData()
                                 bool t;
                                 string n, esc;
                                 t   = 0;
-                                n   = data.at(5);
-                                d   = stoi(data.at(6));
-                                idd = stoi(data.at(7));
-                                cc  = stoi(data.at(8));
-                                esc = data.at(9);
-                                B   = new Estudante(identificacao, zona, preco, t, n, d, idd, cc, esc);
+                                n   = data.at(10);
+                                d   = stoi(data.at(11));
+                                idd = stoi(data.at(12));
+                                cc  = stoi(data.at(13));
+                                esc = data.at(14);
+                                B   = new Estudante(identificacao, zona, preco, t, dataAt, n, d, idd, cc, esc);
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Junior")
@@ -460,11 +504,11 @@ void Venda::readData()
                                 bool t;
                                 string n;
                                 t   = 0;
-                                n   = data.at(5);
-                                d   = stoi(data.at(6));
-                                idd = stoi(data.at(7));
-                                cc  = stoi(data.at(8));
-                                B   = new Junior(identificacao, zona, preco, t,  n, d, idd, cc);
+                                n   = data.at(10);
+                                d   = stoi(data.at(11));
+                                idd = stoi(data.at(12));
+                                cc  = stoi(data.at(13));
+                                B   = new Junior(identificacao, zona, preco, t, dataAt, n, d, idd, cc);
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Senior")
@@ -473,11 +517,11 @@ void Venda::readData()
                                 bool t;
                                 string n;
                                 t   = 0;
-                                n   = data.at(5);
-                                d   = stoi(data.at(6));
-                                idd = stoi(data.at(7));
-                                cc  = stoi(data.at(8));
-                                B   = new Senior(identificacao, zona, preco, t,  n, d, idd, cc);
+                                n   = data.at(10);
+                                d   = stoi(data.at(11));
+                                idd = stoi(data.at(12));
+                                cc  = stoi(data.at(13));
+                                B   = new Senior(identificacao, zona, preco, t, dataAt, n, d, idd, cc);
                                 u.adicionaAssinatura(B);
                         }
                 }
@@ -544,6 +588,105 @@ void Venda::writeData()
                 Bilhete *B = u.getVecAssinatura(i);
                 out << B->getInformacao() << endl;
         }
+}
+
+int Venda::DataDiff(vector<int> d1, vector<int> d2){
+        int t1, t2, ano, mes, dia;
+        switch(d1[1]) {
+        case 1:
+                mes = 31;
+                break;
+        case 2:
+                mes = 59;
+                break;
+        case 3:
+                mes = 90;
+                break;
+        case 4:
+                mes = 120;
+                break;
+        case 5:
+                mes = 151;
+                break;
+        case 6:
+                mes = 181;
+                break;
+        case 7:
+                mes = 212;
+                break;
+        case 8:
+                mes = 243;
+                break;
+        case 9:
+                mes = 273;
+                break;
+        case 10:
+                mes = 304;
+                break;
+        case 11:
+                mes = 334;
+                break;
+        case 12:
+                mes = 365;
+                break;
+        }
+        if(d1[0]%4 == 0) {
+                ano = 366*d1[2];
+                mes++;
+        }
+        else
+                ano = 365*d1[2];
+        dia = d1[0];
+        t1 = ano + mes + dia;
+        switch(d2[1]) {
+        case 1:
+                mes = 31;
+                break;
+        case 2:
+                mes = 59;
+                break;
+        case 3:
+                mes = 90;
+                break;
+        case 4:
+                mes = 120;
+                break;
+        case 5:
+                mes = 151;
+                break;
+        case 6:
+                mes = 181;
+                break;
+        case 7:
+                mes = 212;
+                break;
+        case 8:
+                mes = 243;
+                break;
+        case 9:
+                mes = 273;
+                break;
+        case 10:
+                mes = 304;
+                break;
+        case 11:
+                mes = 334;
+                break;
+        case 12:
+                mes = 365;
+                break;
+        }
+        if(d2[0]%4 == 0) {
+                ano = 366*d2[2];
+                mes++;
+        }
+        else
+                ano = 365*d2[2];
+        dia = d2[0];
+        t2 = ano + mes + dia;
+        t1 = t1*24*60 + d1[3]*60 + d1[4];
+        t2 = t2*24*60 + d2[3]*60 + d2[4];
+        return abs(t1-t2);
 }
 
 float Venda::precos(int Z, int D)

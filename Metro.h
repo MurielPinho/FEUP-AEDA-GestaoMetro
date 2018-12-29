@@ -58,9 +58,21 @@ void     writeData();
 
 //! Membro normal.
 /*!
+    \return Uma string com a dataAtual.
+ */
+string   dataAt();
+
+//! Membro normal.
+/*!
     Altera a dataAtual.
  */
 void     alterarData();
+
+//! Membro normal.
+/*!
+    \return a diferenca de duas datas.
+ */
+int     DataDiff(vector<int> d1, vector<int> d2);
 
 
 //! Membro normal.
