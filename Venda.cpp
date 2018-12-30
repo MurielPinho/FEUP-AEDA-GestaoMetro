@@ -537,6 +537,15 @@ void Venda::readData()
                                 n = data.at(10);
                                 d = stoi(data.at(11));
                                 B = new Normal(identificacao, zona, preco, t, dt, n, d);
+                                vector<int> dtest;
+                                dtest.push_back(dt[0]);
+                                dtest.push_back(dt[1]+2);
+                                dtest.push_back(dt[2]);
+                                dtest.push_back(dt[3]);
+                                dtest.push_back(dt[4]);
+                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
+
+                                }
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Estudante")
@@ -551,6 +560,15 @@ void Venda::readData()
                                 cc  = stoi(data.at(13));
                                 esc = data.at(14);
                                 B   = new Estudante(identificacao, zona, preco, t, dt, n, d, idd, cc, esc);
+                                vector<int> dtest;
+                                dtest.push_back(dt[0]);
+                                dtest.push_back(dt[1]+2);
+                                dtest.push_back(dt[2]);
+                                dtest.push_back(dt[3]);
+                                dtest.push_back(dt[4]);
+                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
+
+                                }
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Junior")
@@ -564,6 +582,15 @@ void Venda::readData()
                                 idd = stoi(data.at(12));
                                 cc  = stoi(data.at(13));
                                 B   = new Junior(identificacao, zona, preco, t, dt, n, d, idd, cc);
+                                vector<int> dtest;
+                                dtest.push_back(dt[0]);
+                                dtest.push_back(dt[1]+2);
+                                dtest.push_back(dt[2]);
+                                dtest.push_back(dt[3]);
+                                dtest.push_back(dt[4]);
+                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
+
+                                }
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Senior")
@@ -577,6 +604,15 @@ void Venda::readData()
                                 idd = stoi(data.at(12));
                                 cc  = stoi(data.at(13));
                                 B   = new Senior(identificacao, zona, preco, t, dt, n, d, idd, cc);
+                                vector<int> dtest;
+                                dtest.push_back(dt[0]);
+                                dtest.push_back(dt[1]+2);
+                                dtest.push_back(dt[2]);
+                                dtest.push_back(dt[3]);
+                                dtest.push_back(dt[4]);
+                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
+
+                                }
                                 u.adicionaAssinatura(B);
                         }
                 }
@@ -649,45 +685,46 @@ int Venda::DataDiff(vector<int> d1, vector<int> d2){
         int t1, t2, ano, mes, dia;
         switch(d1[1]) {
         case 1:
-                mes = 31;
+                mes = 0;
                 break;
         case 2:
-                mes = 59;
+                mes = 31;
                 break;
         case 3:
-                mes = 90;
+                mes = 59;
                 break;
         case 4:
-                mes = 120;
+                mes = 90;
                 break;
         case 5:
-                mes = 151;
+                mes = 120;
                 break;
         case 6:
-                mes = 181;
+                mes = 151;
                 break;
         case 7:
-                mes = 212;
+                mes = 181;
                 break;
         case 8:
-                mes = 243;
+                mes = 212;
                 break;
         case 9:
-                mes = 273;
+                mes = 243;
                 break;
         case 10:
-                mes = 304;
+                mes = 273;
                 break;
         case 11:
-                mes = 334;
+                mes = 304;
                 break;
         case 12:
-                mes = 365;
+                mes = 334;
                 break;
         }
-        if(d1[0]%4 == 0) {
+        if(d1[2]%4 == 0) {
                 ano = 366*d1[2];
-                mes++;
+                if(mes >= 59)
+                        mes++;
         }
         else
                 ano = 365*d1[2];
@@ -695,45 +732,46 @@ int Venda::DataDiff(vector<int> d1, vector<int> d2){
         t1 = ano + mes + dia;
         switch(d2[1]) {
         case 1:
-                mes = 31;
+                mes = 0;
                 break;
         case 2:
-                mes = 59;
+                mes = 31;
                 break;
         case 3:
-                mes = 90;
+                mes = 59;
                 break;
         case 4:
-                mes = 120;
+                mes = 90;
                 break;
         case 5:
-                mes = 151;
+                mes = 120;
                 break;
         case 6:
-                mes = 181;
+                mes = 151;
                 break;
         case 7:
-                mes = 212;
+                mes = 181;
                 break;
         case 8:
-                mes = 243;
+                mes = 212;
                 break;
         case 9:
-                mes = 273;
+                mes = 243;
                 break;
         case 10:
-                mes = 304;
+                mes = 273;
                 break;
         case 11:
-                mes = 334;
+                mes = 304;
                 break;
         case 12:
-                mes = 365;
+                mes = 334;
                 break;
         }
-        if(d2[0]%4 == 0) {
+        if(d2[2]%4 == 0) {
                 ano = 366*d2[2];
-                mes++;
+                if(mes >= 59)
+                        mes++;
         }
         else
                 ano = 365*d2[2];
@@ -741,7 +779,7 @@ int Venda::DataDiff(vector<int> d1, vector<int> d2){
         t2 = ano + mes + dia;
         t1 = t1*24*60 + d1[3]*60 + d1[4];
         t2 = t2*24*60 + d2[3]*60 + d2[4];
-        return abs(t1-t2);
+        return (t1-t2);
 }
 
 float Venda::precos(int Z, int D)

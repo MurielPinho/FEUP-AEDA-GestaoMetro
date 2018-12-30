@@ -1,16 +1,13 @@
 #include "Manutencao.h"
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <iomanip>
 
 using namespace std;
 
-Manutencao::Manutencao(string tr, string tp, bool av, int dia, int mes, int ano, int hora, int min){
+Manutencao::Manutencao(string tr, string tp, bool av, vector<int> dt, int ddif){
         avaria = av;
         trem = tr;
         tipo = tp;
-        data = {dia,mes,ano,hora,min};
+        data = {dt[0],dt[1],dt[2],dt[3],dt[4]};
+        datadif = ddif;
 }
 
 
@@ -28,7 +25,8 @@ string Manutencao::getInformacao() const {
 string Manutencao::getInfo() const {
         stringstream ss;
 
-        ss << setw(2) << setfill('0') << fixed << trem << "," << avaria << "," << tipo << "," << data.at(0) << "," << data.at(1) << "," << data.at(2) << data.at(3) << "," << data.at(4);
+        ss << trem << "," << avaria << "," << tipo << "," << data.at(0) << "," << data.at(1) << "," << data.at(2) << ",";
+        ss << data.at(3) << "," << data.at(4);
         return ss.str();
 }
 
@@ -60,4 +58,12 @@ void Manutencao::setAvaria(bool av)
 vector<int> Manutencao::getData() const
 {
         return data;
+}
+
+bool Manutencao::operator<(const Manutencao &m1) const {
+        return (datadif < m1.datadif);
+}
+
+bool Manutencao::operator==(const Manutencao &m1) const {
+        return (datadif == m1.datadif);
 }

@@ -2,6 +2,7 @@
 #define METRO_H_
 
 #include "Funcionario.h"
+#include "Manutencao.h"
 #include "Local.h"
 #include "BST.h"
 #include <vector>
@@ -10,6 +11,8 @@
 #include <limits>
 #include <fstream>
 #include <sstream>
+#include <queue>
+#include <string>
 
 using namespace std;
 
@@ -70,6 +73,12 @@ void     alterarData();
 
 //! Membro normal.
 /*!
+    Soma i dias a data d1;
+ */
+vector<int>   SomarTempo(vector<int> d1, int i);
+
+//! Membro normal.
+/*!
     \return a diferenca de duas datas.
  */
 int     DataDiff(vector<int> d1, vector<int> d2);
@@ -92,6 +101,12 @@ string   localAtual();
     Imprime na tela a informacao de todos os pontos de venda.
  */
 void     Locais();
+
+//! Membro normal.
+/*!
+    Adiciona uma nova manutencao a fila de prioridade.
+ */
+void     AddManutencao();
 };
 
 #endif /*METRO_H_*/

@@ -1,0 +1,8 @@
+G,0,Periodica,17,1,2019,15,0
+D,0,Periodica,10,1,2019,15,0
+H,0,Periodica,8,1,2019,16,0
+A,0,Periodica,7,1,2019,18,0
+M,0,Periodica,7,1,2019,13,0
+E,0,Periodica,5,1,2019,19,30
+H,0,Periodica,4,1,2019,19,30
+D,0,Periodica,2,1,2019,18,0

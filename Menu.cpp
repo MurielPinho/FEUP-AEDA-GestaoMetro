@@ -135,7 +135,8 @@ int main() {
                                 system("clear");
                                 m.alterarData();
                                 m.writeData();
-                                v.readTime();
+                                v.writeData();
+                                v.readData();
                                 break;
                         }
                 }
@@ -152,7 +153,8 @@ int main() {
                         cout << "3 - Verificar funcionarios            \n" << endl;
                         cout << "4 - Verificar dados de um funcionario \n" << endl;
                         cout << "5 - Alterar Salario de um funcionario \n" << endl;
-                        cout << "6 - Alterar Data                      \n" << endl;
+                        cout << "6 - Marcar nova Manutencao            \n" << endl;
+                        cout << "7 - Alterar Data                      \n" << endl;
                         cout << "0 - Sair                              \n" << endl;
 
 
@@ -182,8 +184,13 @@ int main() {
                                 break;
                         case 6:
                                 system("clear");
+                                m.AddManutencao();
+                                break;
+                        case 7:
+                                system("clear");
                                 m.alterarData();
                                 m.writeData();
+                                v.writeData();
                                 v.readData();
                                 break;
                         }

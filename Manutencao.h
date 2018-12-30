@@ -1,6 +1,10 @@
 #ifndef MANUTENCAO_H_
 #define MANUTENCAO_H_
 
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <iomanip>
 #include <vector>
 #include <string>
 
@@ -19,11 +23,14 @@ bool avaria;
 /*!Nome do trem.*/
 string trem;
 //!String.
-/*!Tipo de avaria(se existente).*/
+/*!Tipo de manutencao.*/
 string tipo;
 //!Vector de Inteiros.
 /*!Data da manutencao.*/
 vector<int> data;
+//!Inteiro.
+/*!Diferenca de tempo em minutos ate a manutencao.*/
+int datadif;
 
 public:
 
@@ -33,11 +40,10 @@ public:
     \param tr string de nome do trem.
     \param tp string de tipo de avaria.
     \param av booleano de existencia de avaria.
-    \param dia inteiro de dia da manutencao
-    \param mes inteiro de mes da manutencao
-    \param ano inteiro de ano da manutencao
+    \param dt vector<int> da data de marcacao.
+    \param ddif int de tempo restante em minutos para a manutencao.
  */
-Manutencao(string tr, string tp, bool av, int dia, int mes, int ano, int hora, int min);
+Manutencao(string tr, string tp, bool av, vector<int> dt, int ddif);
 
 //! Membro normal.
 /*!
@@ -88,6 +94,18 @@ string getInformacao() const;
    \return Retorna uma string com a informacao da Manutencao escrita na forma de Ficheiro.
  */
 string getInfo() const;
+
+//! Membro normal.
+/*!
+   \return valor booleano resultante da comparacao entre 2 funcionarios.
+ */
+bool operator<(const Manutencao &m1) const;
+
+//! Membro normal.
+/*!
+   \return valor booleano resultante da comparacao entre 2 funcionarios.
+ */
+bool operator==(const Manutencao &m1) const;
 
 
 };

@@ -90,12 +90,6 @@ void     writeData();
 
 //! Membro normal.
 /*!
-    Atualiza o tempo DataAt.
- */
-void     readTime();
-
-//! Membro normal.
-/*!
     \return a diferenca de duas datas.
  */
 int     DataDiff(vector<int> d1, vector<int> d2);
