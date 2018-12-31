@@ -107,6 +107,18 @@ void     Locais();
     Adiciona uma nova manutencao a fila de prioridade.
  */
 void     AddManutencao();
+
+//! Membro normal.
+/*!
+    Adiciona avaria a marcacao de manutencao.
+ */
+void     setAv();
+
+//! Membro normal.
+/*!
+    Imprime a fila de manutencoes.
+ */
+void PrintFila();
 };
 
 #endif /*METRO_H_*/

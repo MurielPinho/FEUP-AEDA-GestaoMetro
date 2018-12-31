@@ -17,8 +17,8 @@ string Manutencao::getInformacao() const {
         ss << "Trem : " << trem << endl;
         ss << "Avaria : " << avaria << endl;
         ss << "Tipo : " << tipo << endl;
-        ss << "Data : " << setw(2) << setfill('0') << data.at(0) << "/" << setw(2) << setfill('0') << data.at(1) << "/" << setw(4) << setfill('0') << data.at(2);
-        ss << "Hora : " << setw(2) << setfill('0') << fixed << data.at(3) << ":" << data.at(4);
+        ss << "Data : " << setw(2) << setfill('0') << data.at(0) << "/" << setw(2) << setfill('0') << data.at(1) << "/" << setw(4) << setfill('0') << data.at(2) << endl;
+        ss << "Hora : " << setw(2) << setfill('0') << data.at(3) << ":" << setw(2) << setfill('0') << data.at(4);
         return ss.str();
 }
 
@@ -55,15 +55,32 @@ void Manutencao::setAvaria(bool av)
         avaria = av;
 }
 
+int Manutencao::getDdif() const
+{
+        return datadif;
+}
+
 vector<int> Manutencao::getData() const
 {
         return data;
 }
 
+void Manutencao::setData(vector<int> dt)
+{
+        data[0] = dt[0];
+        data[1] = dt[1];
+        data[2] = dt[2];
+        data[3] = dt[3];
+        data[4] = dt[4];
+}
+
 bool Manutencao::operator<(const Manutencao &m1) const {
-        return (datadif < m1.datadif);
+        if(datadif == m1.datadif)
+                return m1.avaria;
+        else
+                return (datadif > m1.datadif);
 }
 
 bool Manutencao::operator==(const Manutencao &m1) const {
-        return (datadif == m1.datadif);
+        return ((datadif == m1.datadif) && (avaria == m1.avaria));
 }

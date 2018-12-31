@@ -671,7 +671,23 @@ void Venda::writeData()
         for (int i = 0; i < numO; i++)
         {
                 Bilhete *B = u.getVecOcasional(i);
-                out << B->getInformacao() << endl;
+                int v = B->getViagens();
+                bool vdd = B->getValidade();
+                if(B->getDuracao() == 2) {
+                        if((DataDiff(B->getData(),dataAt) > 120) && (vdd = true)) {
+                                B->setViagens(v--);
+                                B->Validacao(false);
+                        }
+                }
+                else {
+                        if((DataDiff(B->getData(),dataAt) > 1440) && (vdd = true)) {
+                                B->setViagens(v--);
+                                B->Validacao(false);
+                        }
+                }
+                if(B->getViagens() > 0) {
+                        out << B->getInformacao() << endl;
+                }
         }
 
         for (int i = 0; i < numA; i++)

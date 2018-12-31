@@ -171,6 +171,8 @@ void Metro::writeData()
 {
         ofstream out, tm, mn;
 
+        Manutencao *M;
+
         mn.open("Manutencao.txt");
         out.open("Funcionarios.txt");
         tm.open("Data.txt");
@@ -182,6 +184,18 @@ void Metro::writeData()
         tm << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2] << endl;
         tm << setw(2) << setfill('0') << dataAtual[3] << ":" << setw(2) << setfill('0') << dataAtual[4];
         while(!Fila.empty()) {
+                vector<int> dt = Fila.top().getData();
+                int ddif = DataDiff(dt, dataAtual), i = 14;
+                if(ddif <= 0) {
+                        ddif = abs(ddif);
+                        while(i < ddif) {
+                                i += 14;
+                        }
+                        dt = {SomarTempo(dt,i)[0],SomarTempo(dt,i)[1],SomarTempo(dt,i)[2],SomarTempo(dt,i)[3],SomarTempo(dt,i)[4]};
+                        M = new Manutencao(Fila.top().getTrem(), "Periodica", 0, dt, DataDiff(dt,dataAtual));
+                        mn << M->getInfo() << endl;
+                        Fila.pop();
+                }
                 mn << Fila.top().getInfo() << endl;
                 Fila.pop();
         }
@@ -479,6 +493,10 @@ vector<int> Metro::SomarTempo(vector<int> d1, int i){
                 ano++;
                 i-= 365;
         }
+        if (i == 0) {
+                ano--;
+                i = 365;
+        }
         while(true) {
                 mes = 31;
                 if(i < mes) {
@@ -568,7 +586,7 @@ vector<int> Metro::SomarTempo(vector<int> d1, int i){
                         break;
                 }
                 mes = 365;
-                if(i < mes) {
+                if(i <= mes) {
                         i -= 334;
                         mes = 12;
                         break;
@@ -796,7 +814,7 @@ void Metro::AddManutencao(){
                 if (control == 's')
                 {
                         av = true;
-                        cout << "Tipo : ";
+                        cout << "Tipo de Avaria : ";
                         cin.clear();
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         getline(cin, tp);
@@ -912,4 +930,70 @@ void Metro::AddManutencao(){
         dt.push_back(min);
         Manutencao m(trem.str(), tp, av, dt, DataDiff(dt,dataAtual));
         Fila.push(m);
+}
+
+void Metro::setAv(){
+        char tr;
+        stringstream trem;
+        string tp;
+        bool find = false;
+        vector<Manutencao> copy;
+
+        do {
+                cout << "Trem : (A/Z) ";
+                cin >> tr;
+        } while(!isalpha(tr));
+        tr = toupper(tr);
+        trem << tr;
+
+        system("clear");
+
+        while(!Fila.empty()) {
+                if(Fila.top().getTrem() == trem.str()) {
+                        find = true;
+                        break;
+                }
+                copy.push_back(Fila.top());
+                Fila.pop();
+        }
+        if(find == false) {
+                cout << "Trem não encontrado" << endl << endl;
+                for(unsigned int i = 0; i < copy.size(); i++) {
+                        Fila.push(copy[i]);
+                }
+                return;
+        }
+
+        Manutencao M = Fila.top();
+        Fila.pop();
+
+        for(unsigned int i = 0; i < copy.size(); i++) {
+                Fila.push(copy[i]);
+        }
+
+        cout << "Tipo de Avaria : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(cin, tp);
+        system("clear");
+
+        vector<int> dt = M.getData();
+        dt = SomarTempo(dt, -10);
+        M.setData(dt);
+        M.setAvaria(true);
+        M.setTipo(tp);
+
+        Fila.push(M);
+}
+
+void Metro::PrintFila(){
+        vector<Manutencao> copy;
+        while(!Fila.empty()) {
+                cout << Fila.top().getInformacao() << endl << endl;
+                copy.push_back(Fila.top());
+                Fila.pop();
+        }
+        for(unsigned int i = 0; i < copy.size(); i++) {
+                Fila.push(copy[i]);
+        }
 }

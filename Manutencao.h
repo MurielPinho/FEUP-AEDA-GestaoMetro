@@ -66,6 +66,18 @@ void setTipo(string tp);
 
 //! Membro normal.
 /*!
+   Altera a data da manutencao
+ */
+void setData(vector<int> dt);
+
+//! Membro normal.
+/*!
+   \return Retorna a diferenca de tempo ate a manutencao.
+ */
+int   getDdif() const;
+
+//! Membro normal.
+/*!
    \return Retorna a data da manutencao.
  */
 vector<int> getData() const;
@@ -97,13 +109,13 @@ string getInfo() const;
 
 //! Membro normal.
 /*!
-   \return valor booleano resultante da comparacao entre 2 funcionarios.
+   \return valor booleano resultante da comparacao entre 2 manutencoes.
  */
 bool operator<(const Manutencao &m1) const;
 
 //! Membro normal.
 /*!
-   \return valor booleano resultante da comparacao entre 2 funcionarios.
+   \return valor booleano resultante da comparacao entre 2 manutencoes.
  */
 bool operator==(const Manutencao &m1) const;
 

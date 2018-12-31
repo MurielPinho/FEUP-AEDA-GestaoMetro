@@ -38,9 +38,15 @@ public:
     \param z numero de zonas do bilhete.
     \param p float de preco do bilhete.
     \param t booleano de tipo do bilhete, 0 para ocasional e 1 para assinatura.
-    \param dt vector de inteiros para a data de emissao do bilhete.
+    \param dt vector de inteiros para a data.
  */
 Bilhete(int id, int z, float p, bool t, vector<int> dt);
+
+//! Membro normal.
+/*!
+   \return Retorna data.
+ */
+vector<int> getData() const;
 
 //! Membro normal.
 /*!
@@ -95,6 +101,25 @@ virtual int    getDesconto() const;
    \return Retorna o nome do dono do bilhete, caso este parametro nao exista, retorna string vazia.
  */
 virtual string getNome() const;
+
+//! Membro virtual.
+/*!
+   \return Retorna a validacao do bilhete, caso este parametro nao exista, retorna false.
+ */
+virtual bool   getValidade() const;
+
+//! Membro virtual.
+/*!
+   \return Retorna o numero de viagens do bilhete, caso este parametro nao exista, retorna 0.
+ */
+virtual int   getViagens() const;
+
+//! Membro virtual.
+/*!
+   Altera o numero de viagens, caso este parametro nao exista, nao faz nada.
+ */
+virtual void   setViagens(int v);
+
 //! Membro virtual.
 /*!
    Renova os bilhetes de tipo Assinatura.
@@ -293,6 +318,9 @@ virtual string getInformacaoTab() const;
 int            getDuracao() const;
 string         getNome() const;
 int            getDesconto() const;
+bool           getValidade() const;
+int            getViagens() const;
+void           setViagens(int v);
 void           Validacao(bool vdd);
 };
 // !  Classe Diario.

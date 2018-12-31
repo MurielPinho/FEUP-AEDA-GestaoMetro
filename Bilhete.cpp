@@ -32,6 +32,25 @@ string Bilhete::getInformacaoTab() const {
         return ss.str();
 }
 
+vector<int> Bilhete::getData() const
+{
+        return data;
+}
+
+bool Bilhete::getValidade() const
+{
+        return false;
+}
+
+int Bilhete::getViagens() const
+{
+        return 0;
+}
+
+void Bilhete::setViagens(int v){
+        return;
+}
+
 float Bilhete::getPreco() const
 {
         return preco;
@@ -226,6 +245,21 @@ Ocasional::Ocasional(int id, int z, float p, bool t, vector<int> dt, int d, stri
 void Ocasional::Validacao(bool vdd){
         validado = vdd;
 }
+
+bool Ocasional::getValidade() const
+{
+        return validado;
+}
+
+int Ocasional::getViagens() const
+{
+        return viagens;
+}
+
+void Ocasional::setViagens(int v){
+        viagens = v;
+}
+
 
 string Ocasional::getInformacao() const
 {

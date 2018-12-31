@@ -33,7 +33,7 @@ int main() {
         m.readData();
 
         do {
-                if (((op == 1) && ((option >= 1) && (option <= 8))) || ((op == 2) && ((option >= 1) && (option <= 6))))
+                if (((op == 1) && ((option >= 1) && (option <= 8))) || ((op == 2) && ((option >= 1) && (option <= 9))))
                 {
                         do {
                                 cout << "Deseja realizar outra operação ? (s/n)" << endl;
@@ -137,6 +137,7 @@ int main() {
                                 m.writeData();
                                 v.writeData();
                                 v.readData();
+                                m.readData();
                                 break;
                         }
                 }
@@ -150,11 +151,13 @@ int main() {
                         cout << "\nEscolha a operação desejada         \n" << endl;
                         cout << "1 - Contratar Funcionario             \n" << endl;
                         cout << "2 - Demitir Funcionario               \n" << endl;
-                        cout << "3 - Verificar funcionarios            \n" << endl;
-                        cout << "4 - Verificar dados de um funcionario \n" << endl;
-                        cout << "5 - Alterar Salario de um funcionario \n" << endl;
+                        cout << "3 - Verificar Funcionarios            \n" << endl;
+                        cout << "4 - Verificar dados de um Funcionario \n" << endl;
+                        cout << "5 - Alterar salario de um Funcionario \n" << endl;
                         cout << "6 - Marcar nova Manutencao            \n" << endl;
-                        cout << "7 - Alterar Data                      \n" << endl;
+                        cout << "7 - Mudanca da manutencao por avaria  \n" << endl;
+                        cout << "8 - Imprimir ordem de manutencoes     \n" << endl;
+                        cout << "9 - Alterar Data                      \n" << endl;
                         cout << "0 - Sair                              \n" << endl;
 
 
@@ -188,10 +191,19 @@ int main() {
                                 break;
                         case 7:
                                 system("clear");
+                                m.setAv();
+                                break;
+                        case 8:
+                                system("clear");
+                                m.PrintFila();
+                                break;
+                        case 9:
+                                system("clear");
                                 m.alterarData();
                                 m.writeData();
                                 v.writeData();
                                 v.readData();
+                                m.readData();
                                 break;
                         }
 
