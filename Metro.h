@@ -79,7 +79,7 @@ vector<int>   SomarTempo(vector<int> d1, int i);
 
 //! Membro normal.
 /*!
-    \return a diferenca de duas datas.
+    \return a diferenca de duas datas em dias.
  */
 int     DataDiff(vector<int> d1, vector<int> d2);
 

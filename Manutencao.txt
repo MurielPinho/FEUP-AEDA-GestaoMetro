@@ -1,5 +1,7 @@
-A,1,Eletrica,1,1,2019,18,0
-E,1,Vazamento,3,1,2019,19,30
-G,0,Periodica,4,1,2019,15,0
-M,0,Periodica,5,1,2019,13,0
-H,0,Periodica,8,1,2019,16,0
+E,0,Periodica,2,1,2020,19,30
+M,0,Periodica,4,1,2020,13,0
+H,0,Periodica,7,1,2020,16,0
+A,0,Periodica,12,1,2020,23,5
+G,0,Periodica,12,1,2020,23,5
+E,0,Periodica,12,3,2064,19,30
+E,0,Periodica,18,7,2064,19,30

@@ -30,7 +30,7 @@ using namespace std;
 
 Utentes u;
 Local l;
-vector<int> dataAt;
+vector<int> dataAt = {0,0,0,0,0};
 
 void Venda::comprarBilhete()
 {
@@ -446,11 +446,11 @@ void Venda::readData()
                 int hora, min;
                 hora = stoi(data.at(3));
                 min = stoi(data.at(4));
-                dataAt.push_back(dia);
-                dataAt.push_back(mes);
-                dataAt.push_back(ano);
-                dataAt.push_back(hora);
-                dataAt.push_back(min);
+                dataAt[0] = dia;
+                dataAt[1] = mes;
+                dataAt[2] = ano;
+                dataAt[3] = hora,
+                dataAt[4] = min;
         }
         if (!bilhetes)
         {
@@ -491,7 +491,7 @@ void Venda::readData()
                                 v   = stoi(data.at(12));
                                 bool vdd;
                                 vdd = stoi(data.at(13));
-                                if((DataDiff(dt,dataAt) > 120) && (vdd = true)) {
+                                if((abs(DataDiff(dt,dataAt)) > 120) && (vdd = true)) {
                                         v--;
                                         vdd = false;
                                 }
@@ -512,7 +512,7 @@ void Venda::readData()
                                 v   = stoi(data.at(12));
                                 bool vdd;
                                 vdd = stoi(data.at(13));
-                                if((DataDiff(dt,dataAt) > 1440) && (vdd = true)) {
+                                if((abs(DataDiff(dt,dataAt)) > 1440) && (vdd = true)) {
                                         v--;
                                         vdd = false;
                                 }
@@ -673,19 +673,26 @@ void Venda::writeData()
                 Bilhete *B = u.getVecOcasional(i);
                 int v = B->getViagens();
                 bool vdd = B->getValidade();
+                vector<int> dt = {0,0,0,0,0};
+                dt[0] = B->getData()[0];
+                dt[1] = B->getData()[1];
+                dt[2] = B->getData()[2];
+                dt[3] = B->getData()[3];
+                dt[4] = B->getData()[4];
+
                 if(B->getDuracao() == 2) {
-                        if((DataDiff(B->getData(),dataAt) > 120) && (vdd = true)) {
+                        if((abs(DataDiff(dt,dataAt)) > 120) && (vdd = true)) {
                                 B->setViagens(v--);
                                 B->Validacao(false);
                         }
                 }
                 else {
-                        if((DataDiff(B->getData(),dataAt) > 1440) && (vdd = true)) {
+                        if((abs(DataDiff(dt,dataAt)) > 1440) && (vdd = true)) {
                                 B->setViagens(v--);
                                 B->Validacao(false);
                         }
                 }
-                if(B->getViagens() > 0) {
+                if(v > 0) {
                         out << B->getInformacao() << endl;
                 }
         }

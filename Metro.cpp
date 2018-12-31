@@ -186,7 +186,7 @@ void Metro::writeData()
         while(!Fila.empty()) {
                 vector<int> dt = Fila.top().getData();
                 int ddif = DataDiff(dt, dataAtual), i = 14;
-                if(ddif <= 0) {
+                if(ddif < 0) {
                         ddif = abs(ddif);
                         while(i < ddif) {
                                 i += 14;
@@ -978,8 +978,9 @@ void Metro::setAv(){
         system("clear");
 
         vector<int> dt = M.getData();
-        dt = SomarTempo(dt, -10);
-        M.setData(dt);
+        int ddif = DataDiff(dt,dataAtual);
+        if(ddif <= 7)
+                M.setData(dataAtual);
         M.setAvaria(true);
         M.setTipo(tp);
 
