@@ -126,8 +126,6 @@ void     removeBilhete();
  */
 float precos(int Z, int D);
 
-
 };
-
 
 #endif /*VENDA_H_*/

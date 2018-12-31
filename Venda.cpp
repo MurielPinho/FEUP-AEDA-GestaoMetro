@@ -27,7 +27,6 @@ using namespace std;
 // void     Locais();
 // void     removeBilhete();
 
-
 Utentes u;
 Local l;
 vector<int> dataAt = {0,0,0,0,0};
@@ -491,9 +490,11 @@ void Venda::readData()
                                 v   = stoi(data.at(12));
                                 bool vdd;
                                 vdd = stoi(data.at(13));
-                                if((abs(DataDiff(dt,dataAt)) > 120) && (vdd = true)) {
-                                        v--;
-                                        vdd = false;
+                                if(vdd == true) {
+                                        if (abs(DataDiff(dt,dataAt)) > 120) {
+                                                v--;
+                                                vdd = false;
+                                        }
                                 }
                                 if(v > 0) {
                                         int d;
@@ -512,9 +513,11 @@ void Venda::readData()
                                 v   = stoi(data.at(12));
                                 bool vdd;
                                 vdd = stoi(data.at(13));
-                                if((abs(DataDiff(dt,dataAt)) > 1440) && (vdd = true)) {
-                                        v--;
-                                        vdd = false;
+                                if(vdd == true) {
+                                        if(abs(DataDiff(dt,dataAt)) > 1440) {
+                                                v--;
+                                                vdd = false;
+                                        }
                                 }
                                 if(v > 0) {
                                         int d;
@@ -538,13 +541,22 @@ void Venda::readData()
                                 d = stoi(data.at(11));
                                 B = new Normal(identificacao, zona, preco, t, dt, n, d);
                                 vector<int> dtest;
+                                int month,year;
                                 dtest.push_back(dt[0]);
-                                dtest.push_back(dt[1]+2);
-                                dtest.push_back(dt[2]);
+                                month = dt[1];
+                                year = dt[2];
+                                if(month < 11) {
+                                        month += 2;
+                                }
+                                else {
+                                        month -= 10;
+                                        year++;
+                                }
+                                dtest.push_back(month);
+                                dtest.push_back(year);
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -561,13 +573,23 @@ void Venda::readData()
                                 esc = data.at(14);
                                 B   = new Estudante(identificacao, zona, preco, t, dt, n, d, idd, cc, esc);
                                 vector<int> dtest;
+                                int month,year;
                                 dtest.push_back(dt[0]);
-                                dtest.push_back(dt[1]+2);
-                                dtest.push_back(dt[2]);
+                                month = dt[1];
+                                year = dt[2];
+                                if(month < 11) {
+                                        month += 2;
+                                }
+                                else {
+                                        month -= 10;
+                                        year++;
+                                }
+                                dtest.push_back(month);
+                                dtest.push_back(year);
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
+                                T.adicionaTabH(B);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -583,9 +605,19 @@ void Venda::readData()
                                 cc  = stoi(data.at(13));
                                 B   = new Junior(identificacao, zona, preco, t, dt, n, d, idd, cc);
                                 vector<int> dtest;
+                                int month,year;
                                 dtest.push_back(dt[0]);
-                                dtest.push_back(dt[1]+2);
-                                dtest.push_back(dt[2]);
+                                month = dt[1];
+                                year = dt[2];
+                                if(month < 11) {
+                                        month += 2;
+                                }
+                                else {
+                                        month -= 10;
+                                        year++;
+                                }
+                                dtest.push_back(month);
+                                dtest.push_back(year);
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
@@ -605,9 +637,19 @@ void Venda::readData()
                                 cc  = stoi(data.at(13));
                                 B   = new Senior(identificacao, zona, preco, t, dt, n, d, idd, cc);
                                 vector<int> dtest;
+                                int month,year;
                                 dtest.push_back(dt[0]);
-                                dtest.push_back(dt[1]+2);
-                                dtest.push_back(dt[2]);
+                                month = dt[1];
+                                year = dt[2];
+                                if(month < 11) {
+                                        month += 2;
+                                }
+                                else {
+                                        month -= 10;
+                                        year++;
+                                }
+                                dtest.push_back(month);
+                                dtest.push_back(year);
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
@@ -667,7 +709,6 @@ void Venda::writeData()
         out.open("Bilhetes.txt");
         int numO = u.numOcasionais();
         int numA = u.numAssinaturas();
-
         for (int i = 0; i < numO; i++)
         {
                 Bilhete *B = u.getVecOcasional(i);
@@ -679,7 +720,6 @@ void Venda::writeData()
                 dt[2] = B->getData()[2];
                 dt[3] = B->getData()[3];
                 dt[4] = B->getData()[4];
-
                 if(B->getDuracao() == 2) {
                         if((abs(DataDiff(dt,dataAt)) > 120) && (vdd = true)) {
                                 B->setViagens(v--);
@@ -702,6 +742,7 @@ void Venda::writeData()
                 Bilhete *B = u.getVecAssinatura(i);
                 out << B->getInformacao() << endl;
         }
+        out.close();
 }
 
 int Venda::DataDiff(vector<int> d1, vector<int> d2){
