@@ -1,13 +1,5 @@
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <limits>
-
-#include "Bilhete.h"
-#include "Utentes.h"
 #include "Local.h"
+#include <unordered_set>
 
 using namespace std;
 
@@ -27,6 +19,19 @@ using namespace std;
 // void     Locais();
 // void     removeBilhete();
 
+struct strHash {
+        bool operator() (const Bilhete &b1, const Bilhete &b2) const {
+                return (b1.getIdentificacao() == b2.getIdentificacao());
+        }
+
+        int operator() (const Bilhete &b1) const {
+                return b1.getIdentificacao();
+        }
+};
+
+typedef unordered_set<Bilhete, strHash, strHash> TabH;
+
+TabH AssInativas;
 Utentes u;
 Local l;
 vector<int> dataAt = {0,0,0,0,0};
@@ -309,6 +314,12 @@ void Venda::renovarAss() {
         }
 
         B->Renovar(dataAt);
+
+
+        auto it = AssInativas.find(*B);
+        if(it == AssInativas.end())
+                return;
+        AssInativas.erase(it);
 }
 
 void Venda::validar() {
@@ -557,6 +568,7 @@ void Venda::readData()
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
+                                        AssInativas.insert(*B);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -588,8 +600,9 @@ void Venda::readData()
                                 dtest.push_back(year);
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
-                                T.adicionaTabH(B);
+                                AssInativas.insert(*B);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
+                                        AssInativas.insert(*B);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -621,7 +634,7 @@ void Venda::readData()
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-
+                                        AssInativas.insert(*B);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -653,7 +666,7 @@ void Venda::readData()
                                 dtest.push_back(dt[3]);
                                 dtest.push_back(dt[4]);
                                 if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-
+                                        AssInativas.insert(*B);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -704,11 +717,19 @@ void Venda::readData()
 
 void Venda::writeData()
 {
-        ofstream out;
+        ofstream out, hash;
 
+        hash.open("Hash.txt");
         out.open("Bilhetes.txt");
         int numO = u.numOcasionais();
         int numA = u.numAssinaturas();
+
+        auto it = AssInativas.begin();
+        while(it != AssInativas.end()) {
+                hash << (*it).getInformacao() << endl;
+                it++;
+        }
+
         for (int i = 0; i < numO; i++)
         {
                 Bilhete *B = u.getVecOcasional(i);
@@ -743,6 +764,7 @@ void Venda::writeData()
                 out << B->getInformacao() << endl;
         }
         out.close();
+        hash.close();
 }
 
 int Venda::DataDiff(vector<int> d1, vector<int> d2){
