@@ -2,24 +2,19 @@
 
 using namespace std;
 
-Bilhete::Bilhete(int id, int z, float p, bool t, vector<int> dt)
+Bilhete::Bilhete(int id, int z, float p, bool t, time_t dt)
 {
         identificacao = id;
         preco         = p;
         tipo          = t;
         zona          = z;
-        data.push_back(dt.at(0));
-        data.push_back(dt.at(1));
-        data.push_back(dt.at(2));
-        data.push_back(dt.at(3));
-        data.push_back(dt.at(4));
+        data = dt;
 }
 
 string Bilhete::getInformacao() const {
         stringstream ss;
 
-        ss << setprecision(2) << fixed << identificacao << "," << zona << "," <<  preco << "," << tipo;
-        ss << "," << data.at(0) << "," << data.at(1) << "," << data.at(2) << "," << data.at(3) << "," << data.at(4);
+        ss << setprecision(2) << fixed << identificacao << "," << zona << "," <<  preco << "," << tipo << "," << data;
         return ss.str();
 }
 
@@ -32,7 +27,7 @@ string Bilhete::getInformacaoTab() const {
         return ss.str();
 }
 
-vector<int> Bilhete::getData() const
+time_t Bilhete::getData() const
 {
         return data;
 }
@@ -86,13 +81,13 @@ string Bilhete::getNome() const
         return "";
 }
 
-void Bilhete::Renovar(vector<int> dt){
+void Bilhete::Renovar(){
 }
 
 void Bilhete::Validacao(bool vdd){
 }
 
-Assinatura::Assinatura(int id, int z, float p, bool t, vector<int> dt, string n, int d) : Bilhete(id, z, p, t, dt)
+Assinatura::Assinatura(int id, int z, float p, bool t, time_t dt, string n, int d) : Bilhete(id, z, p, t, dt)
 {
         nome     = n;
         desconto = d;
@@ -130,15 +125,11 @@ string Assinatura::getInformacaoTab() const
         return ss.str();
 }
 
-void Assinatura::Renovar(vector<int> dt){
-        data.at(0) = dt.at(0);
-        data.at(1) = dt.at(1);
-        data.at(2) = dt.at(2);
-        data.at(3) = dt.at(3);
-        data.at(4) = dt.at(4);
+void Assinatura::Renovar(){
+        time(&data);
 }
 
-Normal::Normal(int id, int z, float p, bool t, vector<int> dt, string n, int d) : Assinatura(id, z, p, t, dt, n, d)
+Normal::Normal(int id, int z, float p, bool t, time_t dt, string n, int d) : Assinatura(id, z, p, t, dt, n, d)
 {
 }
 
@@ -158,7 +149,7 @@ string Normal::getInformacaoTab() const {
         return ss.str();
 }
 
-Estudante::Estudante(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc, string esc) : Assinatura(id,
+Estudante::Estudante(int id, int z, float p, bool t, time_t dt, string n, int d, int idd, int cc, string esc) : Assinatura(id,
                                                                                                                                 z,
                                                                                                                                 p,
                                                                                                                                 t,
@@ -188,7 +179,7 @@ string Estudante::getInformacaoTab() const {
         return ss.str();
 }
 
-Junior::Junior(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc) : Assinatura(id, z, p, t, dt, n, d)
+Junior::Junior(int id, int z, float p, bool t, time_t dt, string n, int d, int idd, int cc) : Assinatura(id, z, p, t, dt, n, d)
 {
         idade = idd;
         CC    = cc;
@@ -211,7 +202,7 @@ string Junior::getInformacaoTab() const {
         return ss.str();
 }
 
-Senior::Senior(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc) : Assinatura(id, z, p, t, dt, n, d)
+Senior::Senior(int id, int z, float p, bool t, time_t dt, string n, int d, int idd, int cc) : Assinatura(id, z, p, t, dt, n, d)
 {
         idade = idd;
         CC    = cc;
@@ -234,7 +225,7 @@ string Senior::getInformacaoTab() const {
         return ss.str();
 }
 
-Ocasional::Ocasional(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd) : Bilhete(id, z, p, t, dt)
+Ocasional::Ocasional(int id, int z, float p, bool t, time_t dt, int d, string pt, int v, bool vdd) : Bilhete(id, z, p, t, dt)
 {
         duracao  = d;
         partida  = pt;
@@ -293,7 +284,7 @@ string Ocasional::getNome() const
         return "";
 }
 
-Diario::Diario(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd) : Ocasional(id, z, p, t, dt, d, pt, v,
+Diario::Diario(int id, int z, float p, bool t, time_t dt, int d, string pt, int v, bool vdd) : Ocasional(id, z, p, t, dt, d, pt, v,
                                                                                                               vdd)
 {
 }
@@ -317,7 +308,7 @@ string Diario::getInformacaoTab() const
         return ss.str();
 }
 
-Unico::Unico(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd) : Ocasional(id, z, p, t, dt, d, pt, v, vdd)
+Unico::Unico(int id, int z, float p, bool t, time_t dt, int d, string pt, int v, bool vdd) : Ocasional(id, z, p, t, dt, d, pt, v, vdd)
 {
 }
 

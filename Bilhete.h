@@ -26,9 +26,9 @@ int identificacao;
 //!Inteiro.
 /*!Zona do bilhete.*/
 int zona;
-//!Vector de Inteiros.
+//!Inteiro no formato time_t contendo a data.
 /*!Data de emissao do bilhete.*/
-vector<int> data;
+time_t data;
 
 public:
 //! Contrutor que recebe dois inteiros, uma string e um booleano.
@@ -40,13 +40,13 @@ public:
     \param t booleano de tipo do bilhete, 0 para ocasional e 1 para assinatura.
     \param dt vector de inteiros para a data.
  */
-Bilhete(int id, int z, float p, bool t, vector<int> dt);
+Bilhete(int id, int z, float p, bool t, time_t dt);
 
 //! Membro normal.
 /*!
    \return Retorna data.
  */
-vector<int> getData() const;
+time_t getData() const;
 
 //! Membro normal.
 /*!
@@ -124,7 +124,7 @@ virtual void   setViagens(int v);
 /*!
    Renova os bilhetes de tipo Assinatura.
  */
-virtual void Renovar(vector<int> dt);
+virtual void Renovar();
 //! Membro virtual.
 /*!
    Altera a validacao dos bilhetes.
@@ -159,13 +159,13 @@ public:
     \param n string de nome da assinatura.
     \param d inteiro de desconto da assinatura.
  */
-Assinatura(int id, int z, float p, bool t, vector<int> dt, string n, int d);
+Assinatura(int id, int z, float p, bool t, time_t dt, string n, int d);
 virtual string getInformacao() const;
 virtual string getInformacaoTab() const;
 int            getDuracao() const;
 int            getDesconto() const;
 string         getNome() const;
-void           Renovar(vector<int> dt);
+void           Renovar();
 };
 // !  Classe Normal.
 /*!
@@ -183,7 +183,7 @@ public:
     \param n string de nome da assinatura.
     \param d inteiro de desconto da assinatura.
  */
-Normal(int id, int z, float p, bool t, vector<int> dt, string n, int d);
+Normal(int id, int z, float p, bool t, time_t dt, string n, int d);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -218,7 +218,7 @@ public:
     \param n string de nome da instituicao de ensino do titular da assinatura.
 
  */
-Estudante(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc, string esc);
+Estudante(int id, int z, float p, bool t, time_t dt, string n, int d, int idd, int cc, string esc);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -247,7 +247,7 @@ public:
     \param idd inteiro de idade do titular da assinatura.
     \param cc numero do cartao cidadao do titular  da assinatura.
  */
-Junior(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc);
+Junior(int id, int z, float p, bool t, time_t dt, string n, int d, int idd, int cc);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -276,7 +276,7 @@ public:
     \param idd inteiro de idade do titular da assinatura.
     \param cc numero do cartao cidadao do titular  da assinatura.
  */
-Senior(int id, int z, float p, bool t, vector<int> dt, string n, int d, int idd, int cc);
+Senior(int id, int z, float p, bool t, time_t dt, string n, int d, int idd, int cc);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -312,7 +312,7 @@ public:
     \param v numero de viagens do bilhete.
     \param vdd booleano de estado de validacao do bilhete.
  */
-Ocasional(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd);
+Ocasional(int id, int z, float p, bool t, time_t dt, int d, string pt, int v, bool vdd);
 virtual string getInformacao() const;
 virtual string getInformacaoTab() const;
 int            getDuracao() const;
@@ -341,7 +341,7 @@ public:
     \param v numero de viagens do bilhete.
     \param vdd booleano de estado de validacao do bilhete.
  */
-Diario(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd);
+Diario(int id, int z, float p, bool t, time_t dt, int d, string pt, int v, bool vdd);
 string getInformacao() const;
 string getInformacaoTab() const;
 };
@@ -363,7 +363,7 @@ public:
     \param v numero de viagens do bilhete.
     \param vdd booleano de estado de validacao do bilhete.
  */
-Unico(int id, int z, float p, bool t, vector<int> dt, int d, string pt, int v, bool vdd);
+Unico(int id, int z, float p, bool t, time_t dt, int d, string pt, int v, bool vdd);
 string getInformacao() const;
 string getInformacaoTab() const;
 };

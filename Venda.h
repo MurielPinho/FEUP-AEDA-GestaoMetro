@@ -128,6 +128,13 @@ void     removeBilhete();
     \return Um float do preco de bilhete de acordo com o numero de zonas e seu desconto.
  */
 float precos(int Z, int D);
+//! Membro normal.
+/*!
+    \param b1 Bilhete para ser convertido.
+    \return Uma assinatura com os dados fornecidos em b1.
+ */
+Assinatura* BilAss(const Bilhete &b1) const;
+
 
 };
 

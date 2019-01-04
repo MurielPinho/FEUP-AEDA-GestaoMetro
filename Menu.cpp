@@ -5,6 +5,7 @@
 #include "pontoVenda.h"
 #include "Local.h"
 #include "Metro.h"
+#include <time.h>
 
 using namespace std;
 /*! \mainpage Documentação Das Classes
@@ -28,6 +29,9 @@ int main() {
         Metro m;
         int option = 0, start = 0, op = 0;
         char control;
+        char buffer [80];
+        time_t now;
+        struct tm horario;
 
         v.readData();
         m.readData();
@@ -49,10 +53,13 @@ int main() {
                                 }
                         } while (control != 's');
                 }
+                time(&now);
+                horario = *localtime(&now);
                 cout << "              Menu Inicial              " << endl;
                 cout << "========================================" << endl;
                 cout << "Local Atual: " << v.localAtual() << " "   << endl;
-                cout << "Data Atual: " << m.dataAt() << "  "       << endl;
+                strftime (buffer,80,"Data Atual: %d/%m/%y %I:%M%p",&horario);
+                puts (buffer);
                 cout << "========================================" << endl;
                 cout << "\nEscolha o tipo de operação desejada \n" << endl;
                 cout << "1 - Gerenciamento de Bilhetes         \n" << endl;
@@ -83,7 +90,8 @@ int main() {
                         cout << "              Bilhetes                  " << endl;
                         cout << "========================================" << endl;
                         cout << "Local Atual: " << v.localAtual() << " "   << endl;
-                        cout << "Data Atual: " << m.dataAt() << "  "       << endl;
+                        strftime (buffer,80,"Data Atual: %d/%m/%y %I:%M%p",&horario);
+                        puts (buffer);
                         cout << "========================================" << endl;
                         cout << "\nEscolha a operação desejada         \n" << endl;
                         cout << "1 - Comprar Bilhetes                  \n" << endl;
@@ -146,7 +154,8 @@ int main() {
                         cout << "               Metro                    " << endl;
                         cout << "========================================" << endl;
                         cout << "Local Atual: " << v.localAtual() << " "   << endl;
-                        cout << "Data Atual: " << m.dataAt() << "  "       << endl;
+                        strftime (buffer,80,"Data Atual: %d/%m/%y %I:%M%p",&horario);
+                        puts (buffer);
                         cout << "========================================" << endl;
                         cout << "\nEscolha a operação desejada         \n" << endl;
                         cout << "1 - Contratar Funcionario             \n" << endl;

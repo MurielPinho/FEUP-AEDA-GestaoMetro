@@ -1,40 +1,40 @@
 #include "Local.h"
+#include <ctime>
+#include <time.h>
 #include <unordered_set>
 
 using namespace std;
 
-// void     comprarBilhete();
-// void     comprarMaquina();
-// void     comprarLoja();
-// Bilhete* criarOcasional();
-// Bilhete* criarAssinatura();
-// float    precos(int Z, int D);
-// bool     Pagamento(float preco);
-// void     Bilhetes();
-// void     dadosBilhete();
-// void     readData();
-// void     writeData();
-// void     alterarLocal();
-// string   localAtual();
-// void     Locais();
-// void     removeBilhete();
 
-struct strHash {
+struct strEq {
         bool operator() (const Bilhete &b1, const Bilhete &b2) const {
                 return (b1.getIdentificacao() == b2.getIdentificacao());
         }
-
-        int operator() (const Bilhete &b1) const {
-                return b1.getIdentificacao();
-        }
+};
+struct strHash {
+  int operator() (const Bilhete &b1) const {
+          return b1.getIdentificacao();
+  }
 };
 
-typedef unordered_set<Bilhete, strHash, strHash> TabH;
+typedef unordered_set<Bilhete, strHash, strEq> TabH;
+struct strEqa {
+        bool operator() (const Assinatura &b1, const Assinatura &b2) const {
+                return (b1.getIdentificacao() == b2.getIdentificacao());
+        }
+};
+struct strHasha {
+  int operator() (const Assinatura &b1) const {
+          return b1.getIdentificacao();
+  }
+};
 
-TabH AssInativas;
+typedef unordered_set<Assinatura, strHasha, strEqa> TabA;
+
+TabA AssInativas;
 Utentes u;
 Local l;
-vector<int> dataAt = {0,0,0,0,0};
+time_t dataAt;
 
 void Venda::comprarBilhete()
 {
@@ -173,11 +173,11 @@ Bilhete* Venda::criarOcasional()
         {
         case 1:
 
-                B1 = new Unico(id, Z, precos(Z, 1) * v, 1, dataAt, 2, localAtual(), v, false);
+                B1 = new Unico(id, Z, precos(Z, 1) * v, 1, time(&dataAt), 2, localAtual(), v, false);
                 break;
 
         case 2:
-                B1 = new Diario(id, Z, precos(Z, 2) * v, 1, dataAt, 24, localAtual(), v, false);
+                B1 = new Diario(id, Z, precos(Z, 2) * v, 1, time(&dataAt), 24, localAtual(), v, false);
                 break;
         }
         return B1;
@@ -225,7 +225,7 @@ Bilhete* Venda::criarAssinatura()
         }
 
         if (i == 1) {
-                B = new Normal(id, Z, precos(Z, 0), 0, dataAt, nm, 0);
+                B = new Normal(id, Z, precos(Z, 0), 0, time(&dataAt), nm, 0);
         }
         else if ((i >= 2) & (i <= 4)) {
                 do {
@@ -271,15 +271,15 @@ Bilhete* Venda::criarAssinatura()
                         cin.clear();
                         cin.ignore(numeric_limits<streamsize>::max(), '\n');
                         system("clear");
-                        B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, dataAt, nm, 1, idd, cc, esc);
+                        B = new Estudante(id, Z, precos(Z, 0) * 0.75, 0, time(&dataAt), nm, 1, idd, cc, esc);
                         break;
 
                 case 3:
-                        B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, dataAt, nm, 2, idd, cc);
+                        B = new Junior(id, Z, precos(Z, 0) * 0.75, 0, time(&dataAt), nm, 2, idd, cc);
                         break;
 
                 case 4:
-                        B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, dataAt, nm, 3, idd, cc);
+                        B = new Senior(id, Z, precos(Z, 0) * 0.75, 0, time(&dataAt), nm, 3, idd, cc);
                         break;
                 }
         }
@@ -313,10 +313,10 @@ void Venda::renovarAss() {
                 cout << "Assinatura não existe" << endl;
         }
 
-        B->Renovar(dataAt);
+        B->Renovar();
 
-
-        auto it = AssInativas.find(*B);
+        Assinatura *A = BilAss(*B);
+        auto it = AssInativas.find(*A);
         if(it == AssInativas.end())
                 return;
         AssInativas.erase(it);
@@ -428,39 +428,7 @@ void Venda::readData()
 
         bilhetes.open("Bilhetes.txt", ios_base::in);
         locais.open("Locais.txt", ios_base::in);
-        tm.open("Data.txt", ios_base::in);
 
-        if(!tm) {
-                cerr << "Arquivo não encontrado!\n";
-        }
-        else {
-                string line;
-
-                getline(tm, line);
-                stringstream linestream(line);
-                string value;
-                vector<string> data;
-                while(getline(linestream,value,'/')) {
-                        data.push_back(value);
-                }
-                int dia,mes,ano;
-                dia = stoi(data.at(0));
-                mes = stoi(data.at(1));
-                ano = stoi(data.at(2));
-                getline(tm, line);
-                stringstream lines(line);
-                while(getline(lines,value,':')) {
-                        data.push_back(value);
-                }
-                int hora, min;
-                hora = stoi(data.at(3));
-                min = stoi(data.at(4));
-                dataAt[0] = dia;
-                dataAt[1] = mes;
-                dataAt[2] = ano;
-                dataAt[3] = hora,
-                dataAt[4] = min;
-        }
         if (!bilhetes)
         {
                 cerr << "Arquivo não encontrado!\n";
@@ -483,25 +451,21 @@ void Venda::readData()
                         float preco;
                         string tipo, nome;
                         int identificacao, zona;
-                        vector<int> dt;
+                        time_t dt;
                         tipo          = data.at(0);
                         identificacao = stoi(data.at(1));
                         zona          = stoi(data.at(2));
                         preco         = stof(data.at(3));
-                        dt.push_back(stoi(data.at(5)));
-                        dt.push_back(stoi(data.at(6)));
-                        dt.push_back(stoi(data.at(7)));
-                        dt.push_back(stoi(data.at(8)));
-                        dt.push_back(stoi(data.at(9)));
+                        dt = stoi(data.at(5));
 
                         if (tipo == "Unico")
                         {
                                 int v;
-                                v   = stoi(data.at(12));
+                                v   = stoi(data.at(8));
                                 bool vdd;
-                                vdd = stoi(data.at(13));
+                                vdd = stoi(data.at(9));
                                 if(vdd == true) {
-                                        if (abs(DataDiff(dt,dataAt)) > 120) {
+                                        if (abs(difftime(dt,dataAt))> 7200) {
                                                 v--;
                                                 vdd = false;
                                         }
@@ -511,20 +475,20 @@ void Venda::readData()
                                         string pt;
                                         bool t;
                                         t   = 1;
-                                        d   = stoi(data.at(10));
-                                        pt  = data.at(11);
-                                        B   = new Unico(identificacao, zona, preco, t, dataAt, d, pt, v, vdd);
+                                        d   = stoi(data.at(6));
+                                        pt  = data.at(7);
+                                        B   = new Unico(identificacao, zona, preco, t, dt, d, pt, v, vdd);
                                         u.adicionaOcasional(B);
                                 }
                         }
                         else if (tipo == "Diario")
                         {
                                 int v;
-                                v   = stoi(data.at(12));
+                                v   = stoi(data.at(8));
                                 bool vdd;
-                                vdd = stoi(data.at(13));
+                                vdd = stoi(data.at(9));
                                 if(vdd == true) {
-                                        if(abs(DataDiff(dt,dataAt)) > 1440) {
+                                        if(abs(difftime(dt,dataAt))> 86400) {
                                                 v--;
                                                 vdd = false;
                                         }
@@ -534,9 +498,9 @@ void Venda::readData()
                                         string pt;
                                         bool t;
                                         t   = 1;
-                                        d   = stoi(data.at(10));
-                                        pt  = data.at(11);
-                                        B   = new Diario(identificacao, zona, preco, t, dataAt, d, pt, v, vdd);
+                                        d   = stoi(data.at(6));
+                                        pt  = data.at(7);
+                                        B   = new Diario(identificacao, zona, preco, t, dt, d, pt, v, vdd);
                                         u.adicionaOcasional(B);
                                 }
 
@@ -547,27 +511,12 @@ void Venda::readData()
                                 bool t;
                                 string n;
                                 t = 0;
-                                n = data.at(10);
-                                d = stoi(data.at(11));
+                                n = data.at(6);
+                                d = stoi(data.at(7));
                                 B = new Normal(identificacao, zona, preco, t, dt, n, d);
-                                vector<int> dtest;
-                                int month,year;
-                                dtest.push_back(dt[0]);
-                                month = dt[1];
-                                year = dt[2];
-                                if(month < 11) {
-                                        month += 2;
-                                }
-                                else {
-                                        month -= 10;
-                                        year++;
-                                }
-                                dtest.push_back(month);
-                                dtest.push_back(year);
-                                dtest.push_back(dt[3]);
-                                dtest.push_back(dt[4]);
-                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-                                        AssInativas.insert(*B);
+                                if(abs(difftime(dt,dataAt))>5256000) {
+                                  Assinatura *A = BilAss(*B);
+                                  AssInativas.insert(*A);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -577,32 +526,16 @@ void Venda::readData()
                                 bool t;
                                 string n, esc;
                                 t   = 0;
-                                n   = data.at(10);
-                                d   = stoi(data.at(11));
-                                idd = stoi(data.at(12));
-                                cc  = stoi(data.at(13));
-                                esc = data.at(14);
+                                n   = data.at(6);
+                                d   = stoi(data.at(7));
+                                idd = stoi(data.at(8));
+                                cc  = stoi(data.at(9));
+                                esc = data.at(10);
                                 B   = new Estudante(identificacao, zona, preco, t, dt, n, d, idd, cc, esc);
-                                vector<int> dtest;
-                                int month,year;
-                                dtest.push_back(dt[0]);
-                                month = dt[1];
-                                year = dt[2];
-                                if(month < 11) {
-                                        month += 2;
-                                }
-                                else {
-                                        month -= 10;
-                                        year++;
-                                }
-                                dtest.push_back(month);
-                                dtest.push_back(year);
-                                dtest.push_back(dt[3]);
-                                dtest.push_back(dt[4]);
-                                AssInativas.insert(*B);
-                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-                                        AssInativas.insert(*B);
-                                }
+                                if(abs(difftime(dt,dataAt))>5256000) {
+                                  Assinatura *A = BilAss(*B);
+                                  AssInativas.insert(*A);
+                                                                }
                                 u.adicionaAssinatura(B);
                         }
                         else if (tipo == "Junior")
@@ -611,29 +544,14 @@ void Venda::readData()
                                 bool t;
                                 string n;
                                 t   = 0;
-                                n   = data.at(10);
-                                d   = stoi(data.at(11));
-                                idd = stoi(data.at(12));
-                                cc  = stoi(data.at(13));
+                                n   = data.at(6);
+                                d   = stoi(data.at(7));
+                                idd = stoi(data.at(8));
+                                cc  = stoi(data.at(9));
                                 B   = new Junior(identificacao, zona, preco, t, dt, n, d, idd, cc);
-                                vector<int> dtest;
-                                int month,year;
-                                dtest.push_back(dt[0]);
-                                month = dt[1];
-                                year = dt[2];
-                                if(month < 11) {
-                                        month += 2;
-                                }
-                                else {
-                                        month -= 10;
-                                        year++;
-                                }
-                                dtest.push_back(month);
-                                dtest.push_back(year);
-                                dtest.push_back(dt[3]);
-                                dtest.push_back(dt[4]);
-                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-                                        AssInativas.insert(*B);
+                                if(abs(difftime(dt,dataAt))>5256000) {
+                                  Assinatura *A = BilAss(*B);
+                                  AssInativas.insert(*A);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -643,29 +561,14 @@ void Venda::readData()
                                 bool t;
                                 string n;
                                 t   = 0;
-                                n   = data.at(10);
-                                d   = stoi(data.at(11));
-                                idd = stoi(data.at(12));
-                                cc  = stoi(data.at(13));
+                                n   = data.at(6);
+                                d   = stoi(data.at(7));
+                                idd = stoi(data.at(8));
+                                cc  = stoi(data.at(9));
                                 B   = new Senior(identificacao, zona, preco, t, dt, n, d, idd, cc);
-                                vector<int> dtest;
-                                int month,year;
-                                dtest.push_back(dt[0]);
-                                month = dt[1];
-                                year = dt[2];
-                                if(month < 11) {
-                                        month += 2;
-                                }
-                                else {
-                                        month -= 10;
-                                        year++;
-                                }
-                                dtest.push_back(month);
-                                dtest.push_back(year);
-                                dtest.push_back(dt[3]);
-                                dtest.push_back(dt[4]);
-                                if(DataDiff(dt,dataAt) > DataDiff(dtest,dt)) {
-                                        AssInativas.insert(*B);
+                                if(abs(difftime(dt,dataAt))>5256000) {
+                                  Assinatura *A = BilAss(*B);
+                                  AssInativas.insert(*A);
                                 }
                                 u.adicionaAssinatura(B);
                         }
@@ -734,20 +637,15 @@ void Venda::writeData()
                 Bilhete *B = u.getVecOcasional(i);
                 int v = B->getViagens();
                 bool vdd = B->getValidade();
-                vector<int> dt = {0,0,0,0,0};
-                dt[0] = B->getData()[0];
-                dt[1] = B->getData()[1];
-                dt[2] = B->getData()[2];
-                dt[3] = B->getData()[3];
-                dt[4] = B->getData()[4];
+                time_t dt = B->getData();
                 if(B->getDuracao() == 2) {
-                        if((abs(DataDiff(dt,dataAt)) > 120) && (vdd = true)) {
+                        if((abs(difftime(dt,dataAt))> 7200) && (vdd = true)) {
                                 B->setViagens(v--);
                                 B->Validacao(false);
                         }
                 }
                 else {
-                        if((abs(DataDiff(dt,dataAt)) > 1440) && (vdd = true)) {
+                        if((abs(difftime(dt,dataAt))> 86400) && (vdd = true)) {
                                 B->setViagens(v--);
                                 B->Validacao(false);
                         }
@@ -995,3 +893,9 @@ void Venda::removeBilhete()
                 }
         }
 }
+
+Assinatura* Venda::BilAss(const Bilhete &b1) const
+{
+  Assinatura *A = new Assinatura(b1.getIdentificacao(), b1.getZona(), b1.getPreco(), 0, b1.getData(), b1.getNome(), 1);
+return A;
+};
