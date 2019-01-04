@@ -444,7 +444,6 @@ void Venda::readData()
                         data.push_back(value);
                 }
                 int dia,mes,ano;
-                int i, j;
                 dia = stoi(data.at(0));
                 mes = stoi(data.at(1));
                 ano = stoi(data.at(2));

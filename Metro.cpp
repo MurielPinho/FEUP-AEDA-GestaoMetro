@@ -696,8 +696,7 @@ void Metro::removeFuncionario(){
         system("clear");
 
         Funcionario f("",id,"",-1,"");
-        Funcionario *fTry;
-
+        
         BSTItrIn<Funcionario> it(funcionarios);
 
         while(!it.isAtEnd()) {
@@ -836,86 +835,86 @@ void Metro::AddManutencao(){
 
         do {
                 if(ano < 0) {
-                        t == true;
+                        t = true;
 
                 }
                 if((mes < 1) && (mes > 12)) {
-                        t == true;
+                        t = true;
 
                 }
 
                 switch(mes) {
                 case 1:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 2:
                         if(ano%4 == 0) {
                                 if((dia < 1) && (dia > 29)) {
-                                        t == true;
+                                        t = true;
                                 }
                         }
                         else{
                                 if((dia < 1) && (dia > 28)) {
-                                        t == true;
+                                        t = true;
                                 }
                         }
                         break;
                 case 3:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 4:
                         if((dia < 1) && (dia > 30)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 5:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 6:
                         if((dia < 1) && (dia > 30)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 7:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 8:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 9:
                         if((dia < 1) && (dia > 30)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 10:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 11:
                         if((dia < 1) && (dia > 30)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 case 12:
                         if((dia < 1) && (dia > 31)) {
-                                t == true;
+                                t = true;
                         }
                         break;
                 }
 
                 if(((0 > min) && (min > 60)) || ((0 > hora) && (hora > 23))) {
-                        t == true;
+                        t = true;
                 }
                 if(t == true) {
                         cout << "Data Invalida" << endl << endl;
