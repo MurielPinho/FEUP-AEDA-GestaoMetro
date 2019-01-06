@@ -27,9 +27,9 @@ string trem;
 string tipo;
 //!Vector de Inteiros.
 /*!Data da manutencao.*/
-vector<int> data;
+time_t data;
 //!Inteiro.
-/*!Diferenca de tempo em minutos ate a manutencao.*/
+/*!Diferenca de tempo em segundos ate a manutencao.*/
 int datadif;
 
 public:
@@ -41,9 +41,9 @@ public:
     \param tp string de tipo de avaria.
     \param av booleano de existencia de avaria.
     \param dt vector<int> da data de marcacao.
-    \param ddif int de tempo restante em minutos para a manutencao.
+    \param ddif int de tempo restante em segundos para a manutencao.
  */
-Manutencao(string tr, string tp, bool av, vector<int> dt, int ddif);
+Manutencao(string tr, string tp, bool av, time_t dt, int ddif);
 
 //! Membro normal.
 /*!
@@ -68,7 +68,7 @@ void setTipo(string tp);
 /*!
    Altera a data da manutencao
  */
-void setData(vector<int> dt);
+void setData(time_t dt);
 
 //! Membro normal.
 /*!
@@ -80,7 +80,7 @@ int   getDdif() const;
 /*!
    \return Retorna a data da manutencao.
  */
-vector<int> getData() const;
+time_t getData() const;
 
 //! Membro normal.
 /*!

@@ -1,7 +1,9 @@
 #include "Metro.h"
+#include <ctime>
+#include <time.h>
 
 Local local;
-vector<int> dataAtual;
+time_t dataAtual;
 priority_queue<Manutencao> Fila;
 
 Metro::Metro() : funcionarios(Funcionario("",-1,"",0,"")){
@@ -15,42 +17,10 @@ void Metro::readData()
         Manutencao *M;
 
         mn.open("Manutencao.txt", ios_base::in);
-        tm.open("Data.txt", ios_base::in);
         fs.open("Funcionarios.txt", ios_base::in);
         locais.open("Locais.txt", ios_base::in);
 
-        if(!tm) {
-                cerr << "Arquivo não encontrado!\n";
-        }
-        else {
-                string line;
 
-                getline(tm, line);
-                stringstream linestream(line);
-                string value;
-                vector<string> data;
-                while(getline(linestream,value,'/')) {
-                        data.push_back(value);
-                }
-                int dia,mes,ano;
-                dia = stoi(data.at(0));
-                mes = stoi(data.at(1));
-                ano = stoi(data.at(2));
-                getline(tm, line);
-                stringstream lines(line);
-                while(getline(lines,value,':')) {
-                        data.push_back(value);
-                }
-                int hora, min;
-                hora = stoi(data.at(3));
-                min = stoi(data.at(4));
-                dataAtual.push_back(dia);
-                dataAtual.push_back(mes);
-                dataAtual.push_back(ano);
-                dataAtual.push_back(hora);
-                dataAtual.push_back(min);
-        }
-        tm.close();
         if(!mn) {
                 cerr << "Arquivo não encontrado!\n";
         }
@@ -66,36 +36,22 @@ void Metro::readData()
                         }
                         string tr, tp;
                         bool av;
-                        int dia, mes, ano, hora, min, ddif;
-                        vector<int> dt;
+                        int ddif;
+                        time_t dt;
                         tr = data.at(0);
                         if(stoi(data.at(1)) == 1)
                                 av = true;
                         else
                                 av = false;
                         tp = data.at(2);
-                        dia = stoi(data.at(3));
-                        mes = stoi(data.at(4));
-                        ano = stoi(data.at(5));
-                        hora = stoi(data.at(6));
-                        min = stoi(data.at(7));
-                        dt.push_back(dia);
-                        dt.push_back(mes);
-                        dt.push_back(ano);
-                        dt.push_back(hora);
-                        dt.push_back(min);
-                        int i = 14; //2 semanas;
-                        ddif = DataDiff(dt,dataAtual);
+                        dt = stoi(data.at(3));
+                        ddif = difftime(dt,time(&dataAtual));
                         if(ddif < 0) {
                                 tp = "Periodica";
                                 av = false;
-                                ddif = abs(ddif);
-                                while(i < ddif) {
-                                        i += 14;
-                                }
-                                dt = {SomarTempo(dt,i)[0],SomarTempo(dt,i)[1],SomarTempo(dt,i)[2],SomarTempo(dt,i)[3],SomarTempo(dt,i)[4]};
+                                dt += 1209600;
                         }
-                        M = new Manutencao(tr, tp, av, dt, DataDiff(dt,dataAtual));
+                        M = new Manutencao(tr, tp, av, dt, difftime(dt,dataAtual));
                         Fila.push(*M);
                 }
         }
@@ -175,24 +131,18 @@ void Metro::writeData()
 
         mn.open("Manutencao.txt");
         out.open("Funcionarios.txt");
-        tm.open("Data.txt");
         BSTItrIn<Funcionario> it(funcionarios);
         while(!it.isAtEnd()) {
                 out << it.retrieve().getInfo() << endl;
                 it.advance();
         }
-        tm << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2] << endl;
-        tm << setw(2) << setfill('0') << dataAtual[3] << ":" << setw(2) << setfill('0') << dataAtual[4];
         while(!Fila.empty()) {
-                vector<int> dt = Fila.top().getData();
-                int ddif = DataDiff(dt, dataAtual), i = 14;
+                time_t dt = Fila.top().getData();
+                int ddif = difftime(dt, time(&dataAtual));
                 if(ddif < 0) {
-                        ddif = abs(ddif);
-                        while(i < ddif) {
-                                i += 14;
-                        }
-                        dt = {SomarTempo(dt,i)[0],SomarTempo(dt,i)[1],SomarTempo(dt,i)[2],SomarTempo(dt,i)[3],SomarTempo(dt,i)[4]};
-                        M = new Manutencao(Fila.top().getTrem(), "Periodica", 0, dt, DataDiff(dt,dataAtual));
+                        dt += 1209600;
+                        M = new Manutencao(Fila.top().getTrem(), "Periodica", 0, dt, difftime(dt,dataAtual));
+                        cout << ctime(&dt) << endl;
                         mn << M->getInfo() << endl;
                         Fila.pop();
                 }
@@ -201,7 +151,6 @@ void Metro::writeData()
         }
         mn.close();
         out.close();
-        tm.close();
 }
 
 void Metro::Locais()
@@ -210,393 +159,6 @@ void Metro::Locais()
         cout << local.getLocais() <<  endl;
 }
 
-string Metro::dataAt()
-{
-        stringstream ss;
-
-        ss << setw(2) << setfill('0') << dataAtual[0] << "/" << setw(2) << setfill('0') << dataAtual[1] << "/" << setw(4) << setfill('0') << dataAtual[2];
-        ss << " " << setw(2) << setfill('0') << dataAtual[3] << ":" << setw(2) << setfill('0') << dataAtual[4];
-        return ss.str();
-}
-
-void Metro::alterarData()
-{
-        int dia, mes, ano, hora, min;
-        cout << "Dia : ";
-        cin >> dia;
-        cout << "Mes : ";
-        cin >> mes;
-        cout << "Ano : ";
-        cin >> ano;
-        cout << "Hora : ";
-        cin >> hora;
-        cout << "Minutos : ";
-        cin >> min;
-        if(ano < 0) {
-                cout << "Data Invalida" << endl << endl;
-                return;
-        }
-        if((mes < 1) && (mes > 12)) {
-                cout << "Data Invalida" << endl << endl;
-                return;
-        }
-
-        switch(mes) {
-        case 1:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 2:
-                if(ano%4 == 0) {
-                        if((dia < 1) && (dia > 29)) {
-                                cout << "Data Invalida" << endl << endl;
-                                return;
-                        }
-                }
-                else{
-                        if((dia < 1) && (dia > 28)) {
-                                cout << "Data Invalida" << endl << endl;
-                                return;
-                        }
-                }
-                break;
-        case 3:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 4:
-                if((dia < 1) && (dia > 30)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 5:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 6:
-                if((dia < 1) && (dia > 30)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 7:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 8:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 9:
-                if((dia < 1) && (dia > 30)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 10:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 11:
-                if((dia < 1) && (dia > 30)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        case 12:
-                if((dia < 1) && (dia > 31)) {
-                        cout << "Data Invalida" << endl << endl;
-                        return;
-                }
-                break;
-        }
-
-        if(((0 > min) && (min > 60)) || ((0 > hora) && (hora > 23))) {
-                cout << "Data Invalida" << endl << endl;
-                return;
-        }
-
-        cout << "Data Alterada para : " << setw(2) << setfill('0') << dia << "/" << setw(2) << setfill('0') << mes << "/" << setw(4) << setfill('0') << ano << " ";
-        cout << setw(2) << setfill('0') << hora << ":"  << setw(2) << setfill('0') << min << endl << endl;
-
-        dataAtual.at(0) = dia;
-        dataAtual.at(1) = mes;
-        dataAtual.at(2) = ano;
-        dataAtual.at(3) = hora;
-        dataAtual.at(4) = min;
-}
-
-int Metro::DataDiff(vector<int> d1, vector<int> d2){
-        int t1, t2, ano, mes, dia;
-        switch(d1[1]) {
-        case 1:
-                mes = 0;
-                break;
-        case 2:
-                mes = 31;
-                break;
-        case 3:
-                mes = 59;
-                break;
-        case 4:
-                mes = 90;
-                break;
-        case 5:
-                mes = 120;
-                break;
-        case 6:
-                mes = 151;
-                break;
-        case 7:
-                mes = 181;
-                break;
-        case 8:
-                mes = 212;
-                break;
-        case 9:
-                mes = 243;
-                break;
-        case 10:
-                mes = 273;
-                break;
-        case 11:
-                mes = 304;
-                break;
-        case 12:
-                mes = 334;
-                break;
-        }
-        if(d1[2]%4 == 0) {
-                ano = 366*d1[2];
-                if(mes >= 59)
-                        mes++;
-        }
-        else
-                ano = 365*d1[2];
-        dia = d1[0];
-        t1 = ano + mes + dia;
-        switch(d2[1]) {
-        case 1:
-                mes = 0;
-                break;
-        case 2:
-                mes = 31;
-                break;
-        case 3:
-                mes = 59;
-                break;
-        case 4:
-                mes = 90;
-                break;
-        case 5:
-                mes = 120;
-                break;
-        case 6:
-                mes = 151;
-                break;
-        case 7:
-                mes = 181;
-                break;
-        case 8:
-                mes = 212;
-                break;
-        case 9:
-                mes = 243;
-                break;
-        case 10:
-                mes = 273;
-                break;
-        case 11:
-                mes = 304;
-                break;
-        case 12:
-                mes = 334;
-                break;
-        }
-        if(d2[2]%4 == 0) {
-                ano = 366*d2[2];
-                if(mes >= 59)
-                        mes++;
-        }
-        else
-                ano = 365*d2[2];
-        dia = d2[0];
-        t2 = ano + mes + dia;
-        return (t1-t2);
-}
-
-
-vector<int> Metro::SomarTempo(vector<int> d1, int i){
-        vector<int> t;
-        int ano, mes, dia;
-        switch(d1[1]) {
-        case 1:
-                mes = 0;
-                break;
-        case 2:
-                mes = 31;
-                break;
-        case 3:
-                mes = 59;
-                break;
-        case 4:
-                mes = 90;
-                break;
-        case 5:
-                mes = 120;
-                break;
-        case 6:
-                mes = 151;
-                break;
-        case 7:
-                mes = 181;
-                break;
-        case 8:
-                mes = 212;
-                break;
-        case 9:
-                mes = 243;
-                break;
-        case 10:
-                mes = 273;
-                break;
-        case 11:
-                mes = 304;
-                break;
-        case 12:
-                mes = 334;
-                break;
-        }
-        ano = d1[2];
-        dia = d1[0];
-        i += mes + dia;
-        if(ano%4 == 0) {
-                while(i > 366) {
-                        ano++;
-                        i -= 366;
-                }
-        }
-        while(i > 365) {
-                ano++;
-                i-= 365;
-        }
-        if (i == 0) {
-                ano--;
-                i = 365;
-        }
-        while(true) {
-                mes = 31;
-                if(i < mes) {
-                        mes = 1;
-                        break;
-                }
-                mes = 59;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i-=31;
-                        mes = 2;
-                        break;
-                }
-                mes = 90;
-                if(ano%4 == 0) {
-                        mes++;
-                        i--;
-                }
-                if(i < mes) {
-                        i-=59;
-                        mes = 3;
-                        break;
-                }
-                mes = 120;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i-= 90;
-                        mes = 4;
-                        break;
-                }
-                mes = 151;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i-= 120;
-                        mes = 5;
-                        break;
-                }
-                mes = 181;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i-= 151;
-                        mes = 6;
-                        break;
-                }
-                mes = 212;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i-= 181;
-                        mes = 7;
-                        break;
-                }
-                mes = 243;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i -= 212;
-                        mes = 8;
-                        break;
-                }
-                mes = 273;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i -= 243;
-                        mes = 9;
-                        break;
-                }
-                mes = 304;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i -= 273;
-                        mes = 10;
-                        break;
-                }
-                mes = 334;
-                if(ano%4 == 0)
-                        mes++;
-                if(i < mes) {
-                        i -= 304;
-                        mes = 11;
-                        break;
-                }
-                mes = 365;
-                if(i <= mes) {
-                        i -= 334;
-                        mes = 12;
-                        break;
-                }
-                break;
-        }
-        dia = i;
-        t = {dia,mes,ano,d1[3],d1[4]};
-        return t;
-}
 
 void Metro::alterarLocal()
 {
@@ -696,7 +258,7 @@ void Metro::removeFuncionario(){
         system("clear");
 
         Funcionario f("",id,"",-1,"");
-        
+
         BSTItrIn<Funcionario> it(funcionarios);
 
         while(!it.isAtEnd()) {
@@ -792,18 +354,44 @@ void Metro::SalarioFuncionario(){
 void Metro::AddManutencao(){
         char tr;
         stringstream trem;
-        string tp;
-        bool av;
+        string tp,inv;
+        bool av, t=false,f=false;
         int dia, mes, ano, hora, min;
         char control;
+        time_t mdt;
+        priority_queue<Manutencao> temp;
+        temp = Fila;
+        struct tm *mdts;
+        do{
         do {
+          f=false;
+          cout << f << endl;
+
                 cout << "Trem : (A/Z) ";
+
                 cin >> tr;
+                cout << tr << endl;
+
         } while(!isalpha(tr));
+        tr = toupper(tr);
+        trem.str("");
+        inv="";
+        trem << tr;
+        trem >> inv;
+        while(!temp.empty())
+              {
+                if(temp.top().getTrem()==inv)
+                {
+                  system("clear");
+                  cout << "Trem já existente" << endl;
+                f=true;
+                break;
+                }
+                temp.pop();
+              }
+        }while(f==true);
         tp = "Periodica";
         av = false;
-        tr = toupper(tr);
-        trem << tr;
         system("clear");
         do {
                 cout << "Avaria Detectada ? (s/n) ";
@@ -821,99 +409,111 @@ void Metro::AddManutencao(){
                         break;
                 }
         } while (control != 'n');
-        bool t = false;
+do {
+  system("clear");
+        t = false;
         cout << "Dia : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> dia;
         cout << "Mes : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> mes;
         cout << "Ano : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> ano;
         cout << "Hora : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> hora;
         cout << "Minutos : ";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> min;
 
-        do {
+
                 if(ano < 0) {
                         t = true;
 
                 }
-                if((mes < 1) && (mes > 12)) {
+                if((mes < 1) || (mes > 12)) {
                         t = true;
 
                 }
 
                 switch(mes) {
                 case 1:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 case 2:
                         if(ano%4 == 0) {
-                                if((dia < 1) && (dia > 29)) {
+                                if((dia < 1) || (dia > 29)) {
                                         t = true;
                                 }
                         }
                         else{
-                                if((dia < 1) && (dia > 28)) {
+                                if((dia < 1) || (dia > 28)) {
                                         t = true;
                                 }
                         }
                         break;
                 case 3:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 case 4:
-                        if((dia < 1) && (dia > 30)) {
+                        if((dia < 1) || (dia > 30)) {
                                 t = true;
                         }
                         break;
                 case 5:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 case 6:
-                        if((dia < 1) && (dia > 30)) {
+                        if((dia < 1) || (dia > 30)) {
                                 t = true;
                         }
                         break;
                 case 7:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 case 8:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 case 9:
-                        if((dia < 1) && (dia > 30)) {
+                        if((dia < 1) || (dia > 30)) {
                                 t = true;
                         }
                         break;
                 case 10:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 case 11:
-                        if((dia < 1) && (dia > 30)) {
+                        if((dia < 1) || (dia > 30)) {
                                 t = true;
                         }
                         break;
                 case 12:
-                        if((dia < 1) && (dia > 31)) {
+                        if((dia < 1) || (dia > 31)) {
                                 t = true;
                         }
                         break;
                 }
 
-                if(((0 > min) && (min > 60)) || ((0 > hora) && (hora > 23))) {
+                if(((0 > min) || (min > 60)) && ((0 > hora) || (hora > 23))) {
                         t = true;
                 }
                 if(t == true) {
@@ -921,13 +521,17 @@ void Metro::AddManutencao(){
                 }
         } while(t == true);
         system("clear");
-        vector<int> dt;
-        dt.push_back(dia);
-        dt.push_back(mes);
-        dt.push_back(ano);
-        dt.push_back(hora);
-        dt.push_back(min);
-        Manutencao m(trem.str(), tp, av, dt, DataDiff(dt,dataAtual));
+
+        time ( &mdt );
+        mdts = localtime ( &mdt );
+        mdts->tm_mday = dia;
+        mdts->tm_mon = mes-1;
+        mdts->tm_year = ano-1900;
+        mdts->tm_hour = hora;
+        mdts->tm_min = min;
+        mdt = mktime(mdts);
+        cout << ctime(&mdt) << endl;
+        Manutencao m(trem.str(), tp, av, mdt, (difftime(mdt,time(&dataAtual)))/86400);
         Fila.push(m);
 }
 
@@ -976,9 +580,9 @@ void Metro::setAv(){
         getline(cin, tp);
         system("clear");
 
-        vector<int> dt = M.getData();
-        int ddif = DataDiff(dt,dataAtual);
-        if(ddif <= 7)
+        time_t dt = M.getData();
+        int ddif = difftime(dt,time(&dataAtual));
+        if(ddif >= 7)
                 M.setData(dataAtual);
         M.setAvaria(true);
         M.setTipo(tp);
@@ -996,4 +600,8 @@ void Metro::PrintFila(){
         for(unsigned int i = 0; i < copy.size(); i++) {
                 Fila.push(copy[i]);
         }
+}
+void Metro::test()
+{
+  cout << Fila.top().getData() << endl;
 }

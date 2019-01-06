@@ -101,7 +101,6 @@ int main() {
                         cout << "5 - Verificar Bilhetes                \n" << endl;
                         cout << "6 - Verificar dados de um bilhete     \n" << endl;
                         cout << "7 - Alterar localidade                \n" << endl;
-                        cout << "8 - Alterar Data                      \n" << endl;
                         cout << "0 - Sair                              \n" << endl;
 
                         cin.clear();
@@ -139,14 +138,7 @@ int main() {
                                 system("clear");
                                 v.alterarLocal();
                                 break;
-                        case 8:
-                                system("clear");
-                                m.alterarData();
-                                m.writeData();
-                                v.writeData();
-                                v.readData();
-                                m.readData();
-                                break;
+
                         }
                 }
 
@@ -166,7 +158,6 @@ int main() {
                         cout << "6 - Marcar nova Manutencao            \n" << endl;
                         cout << "7 - Mudanca da manutencao por avaria  \n" << endl;
                         cout << "8 - Imprimir ordem de manutencoes     \n" << endl;
-                        cout << "9 - Alterar Data                      \n" << endl;
                         cout << "0 - Sair                              \n" << endl;
 
 
@@ -208,11 +199,7 @@ int main() {
                                 break;
                         case 9:
                                 system("clear");
-                                m.alterarData();
-                                m.writeData();
-                                v.writeData();
-                                v.readData();
-                                m.readData();
+                                m.test();
                                 break;
                         }
 

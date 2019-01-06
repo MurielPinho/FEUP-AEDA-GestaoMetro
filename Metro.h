@@ -20,6 +20,7 @@ class Metro {
 BST<Funcionario> funcionarios;
 
 public:
+  void test();
 //! Contrutor do Metro
 Metro();
 //! Membro normal.

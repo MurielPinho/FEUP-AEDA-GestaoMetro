@@ -93,12 +93,6 @@ void     writeData();
 
 //! Membro normal.
 /*!
-    \return a diferenca de duas datas em minutos.
- */
-int     DataDiff(vector<int> d1, vector<int> d2);
-
-//! Membro normal.
-/*!
     Altera o localAtual de acordo com o numero do local escolhido.
  */
 void     alterarLocal();
