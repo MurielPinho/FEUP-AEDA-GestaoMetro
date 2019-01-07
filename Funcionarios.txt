@@ -1,6 +1,5 @@
-Andre Mori,3,IPO,100.00,Zelador
-Arthur Matta,5,Polo Universitario,200.00,Manutencao
-Daniel Bradaschia,2,Polo Universitario,250.00,Seguranca
-Muriel Pinho,1,Camara de Gaia,350.00,Manutencao
-Gustavo Tavares,0,Faria Guimaraes,400.00,Gerente
-Bowser,4,General Torres,600.00,Last Boss
+Arthur Matta,5,Polo Universitario,100.00,Manutencao
+Daniel Bradaschia,2,Polo Universitario,300.00,Seguranca
+Andre Mori,3,IPO,400.00,Zelador
+Gustavo Tavares,0,Faria Guimaraes,500.00,Gerente
+Muriel Pinho,1,Camara de Gaia,600.00,Manutencao

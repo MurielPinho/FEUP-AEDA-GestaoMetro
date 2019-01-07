@@ -93,6 +93,11 @@ string getInformacao() const;
    \return Retorna uma string com a informacao do funcionario em forma de escrita do ficheiro.
  */
 string getInfo() const;
+//! Membro normal.
+/*!
+   \return Retorna uma string com a informacao tabulada do funcionario.
+ */
+string getInfoTab() const;
 
 //! Membro normal.
 /*!

@@ -4,65 +4,75 @@ using namespace std;
 
 Funcionario::Funcionario(string n, int id, string l, float sal, string f)
 {
-        salario       = sal;
-        local         = l;
-        nome          = n;
-        funcao        = f;
-        identificacao   = id;
+  salario       = sal;
+  local         = l;
+  nome          = n;
+  funcao        = f;
+  identificacao = id;
 }
 
 string Funcionario::getInformacao() const {
-        stringstream ss;
+  stringstream ss;
 
-        ss << setprecision(2) << fixed << "Nome : " << nome << endl << "Identificacao : " << identificacao << endl << "Local : " << local << endl << "Salario : " << salario << endl << "Função : " << funcao << endl;
-        return ss.str();
+  ss << setprecision(2) << fixed << "Nome : " << nome << endl << "Identificacao : " << identificacao << endl <<
+    "Local : " << local << endl << "Salario : " << salario << endl << "Função : " << funcao << endl;
+  return ss.str();
 }
 
 string Funcionario::getInfo() const {
-        stringstream ss;
+  stringstream ss;
 
-        ss << setprecision(2) << fixed << nome << "," << identificacao << "," << local << "," << salario << "," << funcao;
-        return ss.str();
+  ss << setprecision(2) << fixed << nome << "," << identificacao << "," << local << "," << salario << "," << funcao;
+  return ss.str();
+}
+
+string Funcionario::getInfoTab() const {
+  stringstream ss;
+
+  ss << right << setw(3) << identificacao;
+  ss << " " << right << setw(20) << nome;
+  ss << " " << right << setw(20) << local;
+  ss << " " << right << setw(12) << funcao;
+  return ss.str();
 }
 
 int Funcionario::getId() const
 {
-        return identificacao;
+  return identificacao;
 }
 
 float Funcionario::getSalario() const
 {
-        return salario;
+  return salario;
 }
 
 void Funcionario::setSalario(float nS)
 {
-        salario = nS;
+  salario = nS;
 }
 
 string Funcionario::getName() const
 {
-        return nome;
+  return nome;
 }
 
 string Funcionario::getLocal() const
 {
-        return local;
+  return local;
 }
 
 string Funcionario::getFuncao() const
 {
-        return funcao;
+  return funcao;
 }
 
-bool Funcionario::operator<(const Funcionario &f1) const {
-        if(salario == f1.salario) {
-                return (nome < f1.nome);
-        }
-        else
-                return (salario < f1.salario);
+bool Funcionario::operator<(const Funcionario& f1) const {
+  if (salario == f1.salario) {
+    return nome < f1.nome;
+  }
+  else return salario < f1.salario;
 }
 
-bool Funcionario::operator==(const Funcionario &f1) const {
-        return ((identificacao == f1.identificacao) || ((salario == f1.salario) && (nome == f1.nome)));
+bool Funcionario::operator==(const Funcionario& f1) const {
+  return (identificacao == f1.identificacao) || ((salario == f1.salario) && (nome == f1.nome));
 }

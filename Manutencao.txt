@@ -1,3 +1,3 @@
 M,0,Periodica,1546975357
-A,0,Periodica,1547877647
-G,0,Periodica,1548017191
+Z,0,Periodica,1548107080
+I,1,Pneu danificado,1548804228
