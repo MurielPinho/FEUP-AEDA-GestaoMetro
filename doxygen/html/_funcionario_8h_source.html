@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.14"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestão de Bilhetes no Metro: Código-Fonte de Funcionario.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="Metro_do_Porto.gif"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestão de Bilhetes no Metro
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.14 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Localizar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_8f0126b220c1138ed43e6a397ed1efc3.html">GestaoMetro</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">Funcionario.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef FUNCIONARIO_H_</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define FUNCIONARIO_H_</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;iomanip&gt;</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// !  Classe funcionario.</span></div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_funcionario.html">   16</a></span>&#160;<span class="comment"></span><span class="keyword">class </span><a class="code" href="class_funcionario.html">Funcionario</a> {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">protected</span>:</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_funcionario.html#a6d2fb0ac067adb3de9e227bf7bce4df2">   20</a></span>&#160;<span class="keywordtype">float</span> <a class="code" href="class_funcionario.html#a6d2fb0ac067adb3de9e227bf7bce4df2">salario</a>;</div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div><div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="class_funcionario.html#a37c3ba73487134bec6e4b5f328396d41">   23</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_funcionario.html#a37c3ba73487134bec6e4b5f328396d41">local</a>;</div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_funcionario.html#a9415993338314799ac6ec08f4441578e">   26</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_funcionario.html#a9415993338314799ac6ec08f4441578e">nome</a>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div><div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_funcionario.html#a66c11db3f09e8b637ac2d201ff9d32b1">   29</a></span>&#160;<span class="keywordtype">string</span> <a class="code" href="class_funcionario.html#a66c11db3f09e8b637ac2d201ff9d32b1">funcao</a>;</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div><div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_funcionario.html#ae00fc969d0a94f55f9179b2f132b6c6c">   32</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="class_funcionario.html#ae00fc969d0a94f55f9179b2f132b6c6c">identificacao</a>;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<a class="code" href="class_funcionario.html">Funcionario</a>(<span class="keywordtype">string</span> n, <span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">string</span> l, <span class="keywordtype">float</span> sal, <span class="keywordtype">string</span> f);</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">int</span> getId() <span class="keyword">const</span>;</div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">float</span> getSalario() <span class="keyword">const</span>;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> setSalario(<span class="keywordtype">float</span> nS);</div><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">string</span> getLocal() <span class="keyword">const</span>;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div><div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">string</span> getName() <span class="keyword">const</span>;</div><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">string</span> getFuncao() <span class="keyword">const</span>;</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">string</span> getInformacao() <span class="keyword">const</span>;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">string</span> getInfo() <span class="keyword">const</span>;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">string</span> getInfoTab() <span class="keyword">const</span>;</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">bool</span> operator&lt;(<span class="keyword">const</span> <a class="code" href="class_funcionario.html">Funcionario</a> &amp;f1) <span class="keyword">const</span>;</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="class_funcionario.html">Funcionario</a> &amp;f1) <span class="keyword">const</span>;</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div><div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="class_funcionario.html#a800273bd909dc88f821a414abebc442c">  115</a></span>&#160;<a class="code" href="class_funcionario.html#a800273bd909dc88f821a414abebc442c">~Funcionario</a>() {</div><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;};</div><div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div><div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/*FUNCIONARIO_H_*/</span><span class="preprocessor"></span></div><div class="ttc" id="class_funcionario_html_a6d2fb0ac067adb3de9e227bf7bce4df2"><div class="ttname"><a href="class_funcionario.html#a6d2fb0ac067adb3de9e227bf7bce4df2">Funcionario::salario</a></div><div class="ttdeci">float salario</div><div class="ttdoc">Float. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:20</div></div>
+<div class="ttc" id="class_funcionario_html_ae00fc969d0a94f55f9179b2f132b6c6c"><div class="ttname"><a href="class_funcionario.html#ae00fc969d0a94f55f9179b2f132b6c6c">Funcionario::identificacao</a></div><div class="ttdeci">int identificacao</div><div class="ttdoc">Inteiro,. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:32</div></div>
+<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="class_funcionario_html_a37c3ba73487134bec6e4b5f328396d41"><div class="ttname"><a href="class_funcionario.html#a37c3ba73487134bec6e4b5f328396d41">Funcionario::local</a></div><div class="ttdeci">string local</div><div class="ttdoc">String. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:23</div></div>
+<div class="ttc" id="class_funcionario_html_a800273bd909dc88f821a414abebc442c"><div class="ttname"><a href="class_funcionario.html#a800273bd909dc88f821a414abebc442c">Funcionario::~Funcionario</a></div><div class="ttdeci">~Funcionario()</div><div class="ttdoc">Destrutor. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:115</div></div>
+<div class="ttc" id="class_funcionario_html_a66c11db3f09e8b637ac2d201ff9d32b1"><div class="ttname"><a href="class_funcionario.html#a66c11db3f09e8b637ac2d201ff9d32b1">Funcionario::funcao</a></div><div class="ttdeci">string funcao</div><div class="ttdoc">String,. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:29</div></div>
+<div class="ttc" id="class_funcionario_html"><div class="ttname"><a href="class_funcionario.html">Funcionario</a></div><div class="ttdoc">Contem funcoes e dados dos funcionarios. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:16</div></div>
+<div class="ttc" id="class_funcionario_html_a9415993338314799ac6ec08f4441578e"><div class="ttname"><a href="class_funcionario.html#a9415993338314799ac6ec08f4441578e">Funcionario::nome</a></div><div class="ttdeci">string nome</div><div class="ttdoc">String. </div><div class="ttdef"><b>Definition:</b> Funcionario.h:26</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.14
+</small></address>
+</body>
+</html>

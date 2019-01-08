@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['validado',['validado',['../class_ocasional.html#ad34ed7c5440d38076726c0e248ccda68',1,'Ocasional']]],
-  ['venda',['Venda',['../class_venda.html',1,'']]],
-  ['viagens',['viagens',['../class_ocasional.html#a3b1c0023f2713f848fc5b45a29af61e3',1,'Ocasional']]]
+  ['unico',['Unico',['../class_unico.html',1,'Unico'],['../class_unico.html#a50bf6aa0b4d2f8085dbd245033a6210c',1,'Unico::Unico()']]],
+  ['utentes',['Utentes',['../class_utentes.html',1,'']]]
 ];

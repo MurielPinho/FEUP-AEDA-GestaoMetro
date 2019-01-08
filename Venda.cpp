@@ -5,14 +5,29 @@
 
 using namespace std;
 
+// ! Membro normal.
+
+/*!
+   Funcao de igualdade da tabela de dispersao.
+   \return Booleano da comparacao de duas assinaturas.
+ */
 struct strEq {
   bool operator()(const Assinatura& b1, const Assinatura& b2) const {
     return b1.getIdentificacao() == b2.getIdentificacao();
   }
 };
+
+// ! Membro normal.
+
+/*!
+   Funcao hash da tabela de dispersao.
+   \return Int com a posicao onde o dado deve ser inserido na tabela de dispersao.
+ */
 struct strHash {
   int operator()(const Assinatura& b1) const {
-    return b1.getIdentificacao();
+    int h1 = hash<int>{} (b1.getIdentificacao());
+
+    return h1;
   }
 };
 
@@ -414,6 +429,7 @@ void Venda::readData()
   Bilhete *B;
   pontoVenda *P;
 
+  time(&dataAt);
   u.Clean();
 
   bilhetes.open("Bilhetes.txt", ios_base::in);
@@ -790,6 +806,43 @@ void Venda::removeBilhete()
     {
       cout << "Assinatura nao encontrada" << endl << endl;
     }
+  }
+}
+
+void Venda::AssinaturasInativas()
+{
+  auto it = AssInativas.begin();
+  stringstream ss;
+  int d = 0;
+
+  cout << "Assinaturas inativas:" << endl << endl;
+  cout << "   Tipo   | ID |     Nome     | Zona | Tempo Inativa" << endl;
+
+  while (it != AssInativas.end()) {
+    if ((*it).getDesconto() == 0)
+    {
+      ss << right << setw(10) << "Normal";
+    }
+    else if ((*it).getDesconto() == 1)
+    {
+      ss << right << setw(10) << "Estudante";
+    }
+    else if ((*it).getDesconto() == 2)
+    {
+      ss << right << setw(10) << "Junior";
+    }
+    else if ((*it).getDesconto() == 3)
+    {
+      ss << right << setw(10) << "Senior";
+    }
+    ss << " " << right << setw(4) << (*it).getIdentificacao();
+    ss << "  " << left << setw(15) << (*it).getNome();
+    ss << " Z" << left << setw(3) << (*it).getZona();
+    d = abs(difftime((*it).getData(), time(&dataAt))) / 86400;
+    ss << "  " << right << setw(5) << d << " dias";
+    ss << "\n";
+    cout << ss.str() << endl;
+    it++;
   }
 }
 

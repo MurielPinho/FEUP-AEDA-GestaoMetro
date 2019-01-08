@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['readdata',['readData',['../class_venda.html#af9077b25936747fb4103683e73e08c07',1,'Venda']]],
-  ['removeassinatura',['removeAssinatura',['../class_utentes.html#a40cd1966e10c7c8b5f43388371b3bc9b',1,'Utentes']]],
-  ['removebilhete',['removeBilhete',['../class_venda.html#a0285f97c02f38b97ddfeed662606fdf7',1,'Venda']]],
-  ['removelocal',['removeLocal',['../class_local.html#a3f042ea4e60a7884fd3b8c823ed74952',1,'Local']]],
-  ['removeocasional',['removeOcasional',['../class_utentes.html#adbcc5c702868c3d0059d584e6c0c76b3',1,'Utentes']]]
+  ['pagamento',['Pagamento',['../class_venda.html#aaa847d8e95795b4c716aa14aa64390e5',1,'Venda']]],
+  ['partida',['partida',['../class_ocasional.html#ace6ef27d88351608d72b8f9bc2a587cf',1,'Ocasional']]],
+  ['pontovenda',['pontoVenda',['../classponto_venda.html',1,'pontoVenda'],['../classponto_venda.html#ab92199860478714402c6b0211217cf55',1,'pontoVenda::pontoVenda()']]],
+  ['preco',['preco',['../class_bilhete.html#a793d8499d737bdc6bebcaac9d1164b77',1,'Bilhete']]],
+  ['precos',['precos',['../class_venda.html#ad28a92e326e5620304172e6bdd4bf109',1,'Venda']]],
+  ['printfila',['PrintFila',['../class_metro.html#ab2f6e65b300eadce5a5a04f624c40388',1,'Metro']]]
 ];

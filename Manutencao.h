@@ -12,7 +12,7 @@
 using namespace std;
 // !  Classe Manutencao.
 /*!
-   Contem funcoes e dados dos Manutencaos.
+   Contem funcoes e dados das Manutencoes.
  */
 class Manutencao {
 protected:

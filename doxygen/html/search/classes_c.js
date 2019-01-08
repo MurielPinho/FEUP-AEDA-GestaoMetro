@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['venda',['Venda',['../class_venda.html',1,'']]]
+  ['unico',['Unico',['../class_unico.html',1,'']]],
+  ['utentes',['Utentes',['../class_utentes.html',1,'']]]
 ];

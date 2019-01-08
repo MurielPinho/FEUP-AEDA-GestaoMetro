@@ -15,12 +15,15 @@
 #include <string>
 
 using namespace std;
-
+// !  Classe Metro.
+/*!
+   Contem funcoes responsaveis por controlar a gestao das manutencoes e funcionarios.
+ */
 class Metro {
 BST<Funcionario> funcionarios;
 
 public:
-//! Contrutor do Metro
+//! Construtor da classe Metro
 Metro();
 //! Membro normal.
 /*!
@@ -58,32 +61,6 @@ void     readData();
     Escreve os funcionarios presentes nos vetores no ficheiro funcionarios.txt .
  */
 void     writeData();
-
-//! Membro normal.
-/*!
-    \return Uma string com a dataAtual.
- */
-string   dataAt();
-
-//! Membro normal.
-/*!
-    Altera a dataAtual.
- */
-void     alterarData();
-
-//! Membro normal.
-/*!
-    Soma i dias a data d1;
- */
-vector<int>   SomarTempo(vector<int> d1, int i);
-
-//! Membro normal.
-/*!
-    \return a diferenca de duas datas em dias.
- */
-int     DataDiff(vector<int> d1, vector<int> d2);
-
-
 //! Membro normal.
 /*!
     Altera o localAtual de acordo com o numero do local escolhido.

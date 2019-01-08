@@ -72,6 +72,11 @@ void     validar();
     Imprime na tela a informacao resumida de cada bilhete atual.
  */
 void     Bilhetes();
+//! Membro normal.
+/*!
+    Imprime na tela a informacao resumida das assinaturas inativas.
+ */
+void     AssinaturasInativas();
 
 //! Membro normal.
 /*!

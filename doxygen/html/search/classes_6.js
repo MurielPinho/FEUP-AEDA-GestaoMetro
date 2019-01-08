@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['maquina',['Maquina',['../class_maquina.html',1,'']]]
+  ['local',['Local',['../class_local.html',1,'']]],
+  ['loja',['Loja',['../class_loja.html',1,'']]]
 ];

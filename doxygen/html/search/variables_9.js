@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tipo',['tipo',['../class_bilhete.html#aef44378e8a64a61dfe96df101ed78ec7',1,'Bilhete::tipo()'],['../classponto_venda.html#a93c604341b1cc52d3a62726273129e49',1,'pontoVenda::tipo()']]]
+  ['partida',['partida',['../class_ocasional.html#ace6ef27d88351608d72b8f9bc2a587cf',1,'Ocasional']]],
+  ['preco',['preco',['../class_bilhete.html#a793d8499d737bdc6bebcaac9d1164b77',1,'Bilhete']]]
 ];

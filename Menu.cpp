@@ -98,11 +98,12 @@ int main() {
       cout << "\nEscolha a operação desejada         \n" << endl;
       cout << "1 - Comprar Bilhetes                  \n" << endl;
       cout << "2 - Remover Bilhete                   \n" << endl;
-      cout << "3 - Renovar Assinatura                \n" << endl;
-      cout << "4 - Validar Bilhete                   \n" << endl;
-      cout << "5 - Verificar Bilhetes                \n" << endl;
-      cout << "6 - Verificar dados de um bilhete     \n" << endl;
-      cout << "7 - Alterar localidade                \n" << endl;
+      cout << "3 - Verificar assinaturas inativas    \n" << endl;
+      cout << "4 - Renovar Assinatura                \n" << endl;
+      cout << "5 - Validar Bilhete                   \n" << endl;
+      cout << "6 - Verificar Bilhetes                \n" << endl;
+      cout << "7 - Verificar dados de um bilhete     \n" << endl;
+      cout << "8 - Alterar localidade                \n" << endl;
       cout << "0 - Sair                              \n" << endl;
 
       cin.clear();
@@ -121,25 +122,31 @@ int main() {
 
       case 3:
         system("clear");
-        v.renovarAss();
+        v.AssinaturasInativas();
         break;
 
       case 4:
         system("clear");
-        v.validar();
+        v.renovarAss();
         break;
+
 
       case 5:
         system("clear");
-        v.Bilhetes();
+        v.validar();
         break;
 
       case 6:
         system("clear");
-        v.dadosBilhete();
+        v.Bilhetes();
         break;
 
       case 7:
+        system("clear");
+        v.dadosBilhete();
+        break;
+
+      case 8:
         system("clear");
         v.alterarLocal();
         break;

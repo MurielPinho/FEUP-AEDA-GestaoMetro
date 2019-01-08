@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ocasional',['Ocasional',['../class_ocasional.html',1,'']]]
+  ['normal',['Normal',['../class_normal.html',1,'']]]
 ];
