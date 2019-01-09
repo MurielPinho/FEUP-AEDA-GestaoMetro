@@ -456,8 +456,6 @@ void Metro::AddManutencao() {
       av = true;
       cout << "Tipo de Avaria : " << endl;
       getline(cin, tp);
-      cout << "oi" << endl;
-
       system("clear");
       break;
     }

@@ -330,7 +330,7 @@ void Venda::validar() {
   int i;
 
   cout << "Ocasionais:" << endl << endl;
-  cout << "   Tipo   | ID |     Nome     | Zona |" << endl;
+  cout << "  Tipo | ID | Zona |" << endl;
   cout << u.getOcasionais() << endl;
   cout << "Insira o numero do bilhete" << endl;
   cin >> i;
@@ -344,7 +344,9 @@ void Venda::validar() {
     cout << "Bilhete não existe" << endl;
   }
 
-  B->Validacao(true);
+  if (B->getViagens() != 0) {
+    B->Validacao(true);
+  }
 }
 
 void Venda::dadosBilhete()

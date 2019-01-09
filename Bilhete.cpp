@@ -79,7 +79,7 @@ string Bilhete::getNome() const
   return "";
 }
 
-void Bilhete::Renovar() {}
+void Bilhete::Renovar()           {}
 
 void Bilhete::Validacao(bool vdd) {}
 
@@ -247,6 +247,7 @@ Ocasional::Ocasional(int id, int z, float p, bool t, time_t dt, int d, string pt
 
 void Ocasional::Validacao(bool vdd) {
   validado = vdd;
+  viagens -= 1;
 }
 
 bool Ocasional::getValidade() const
