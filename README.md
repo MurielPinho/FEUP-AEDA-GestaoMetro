@@ -1,1 +1,13 @@
-# Project of AEDA course - MIEIC, FEUP
+# Sistema de Gestão Metro
+
+
+## Tema
+
+O projeto implementa um sistema de gestão de informação relativo aos bilhetes e outras partes do metro na cidade do porto. Os bilhetes podem ser do tipo ocasional ou assinatura. Um bilhete ocasional pode ser único (duração de 2h) ou diário (duração de 24h). Um bilhete de tipo assinatura pode ser normal, estudante, júnior ou sénior. Uma assinatura está associada a um utente, que deve ser identificado pelo seu nome (normal), nome, idade e CC (júnior e sénior), nome, idade, CC e escola (estudante). As assinaturas do tipo estudante, sénior e júnior possuem um desconto de 25%.
+É possível acessar diferentes funções relacionadas com a gestão dos bilhetes, funcionários e manutenções, essas estão indicadas na seção Casos de Utilização. 
+
+## Solução Implementada
+
+Utilizamos uma estrutura de dados com uma classe controladora (Venda) e três classes de dados (Bilhete, Local, Metro e Utentes) as quais contem subclasses que ou são usadas como tipos de dado que compõem as classes de dados, como exemplo pontoVenda é usado em Local, ou como diferentes estruturas do mesmo tipo de dado, no caso de Estudante ser um tipo de Assinatura que por sua vez é um tipo de Bilhete. Toda a estrutura de subclasses está detalhada no capitulo seguinte do relatório, assim como a utilização detalhada de todas as funções do projeto estão contidas na documentação do Doxygen mas de maneira geral a classe Venda utiliza as outras classes para gerenciar a venda de bilhetes e a gestão do metro. Utilizamos os conceitos de herança e polimorfismo nas classes como forma de alterar a função que era invocada em tempo real, tendo assim no caso da função “getInformacao()” da classe Bilhete um retorno diferente caso essa seja chamada para o tipo Estudante ou para o tipo Diário, dessa maneira aumentando a eficiência do programa. 
+O programa oferece 2 modos de uso para o usuário, gerenciamento dos bilhetes ou gerenciamento do metro, cada um conta com tipos de utilização diferentes para o usuário os quais estão detalhados no capitulo de casos de utilização, mas resumidamente no modo de gerenciamento de bilhetes todos os objetos relevantes criados são guardados de maneira ordenada em seus respectivos vetores, já no modo de gerenciamento do metro, foram utilizados diferentes tipos de estruturas de dados, nomeadamente Arvore binaria de pesquisa, tabela de dispersão e fila de prioridade, e quando a execução do programa é encerrada ambos são armazenados em um ficheiro de texto, para assim serem utilizados ao realizar execuções posteriores. O programa possui ainda mecanismos de verificação dos dados inseridos, os quais rejeitam os dados caso esses não se adequem à estrutura idealizada. A junção de todas essas implementações e conceitos utilizados no projeto tornam essa uma solução eficiente e muito util para gerir os bilhetes e outras partes de um sistema de Metro. 
+
